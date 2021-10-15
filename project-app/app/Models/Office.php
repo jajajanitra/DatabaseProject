@@ -5,29 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Office extends Model
 {
     use HasFactory;
-    protected $table = 'customers';
-    protected $primaryKey = 'customerNumber';
+    protected $table = 'offices';
+    protected $primaryKey = 'officeCode';
 
     const CREATED_AT = 'null';
     const UPDATED_AT = 'null';
 
     protected $fillable = [
-        'customerNumber',
-        'customerName',
-        'contactLastName',
-        'contactFirstName',
+        'officeCode',
+        'city',
         'phone',
         'addressLine1',
         'addressLine2',
-        'city',
         'state',
-        'postalCode',
         'country',
-        'salesRepEmployeeNumber',
-        'creditLimit',
-        'points'
+        'postalCode',
+        'territory'
     ];
 }
