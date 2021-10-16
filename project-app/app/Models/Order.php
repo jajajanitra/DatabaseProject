@@ -21,6 +21,13 @@ class Order extends Model
         'shippedDate',
         'status',
         'comments',
-        'customerNumber'
+        'total',
+        'pointReceived',
+        'orderType',
+        'couponNumber',
+        'customerNumber',
+        'paymentNumber'
     ];
 }
+
+
