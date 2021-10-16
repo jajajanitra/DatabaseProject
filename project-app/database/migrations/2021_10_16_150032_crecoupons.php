@@ -15,8 +15,8 @@ class Crecoupons extends Migration
     {
         //
         Schema::create('coupons', function (Blueprint $table) {
-        $table->integer('couponNumber');  
-        $table->text('couponCode'); 
+        $table->integer('couponNumber')->primary();  
+        $table->string('couponCode'); 
         $table->integer('discount');
         $table->date('couponEXP');
         $table->softDeletes();}); 
