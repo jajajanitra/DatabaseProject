@@ -27,3 +27,5 @@ use App\Http\Controllers\StockInController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('/stock-in/products', ProductController::class);
