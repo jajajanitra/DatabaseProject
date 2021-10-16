@@ -13,6 +13,8 @@ use App\Http\Controllers\PreOrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductlineController;
 use App\Http\Controllers\StockInController;
+
+use App\Models\Product;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,5 +29,27 @@ use App\Http\Controllers\StockInController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/stock-in/products/createproduct' , function () {
+    return view('createproduct');
+});
+
+Route::post('/stock-in/products/createproduct' , function () {
+    Product::create([
+        'productCode' => request('productCode'),
+        'productName' => request('productName'),
+        'productLine' => request('productLine'),
+        'productScale' => request('productScale'),
+        'productVendor' => request('productVendor'),
+        'productDescription' => request('productDescription'),
+        'quantityInStock' => request('quantityInStock'),
+        'buyPrice' => request('buyPrice'),
+        'MSRP' => request('MSRP'),
+        'productStatus' => request('productStatus')
+    ]);
+    return view('createproduct');
+});
+
 
 Route::resource('/stock-in/products', ProductController::class);

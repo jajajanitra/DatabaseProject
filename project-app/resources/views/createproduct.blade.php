@@ -9,11 +9,12 @@
 <body>
     <div class="content">
         <div class="product-form">
-            <form method="POST" action="">
+            <form method="POST" action="{{config('app.url')}}/stock-in/products/createproduct">
+            @csrf
             <div class="form-input">
                 <div>
                     <label>Product code</label>
-                    <input type="number" min="0" name="productCode">  
+                    <input type="text" name="productCode">  
                 </div>
                 <div>
                    <label>Name</label>
