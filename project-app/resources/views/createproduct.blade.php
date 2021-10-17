@@ -9,7 +9,7 @@
 <body>
     <div class="content">
         <div class="product-form">
-            <form method="POST" action="{{config('app.url')}}/stock-in/products/createproduct">
+            <form method="POST" action="{{ config('app.url')}}/stock-in/products/addproduct">
             @csrf
             <div class="form-input">
                 <div>
@@ -55,13 +55,12 @@
                         <option value="preorder">perorder</option>
                     </select>
                 </div>
-
-                <button>Cancel</button>
+                
                 <button type="submit">Submit</button>
-
             </div>
             </form>
         </div>
+        <a href="{{ config('app.url')}}/stock-in/products"><button>Cancel</button></a>
     </div>
 </body>
 </html>

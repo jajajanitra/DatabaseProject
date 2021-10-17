@@ -8,6 +8,9 @@
 </head>
 <body>
     <div class="content">
+        <div>
+            <a href="{{ config('app.url')}}/stock-in/products/addproduct" class="button"><button>add product</button></a>
+        </div>
         <div class="table-products">
             <table>
                 <thead>
@@ -36,7 +39,7 @@
                         <td>{{ $product ->buyPrice }}</td>
                         <td>{{ $product ->MSRP }}</td>
                         <td>{{ $product ->productStatus }}</td>
-                        <td> <button> edit </button></td>
+                        <td> <a><button> edit </button></a></td>
                     </tr>
                     @endforeach
                 </tbody>

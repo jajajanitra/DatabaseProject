@@ -53,7 +53,8 @@ class ProductController extends Controller
         ]);
         $product->save();
         $product = Product::all();
-        return view('viewproducts' , ['products' => $products]);
+        // Product::create($product);
+        return redirect('viewproducts');
     }
 
     /**
