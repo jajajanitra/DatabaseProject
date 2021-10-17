@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
@@ -13,7 +13,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $order = Order::all();
+        return view('vieworder' , ['orders' => $order]);
     }
 
     /**
@@ -56,7 +57,8 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        return view('editorder',compact('order')); 
     }
 
     /**
@@ -68,7 +70,25 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        Order::find($id)->update([
+            
+            'orderNumber'=>$request->orderNumber,
+            'orderDate'=>$request->orderDate,
+            'requiredDate'=>$request->requiredDate,
+            'shippedDate'=>$request->shippedDate,
+            'status'=>$request->status,
+            'comments'=>$request->comments,
+            'total'=>$request->total,
+            'pointReceived'=>$request->pointReceived,
+            'orderType'=>$request->orderType,
+            'couponNumber'=>$request->couponNumber,
+            'customerNumber'=>$request->customerNumber,
+            'paymentNumber'=>$request->paymentNumber
+            
+        ]);
+
+        return redirect('/order/show');
     }
 
     /**

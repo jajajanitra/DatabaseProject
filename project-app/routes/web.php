@@ -15,6 +15,8 @@ use App\Http\Controllers\ProductlineController;
 use App\Http\Controllers\StockInController;
 
 use App\Models\Product;
+use App\Models\Customer;
+use App\Models\Order;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,10 +45,18 @@ Route::resource('/stock-in', StockInController::class);
 
 Route::resource('/employee', EmployeeController::class);
 
-Route::resource('/customer', CustomerController::class);
-
 Route::get('/stock-in/products/edit/{product}' ,[ProductController::class, 'edit']);
 
 Route::put('/stock-in/products/edit/{product}' ,[ProductController::class, 'update']);
 
 Route::delete('/stock-in/products/delete/{product}' ,[ProductController::class, 'delete']);
+
+
+Route::resource('/customer/show', CustomerController::class);
+Route::get('/customer/all' ,[CustomerController::class, 'create']);
+Route::post('/customer/add' ,[CustomerController::class, 'store'])->name('addCustomer');
+
+Route::resource('/order/show', OrderController::class);
+Route::get('/order/edit/{id}', [OrderController::class, 'edit']);
+Route::post('/order/update/{id}', [OrderController::class, 'update']);
+

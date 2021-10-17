@@ -26,7 +26,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('create_customer');
     }
 
     /**
@@ -37,7 +37,42 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       //ตรวจสอบข้อมูล
+        $request->validate([
+        'customerNumber'=>'required|unique:customers|max:10',
+        'customerName'=>'required|max:50',
+        'contactLastName'=>'required|max:50',
+        'contactFirstName'=>'required|max:50',
+        'phone'=>'required|max:50',
+        'addressLine1'=>'required|max:50',
+        'addressLine2'=>'max:50',
+        'city'=>'required|max:50',
+        'state'=>'max:50',
+        'postalCode'=>'required|max:15',
+        'country'=>'required|max:50',
+        'salesRepEmployeeNumber'=>'max:50',
+        'creditLimit'=>'required|max:50',
+        'points'=>'required|max:50'
+    ]);
+    //บันทึกข้อมูล
+    $customer = new Customer;
+    $customer->customerNumber = $request->customerNumber;
+    $customer->customerName = $request->customerName;
+    $customer->contactLastName = $request->contactLastName;
+    $customer->contactFirstName = $request->contactFirstName;
+    $customer->phone = $request->phone;
+    $customer->addressLine1 = $request->addressLine1;
+    $customer->addressLine2 = $request->addressLine2;
+    $customer->city = $request->city;
+    $customer->state = $request->state;
+    $customer->postalCode = $request->postalCode;
+    $customer->country = $request->country;
+    $customer->salesRepEmployeeNumber = $request->salesRepEmployeeNumber;
+    $customer->creditLimit = $request->creditLimit;
+    $customer->points = $request->points;
+    $customer->save();
+    $customer=Customer::all();
+    return redirect('/customer/show');
     }
 
     /**
