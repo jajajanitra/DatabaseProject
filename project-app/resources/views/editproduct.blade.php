@@ -10,7 +10,8 @@
 <div class="content">
         <div class="product-form">
             <form method="POST" action="{{url('/stock-in/products/edit/' .$product->productCode)}}">
-            @csrf
+            @csrf  
+            @method('PUT')
             <div class="form-input">
                 <div>
                     <label>Product code</label>
