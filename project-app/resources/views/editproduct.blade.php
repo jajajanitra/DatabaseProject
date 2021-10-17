@@ -61,7 +61,11 @@
             </form>
         </div>
         <a href="{{ config('app.url')}}/stock-in/products"><button>Cancel</button></a>
-        <a>delete</a>
+        <form method="POST" action="{{url('/stock-in/products/delete/' .$product->productCode)}}">
+            {{ method_field('DELETE') }}
+            {{ csrf_field() }}
+            <button type="submit">Delete</button>
+        </form>
     </div>
 </body>
 </html>

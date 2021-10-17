@@ -76,7 +76,7 @@ class ProductController extends Controller
     public function edit($product)
     {
         //
-        $product = Product::find($product)->get();
+        $product = Product::find($product);
         return view('editproduct', compact('product'));
     }
 
@@ -87,9 +87,24 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $product)
     {
         //
+        $input = $request->all();
+
+        $product = Product::find($product);
+        $product->productCode = $input['productCode'];
+        $product->productName = $input['productName'];
+        $product->productLine = $input['productLine'];
+        $product->productScale = $input['productScale'];
+        $product->productVendor = $input['productVendor'];
+        $product->productDescription = $input['productDescription'];
+        $product->quantityInStock = $input['quantityInStock'];
+        $product->buyPrice = $input['buyPrice'];
+        $product->MSRP = $input['MSRP'];
+        $product->productStatus = $input['productStatus'];
+
+        return redirect('/stock-in/products');
     }
 
     /**
@@ -101,5 +116,11 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delete($product)
+    {
+        Product::find($product)->delete();
+        return redirect('/stock-in/products');
     }
 }
