@@ -40,3 +40,5 @@ Route::resource('/stock-in/products', ProductController::class);
 
 Route::get('/stock-in/products/edit/{product}' ,[ProductController::class, 'edit']);
 Route::put('/stock-in/products/edit/{product}' ,[ProductController::class, 'update']);
+
+Route::delete('/stock-in/products/delete/{product}' ,[ProductController::class, 'delete']);
