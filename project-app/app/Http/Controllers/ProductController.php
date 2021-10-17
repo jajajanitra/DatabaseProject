@@ -62,9 +62,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
+        $product = Product::all();
+        return view('showproduct' , ['products' => $product]);
     }
 
     /**
@@ -123,5 +125,11 @@ class ProductController extends Controller
     {
         Product::find($product)->delete();
         return redirect('/stock-in/products');
+    }
+
+    public function category($productVendor)
+    {
+            $products = Product::where('productVendor',$productVendor)->get();
+            return view('category' , compact('products'));    
     }
 }
