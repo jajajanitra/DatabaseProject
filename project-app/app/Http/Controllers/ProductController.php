@@ -41,6 +41,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        $productlines = Productline::all();
         $product = new Product([
             'productCode' => $request->productCode,
             'productName' => $request->productName,
