@@ -55,3 +55,5 @@ Route::post('/stock-in/products/addproduct' ,[ProductController::class, 'store']
 
 Route::resource('/stock-in/products', ProductController::class);
 
+Route::resource('/stock-in', StockInController::class);
+
