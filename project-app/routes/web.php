@@ -55,3 +55,7 @@ Route::post('/stock-in/products/addproduct' ,[ProductController::class, 'store']
 
 Route::resource('/stock-in/products', ProductController::class);
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
