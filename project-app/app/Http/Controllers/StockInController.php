@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\StockIn;
 
 class StockInController extends Controller
 {
@@ -14,6 +15,8 @@ class StockInController extends Controller
     public function index()
     {
         //
+        $stockin = StockIn::all();
+        return view('viewstockin' , ['stockins' => $stockin]);
     }
 
     /**

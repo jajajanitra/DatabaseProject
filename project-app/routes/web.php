@@ -35,27 +35,18 @@ Route::get('/stock-in/products/addproduct' , function () {
     return view('createproduct');
 });
 
-// Route::post('/stock-in/products/createproduct' , function () {
-//     Product::create([
-//         'productCode' => request('productCode'),
-//         'productName' => request('productName'),
-//         'productLine' => request('productLine'),
-//         'productScale' => request('productScale'),
-//         'productVendor' => request('productVendor'),
-//         'productDescription' => request('productDescription'),
-//         'quantityInStock' => request('quantityInStock'),
-//         'buyPrice' => request('buyPrice'),
-//         'MSRP' => request('MSRP'),
-//         'productStatus' => request('productStatus')
-//     ]);
-//     return view('createproduct');
-// });
-
 Route::post('/stock-in/products/addproduct' ,[ProductController::class, 'store']);
 
 Route::resource('/stock-in/products', ProductController::class);
 
+Route::resource('/stock-in', StockInController::class);
 
-Auth::routes();
+Route::resource('/employee', EmployeeController::class);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/customer', CustomerController::class);
+
+Route::get('/stock-in/products/edit/{product}' ,[ProductController::class, 'edit']);
+
+Route::put('/stock-in/products/edit/{product}' ,[ProductController::class, 'update']);
+
+Route::delete('/stock-in/products/delete/{product}' ,[ProductController::class, 'delete']);
