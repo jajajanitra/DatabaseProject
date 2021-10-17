@@ -104,6 +104,7 @@ class ProductController extends Controller
         $product->MSRP = $input['MSRP'];
         $product->productStatus = $input['productStatus'];
 
+        $product->save();
         return redirect('/stock-in/products');
     }
 

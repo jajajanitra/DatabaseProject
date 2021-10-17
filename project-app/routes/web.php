@@ -34,6 +34,7 @@ Route::get('/', function () {
 Route::get('/stock-in/products/addproduct' , function () {
     return view('createproduct');
 });
+
 Route::post('/stock-in/products/addproduct' ,[ProductController::class, 'store']);
 
 Route::resource('/stock-in/products', ProductController::class);
