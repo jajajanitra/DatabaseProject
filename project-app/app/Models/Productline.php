@@ -10,6 +10,7 @@ class Productline extends Model
     use HasFactory;
     protected $table = 'productlines';
     protected $primaryKey = 'productLine';
+    protected $keyType = 'string';
 
     const CREATED_AT = 'null';
     const UPDATED_AT = 'null';

@@ -14,6 +14,7 @@ class Product extends Model
     const CREATED_AT = 'null';
     const UPDATED_AT = 'null';
 
+    protected $keyType = 'string';
     public $timestamps = false;
 
     protected $fillable = [

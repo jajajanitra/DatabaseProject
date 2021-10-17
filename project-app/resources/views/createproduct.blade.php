@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add product</title>
 </head>
 <body>
     <div class="content">
@@ -14,39 +14,43 @@
             <div class="form-input">
                 <div>
                     <label>Product code</label>
-                    <input type="text" name="productCode">  
+                    <input type="text" name="productCode" required>  
                 </div>
                 <div>
                    <label>Name</label>
-                    <input type="text" name="productName"> 
+                    <input type="text" name="productName" required> 
                 </div>
                 <div>
                     <label>Line</label>
-                    <input type="text" name="productLine">
+                    <select name="productLine">
+                        @foreach ($productlines as $productline)
+                        <option value="{{$productline->productLine}}">{{ $productline->productLine }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div>
                   <label>Scale</label>
-                    <input type="text" name="productScale">  
+                    <input type="text" name="productScale" required>  
                 </div>
                 <div>
                    <label>Vendor</label>
-                    <input type="text" name="productVendor"> 
+                    <input type="text" name="productVendor" required> 
                 </div>
                 <div>
                     <label>Description</label>
-                    <input type="text" name="productDescription">
+                    <input type="text" name="productDescription" required>
                 </div>
                 <div>
                     <label>Quanitity</label>
-                    <input type="number" min="0" name="quantityInStock">
+                    <input type="number" min="0" name="quantityInStock" required>
                 </div>
                 <div>
                     <label>Buyprice</label>
-                    <input type="number" min="1" name="buyPrice">
+                    <input type="number" min="1" name="buyPrice" required>
                 </div>
                 <div>
                    <label>MSRP</label>
-                    <input type="number" min="1" name="MSRP"> 
+                    <input type="number" min="1" name="MSRP" required> 
                 </div>
                 <div>
                     <label>Status</label>
@@ -56,7 +60,7 @@
                     </select>
                 </div>
                 
-                <button type="submit">Submit</button>
+                <button type="submit">Add</button>
             </div>
             </form>
         </div>
