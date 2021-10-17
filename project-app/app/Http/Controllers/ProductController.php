@@ -53,8 +53,7 @@ class ProductController extends Controller
         ]);
         $product->save();
         $product = Product::all();
-        // Product::create($product);
-        return redirect('viewproducts');
+        return redirect('/stock-in/products');
     }
 
     /**
@@ -74,9 +73,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($product)
     {
         //
+        $product = Product::find($product)->get();
+        return view('editproduct', compact('product'));
     }
 
     /**

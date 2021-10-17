@@ -30,7 +30,7 @@
                     @foreach( $products as $product)
                     <tr>
                         <td>{{ $product ->productCode }}</td>
-                        <td>{{ $product->productName }}</td>
+                        <td>{{ $product ->productName }}</td>
                         <td>{{ $product ->productLine }}</td>
                         <td>{{ $product ->productScale }}</td>
                         <td>{{ $product ->productVendor }}</td>
@@ -39,7 +39,7 @@
                         <td>{{ $product ->buyPrice }}</td>
                         <td>{{ $product ->MSRP }}</td>
                         <td>{{ $product ->productStatus }}</td>
-                        <td> <a><button> edit </button></a></td>
+                        <td> <a href="{{url('/stock-in/products/edit/' .$product->productCode)}}"><button> edit </button></a></td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -48,3 +48,5 @@
     </div>
 </body>
 </html>
+
+//product code all 0
