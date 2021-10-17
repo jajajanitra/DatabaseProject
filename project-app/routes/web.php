@@ -14,7 +14,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductlineController;
 use App\Http\Controllers\StockInController;
 
-use App\Models\Product;
+use App\Models\Productline;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,12 +36,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/stock-in/products/addproduct' , function () {
-    return view('createproduct');
+    $productlines = Productline::all();
+    return view('createproduct' , compact('productlines'));
 });
 
 Route::post('/stock-in/products/addproduct' ,[ProductController::class, 'store']);
 
-Route::resource('/stock-in/products', ProductController::class);
+Route::get('/stock-in/products', [ProductController::class, 'index']);
 
 Route::resource('/stock-in', StockInController::class);
 

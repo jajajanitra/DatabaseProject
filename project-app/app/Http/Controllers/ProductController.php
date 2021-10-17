@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Productline;
 
 class ProductController extends Controller
 {
@@ -15,8 +16,9 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $product = Product::all();
-        return view('viewproducts' , ['products' => $product]);
+        $products = Product::all();
+        $productlines = Productline::all();
+        return view('viewproducts' , compact('products','productlines'));
     }
 
     /**
@@ -39,6 +41,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        $productlines = Productline::all();
         $product = new Product([
             'productCode' => $request->productCode,
             'productName' => $request->productName,
@@ -77,7 +80,8 @@ class ProductController extends Controller
     {
         //
         $product = Product::find($product);
-        return view('editproduct', compact('product'));
+        $productlines = Productline::all();
+        return view('editproduct', compact('product','productlines'));
     }
 
     /**
