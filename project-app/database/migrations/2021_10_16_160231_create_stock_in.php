@@ -16,7 +16,7 @@ class CreateStockIn extends Migration
         Schema::create('stockIn', function (Blueprint $table) {
             $table->integer('stockInNumber')->primary();
             $table->integer('employeeNumber');
-            $table->integer('productCode');
+            $table->string('productCode');
             $table->integer('quantityToOrder');
             $table->date('date');
         });
