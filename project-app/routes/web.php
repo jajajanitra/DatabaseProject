@@ -30,6 +30,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::get('/stock-in/products/addproduct' , function () {
     return view('createproduct');
@@ -50,3 +54,7 @@ Route::get('/stock-in/products/edit/{product}' ,[ProductController::class, 'edit
 Route::put('/stock-in/products/edit/{product}' ,[ProductController::class, 'update']);
 
 Route::delete('/stock-in/products/delete/{product}' ,[ProductController::class, 'delete']);
+
+Route::get('/erm', function (){
+    return view('erm');
+});
