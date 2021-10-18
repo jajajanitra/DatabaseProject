@@ -43,38 +43,26 @@ Route::get('/stock-in/products/addproduct' , function () {
 });
 
 Route::post('/stock-in/products/addproduct' ,[ProductController::class, 'store']);
-
 Route::get('/stock-in/products', [ProductController::class, 'index']);
-
 Route::get('/stock-in/products/edit/{product}' ,[ProductController::class, 'edit']);
-
 Route::put('/stock-in/products/edit/{product}' ,[ProductController::class, 'update']);
-
 Route::delete('/stock-in/products/delete/{product}' ,[ProductController::class, 'delete']);
 
 Route::get('/erm', [EmployeeController::class, 'erm']);
-
 Route::get('/erm/edit/{employee}', [EmployeeController::class, 'edit']); 
-
 Route::put('/erm/edit/{employee}', [EmployeeController::class, 'update']);
 
 Route::get('/products',[ProductController::class,'show']);
-
 Route::get('/products/category/{productVendor}',[ProductController::class,'category']); 
 
 Route::resource('/stock-in', StockInController::class);
-
 Route::get('/stock-inadd', [StockInController::class , 'create']);
-
-//Route::get('/stock-inadd' ,[ProductController::class, 'index']);
-
 Route::post('/stock-inadd' ,[StockInController::class, 'store']);
 
 Route::resource('/employee', EmployeeController::class);
 
 
-
-Route::get('/products/addtocart' ,[OrderController::class, 'index']);
+Route::get('/products/addtocart' ,[OrderdetailController::class, 'create']);
 
 
 //Customer
