@@ -14,9 +14,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductlineController;
 use App\Http\Controllers\StockInController;
 
-use App\Models\Product;
-use App\Models\Customer;
-use App\Models\Order;
+use App\Models\Productline;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,12 +32,13 @@ Route::get('/', function () {
 
 
 Route::get('/stock-in/products/addproduct' , function () {
-    return view('createproduct');
+    $productlines = Productline::all();
+    return view('createproduct' , compact('productlines'));
 });
 
 Route::post('/stock-in/products/addproduct' ,[ProductController::class, 'store']);
 
-Route::resource('/stock-in/products', ProductController::class);
+Route::get('/stock-in/products', [ProductController::class, 'index']);
 
 Route::resource('/stock-in', StockInController::class);
 
@@ -51,11 +50,11 @@ Route::put('/stock-in/products/edit/{product}' ,[ProductController::class, 'upda
 
 Route::delete('/stock-in/products/delete/{product}' ,[ProductController::class, 'delete']);
 
-
+//customer
 Route::resource('/customer/show', CustomerController::class);
 Route::get('/customer/all' ,[CustomerController::class, 'create']);
 Route::post('/customer/add' ,[CustomerController::class, 'store'])->name('addCustomer');
-
+//Order
 Route::resource('/order/show', OrderController::class);
 Route::get('/order/edit/{id}', [OrderController::class, 'edit']);
 Route::post('/order/update/{id}', [OrderController::class, 'update']);
