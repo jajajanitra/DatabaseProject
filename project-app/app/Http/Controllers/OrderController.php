@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -70,24 +71,11 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
         Order::find($id)->update([
-            
-            'orderNumber'=>$request->orderNumber,
-            'orderDate'=>$request->orderDate,
-            'requiredDate'=>$request->requiredDate,
             'shippedDate'=>$request->shippedDate,
             'status'=>$request->status,
-            'comments'=>$request->comments,
-            'total'=>$request->total,
-            'pointReceived'=>$request->pointReceived,
-            'orderType'=>$request->orderType,
-            'couponNumber'=>$request->couponNumber,
-            'customerNumber'=>$request->customerNumber,
-            'paymentNumber'=>$request->paymentNumber
-            
+            'comments'=>$request->comments
         ]);
-
         return redirect('/order/show');
     }
 

@@ -9,7 +9,7 @@
 <body>
     <div class="content">
     <div>
-            <a href="{{ config('app.url')}}/customer/all" class="button"><button>add Customer</button></a>
+            <a href="{{ config('app.url')}}/customer/create" class="button"><button>add Customer</button></a>
         </div>
         <div class="table-products">
             <table>

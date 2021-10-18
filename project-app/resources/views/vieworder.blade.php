@@ -12,7 +12,7 @@
             <table>
                 <thead>
                     <td> </td>
-                    <td>Number</td>
+                    <td>Order Number</td>
                     <td> </td>
                     <td>Date</td>
                     <td> </td>
@@ -40,7 +40,8 @@
                     @foreach( $orders as $order) 
                     <tr>
                         <td> </td>
-                        <td>{{ $order ->orderNumber}}</td>
+                        <td><a href="{{url('/payment/create/'.$order->orderNumber)}}"><button> {{ $order ->orderNumber}}</button></a>
+                        </td>
                         <td> </td>
                         <td>{{ $order ->orderDate}}</td>
                         <td> </td>
@@ -64,7 +65,6 @@
                         <td> </td>
                         <td>{{ $order ->paymentNumber}}</td>
                         <td> <a href="{{url('/order/edit/'.$order->orderNumber)}}"><button> edit </button></a></td>
-
                     </tr>
                     @endforeach
                 </tbody>

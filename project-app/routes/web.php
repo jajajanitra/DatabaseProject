@@ -57,7 +57,7 @@ Route::get('/products/category/{productVendor}',[ProductController::class,'categ
 
 //Customer
 Route::resource('/customer/show', CustomerController::class);
-Route::get('/customer/all' ,[CustomerController::class, 'create']);
+Route::get('/customer/create' ,[CustomerController::class, 'create']);
 Route::post('/customer/add' ,[CustomerController::class, 'store'])->name('addCustomer');
 //Order
 Route::resource('/order/show', OrderController::class);

@@ -15,10 +15,9 @@
 </head>
 <body>
                     <div class="card">
-                            <div class="card-header"><h1>Edit Order Form</h1></div>
+                            <div class="card-header"><h1>Edit Order</h1></div>
                             <div class="card-body">
-                            <form action="{{url('/order/update'.$order->id)}}" method="post">
-                             
+                            <form action="{{url('/order/update/'.$order->orderNumber)}}" method="post">
                                     <div class="form-group">
                                         <label for="orderNumberr">Order Number</label>
                                         <input type="text" class="form-control" name="orderNumber" value = "{{$order->orderNumber}}">                              
@@ -36,15 +35,14 @@
                                     @enderror
                                     <br>
                                     <div class="form-group">
-                                        <label for="state">State</label>
-                                        <select name="state" value="{{$order->state}}" >
+                                        <label for="status">Status</label>
+                                        <select name="status" value="{{$order->status}}" >
                                             <option value="canceled">canceled</option>
                                             <option value="disputed ">disputed </option>
                                             <option value="n process">in process</option>
                                             <option value="on hold">on hold</option>
                                             <option value="resolved ">resolved </option>
                                             <option value="shipped" selected>shipped </option>
-                                            
                                         </select>
                                     </div> 
                                     <br>
@@ -54,7 +52,7 @@
                                     </div>
                                     <br>
                                     <div>
-                                    <input type="submit" value="Save">
+                                    <input type="submit" value="update">
                                     </div>
                                 </form>
                                 </div>
