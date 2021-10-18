@@ -48,8 +48,6 @@ Route::resource('/stock-in', StockInController::class);
 
 Route::resource('/employee', EmployeeController::class);
 
-Route::resource('/customer', CustomerController::class);
-
 Route::get('/stock-in/products/edit/{product}' ,[ProductController::class, 'edit']);
 
 Route::put('/stock-in/products/edit/{product}' ,[ProductController::class, 'update']);
@@ -61,3 +59,17 @@ Route::get('/erm', [EmployeeController::class, 'erm']);
 Route::get('/erm/edit/{employee}', [EmployeeController::class, 'edit']); 
 
 Route::put('/erm/edit/{employee}', [EmployeeController::class, 'update']);
+Route::get('/products',[ProductController::class,'show']);
+
+Route::get('/products/category/{productVendor}',[ProductController::class,'category']); 
+
+
+//Customer
+Route::resource('/customer/show', CustomerController::class);
+Route::get('/customer/create' ,[CustomerController::class, 'create']);
+Route::post('/customer/add' ,[CustomerController::class, 'store'])->name('addCustomer');
+//Order
+Route::resource('/order/show', OrderController::class);
+Route::get('/order/edit/{id}', [OrderController::class, 'edit']);
+Route::post('/order/update/{id}', [OrderController::class, 'update']);
+

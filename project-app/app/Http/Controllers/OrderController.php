@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Models\Order;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -13,7 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $order = Order::all();
+        return view('vieworder' , ['orders' => $order]);
     }
 
     /**
@@ -56,7 +58,8 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        return view('editorder',compact('order')); 
     }
 
     /**
@@ -68,7 +71,12 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Order::find($id)->update([
+            'shippedDate'=>$request->shippedDate,
+            'status'=>$request->status,
+            'comments'=>$request->comments
+        ]);
+        return redirect('/order/show');
     }
 
     /**
