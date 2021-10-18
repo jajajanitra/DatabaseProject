@@ -8,9 +8,6 @@
 </head>
 <body>
     <div class="content">
-        <div>
-            <a href="{{ config('app.url')}}/order/add" class="button"><button>add Order</button></a>
-        </div>
             <div class="table-products">
             <table>
                 <thead>
