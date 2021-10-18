@@ -29,7 +29,7 @@
                         </div>
                         <button type="submit">Confirm</button>
                     </div>
-                    <a href="{{ config('app.url')}}/stock-in/add"><button>Cancel</button></a>
+                    <a href="{{ config('app.url')}}/stock-inadd"><button>Cancel</button></a>
                 </form>
             </div>  
         </div>

@@ -38,22 +38,15 @@ class StockInController extends Controller
     public function store(Request $request)
     {
         //
-        $productlines = Productline::all();
-        $product = new Product([
+        //$productlines = Productline::all();
+        $stockin = new Stockin([
             'productCode' => $request->productCode,
-            'productName' => $request->productName,
-            'productLine' => $request->productLine,
-            'productScale' => $request->productScale,
-            'productVendor' => $request->productVendor,
-            'productDescription' => $request->productDescription,
-            'quantityInStock' => $request->quantityInStock,
-            'buyPrice' => $request->buyPrice,
-            'MSRP' => $request->MSRP,
-            'productStatus' => $request->productStatus
+            'quantityToOrder' => $request->quantityToOrder,
+            'date' => $request->date,
         ]);
-        $product->save();
-        $product = Product::all();
-        return redirect('/stock-in/products');
+        $stockin->save();
+        $stockin = Stockin::all();
+        return redirect('/stock-in');
     }
 
     /**

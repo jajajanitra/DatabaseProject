@@ -8,6 +8,7 @@
 </head>
 <body>
     <div class="content">
+        <div> <a href="{{ config('app.url')}}/stock-inadd" class="button"><button>add stockin</button></a></div>
         <div class="table-products">
             <table>
                 <thead>

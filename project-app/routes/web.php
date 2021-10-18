@@ -74,7 +74,7 @@ Route::resource('/employee', EmployeeController::class);
 
 
 
-//Route::get('/products/addtocart' ,[OrderController::class, 'index']);
+Route::get('/products/addtocart' ,[OrderController::class, 'index']);
 
 
 //Customer
