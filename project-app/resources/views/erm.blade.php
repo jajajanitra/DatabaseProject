@@ -20,30 +20,16 @@
                 <tbody>
                     @foreach( $employees as $employee)
                     <tr>
-                        <td>{{ $employee -> employeeNumber}}</td>
-                        <td>{{ $employee -> lastName}}</td>
-                        <td>{{ $employee -> firstName}}</td>
-                        <td> 
-                        <form method="POST" action="{{url('/erm' .$employee->employeeNumber)}}">
-                        @csrf  
-                        @method('PUT')
-                        <select name="jobTitle" value="{{old('jobTitle') ?? $employee->jobTitle }}">
-                        <option value="Sales Manager(APAC)">Sales Manager(APAC)</option>
-                        <option value="Sales Manager(EMEA)">Sales Manager(EMEA)</option>
-                        <option value="Sales Manager(NA)">Sales Manager(NA)</option>
-                        <option value="Sales Rep">Sales Rep</option>
-                        </select>
-                        </form>
-                    </td>
+                        <td>{{ $employee -> employeeNumber }}</td>
+                        <td>{{ $employee -> lastName }}</td>
+                        <td>{{ $employee -> firstName }}</td>
+                        <td>{{ $employee -> jobTitle }}</td>
+                        <td> <a href="{{url('/erm/edit/' .$employee->employeeNumber)}}"><button> edit </button></a></td>
                     </tr>
                     @endforeach
-                    <button type="submit">confirm</button>
-                    <a href="{{ config('app.url')}}/home"><button>Cancel</button></a>
                 </tbody>
             </table>
         </div>
     </div>
 </body>
 </html>
-
-//product code all 0

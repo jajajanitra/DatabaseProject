@@ -60,8 +60,8 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         //
-        $id = Employee::find($id);
-        return view('erm', compact('employee'));
+        $employee = Employee::find($id);
+        return view('editjobtitle', compact('employee'));
     }
 
     /**
@@ -74,6 +74,11 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $input = $request->all();
+        $employee = Employee::find($id);
+        $employee->jobTitle = $input['jobTitle'];
+        $employee->save();
+        return redirect('/erm');
     }
 
     /**
@@ -85,5 +90,11 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function erm()
+    {
+        $employee = Employee::all();
+        return view('erm' , ['employees' => $employee]);
     }
 }

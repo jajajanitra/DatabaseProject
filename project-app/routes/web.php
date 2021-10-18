@@ -56,6 +56,8 @@ Route::put('/stock-in/products/edit/{product}' ,[ProductController::class, 'upda
 
 Route::delete('/stock-in/products/delete/{product}' ,[ProductController::class, 'delete']);
 
-Route::get('/erm', function (){
-    return view('erm');
-});
+Route::get('/erm', [EmployeeController::class, 'erm']);
+
+Route::get('/erm/edit/{employee}', [EmployeeController::class, 'edit']); 
+
+Route::put('/erm/edit/{employee}', [EmployeeController::class, 'update']);
