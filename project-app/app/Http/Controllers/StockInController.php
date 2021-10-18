@@ -26,7 +26,7 @@ class StockInController extends Controller
      */
     public function create()
     {
-        //
+        return view('stockin');
     }
 
     /**
@@ -38,6 +38,22 @@ class StockInController extends Controller
     public function store(Request $request)
     {
         //
+        $productlines = Productline::all();
+        $product = new Product([
+            'productCode' => $request->productCode,
+            'productName' => $request->productName,
+            'productLine' => $request->productLine,
+            'productScale' => $request->productScale,
+            'productVendor' => $request->productVendor,
+            'productDescription' => $request->productDescription,
+            'quantityInStock' => $request->quantityInStock,
+            'buyPrice' => $request->buyPrice,
+            'MSRP' => $request->MSRP,
+            'productStatus' => $request->productStatus
+        ]);
+        $product->save();
+        $product = Product::all();
+        return redirect('/stock-in/products');
     }
 
     /**

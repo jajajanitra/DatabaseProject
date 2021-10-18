@@ -40,10 +40,6 @@ Route::post('/stock-in/products/addproduct' ,[ProductController::class, 'store']
 
 Route::get('/stock-in/products', [ProductController::class, 'index']);
 
-Route::resource('/stock-in', StockInController::class);
-
-Route::resource('/employee', EmployeeController::class);
-
 Route::get('/stock-in/products/edit/{product}' ,[ProductController::class, 'edit']);
 
 Route::put('/stock-in/products/edit/{product}' ,[ProductController::class, 'update']);
@@ -54,13 +50,30 @@ Route::get('/products',[ProductController::class,'show']);
 
 Route::get('/products/category/{productVendor}',[ProductController::class,'category']); 
 
+Route::resource('/stock-in', StockInController::class);
+
+Route::get('/stock-inadd', [StockInController::class , 'create']);
+
+//Route::get('/stock-inadd' ,[ProductController::class, 'index']);
+
+Route::post('/stock-inadd' ,[StockInController::class, 'store']);
+
+Route::resource('/employee', EmployeeController::class);
+
+
+
+//Route::get('/products/addtocart' ,[OrderController::class, 'index']);
+
 
 //Customer
 Route::resource('/customer/show', CustomerController::class);
 Route::get('/customer/create' ,[CustomerController::class, 'create']);
 Route::post('/customer/add' ,[CustomerController::class, 'store'])->name('addCustomer');
+
 //Order
 Route::resource('/order/show', OrderController::class);
 Route::get('/order/edit/{id}', [OrderController::class, 'edit']);
 Route::post('/order/update/{id}', [OrderController::class, 'update']);
 
+//add to cart
+//Route::put('/products/addtocart',[OrderController::class],'show');
