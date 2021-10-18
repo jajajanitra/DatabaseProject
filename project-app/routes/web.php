@@ -50,7 +50,12 @@ Route::put('/stock-in/products/edit/{product}' ,[ProductController::class, 'upda
 
 Route::delete('/stock-in/products/delete/{product}' ,[ProductController::class, 'delete']);
 
-//customer
+Route::get('/products',[ProductController::class,'show']);
+
+Route::get('/products/category/{productVendor}',[ProductController::class,'category']); 
+
+
+//Customer
 Route::resource('/customer/show', CustomerController::class);
 Route::get('/customer/all' ,[CustomerController::class, 'create']);
 Route::post('/customer/add' ,[CustomerController::class, 'store'])->name('addCustomer');
@@ -58,4 +63,5 @@ Route::post('/customer/add' ,[CustomerController::class, 'store'])->name('addCus
 Route::resource('/order/show', OrderController::class);
 Route::get('/order/edit/{id}', [OrderController::class, 'edit']);
 Route::post('/order/update/{id}', [OrderController::class, 'update']);
-
+Route::get('/order/create', [OrderController::class, 'create']);
+Route::post('/order/add' ,[OrderController::class, 'store'])->name('addOrder');
