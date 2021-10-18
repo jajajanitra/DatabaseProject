@@ -13,6 +13,7 @@ use App\Http\Controllers\PreOrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductlineController;
 use App\Http\Controllers\StockInController;
+use App\Http\Controllers\HomeController;
 
 use App\Models\Productline;
 /*
@@ -32,8 +33,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::get('/home/{employee}', [EmployeeController::class, 'show']);
 
 Route::get('/stock-in/products/addproduct' , function () {
     $productlines = Productline::all();
@@ -59,6 +61,7 @@ Route::get('/erm', [EmployeeController::class, 'erm']);
 Route::get('/erm/edit/{employee}', [EmployeeController::class, 'edit']); 
 
 Route::put('/erm/edit/{employee}', [EmployeeController::class, 'update']);
+
 Route::get('/products',[ProductController::class,'show']);
 
 Route::get('/products/category/{productVendor}',[ProductController::class,'category']); 

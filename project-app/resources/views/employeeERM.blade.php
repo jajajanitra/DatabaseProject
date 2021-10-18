@@ -25,6 +25,7 @@
                                         @csrf
                                     </form>
                                 </div>
+                                <a href="/erm">ERM</a>
                             </li>
         </nav>
 </div>

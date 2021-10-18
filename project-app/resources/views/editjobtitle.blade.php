@@ -9,7 +9,7 @@
 <body>
     <div class="content">
         <div class="editerm">
-            <div>Employee No. : {{ $employee -> employeeNumber}}</div>
+            <div>Employee No. : {{ $filtered -> employeeNumber}}</div>
             <div>Name : {{ $employee -> firstName}} {{ $employee -> lastName}}</div>
             <div>Job title : {{ $employee -> jobTitle }}</div>
             <form method="POST" action="{{url('/erm/edit/' .$employee->employeeNumber)}}">
