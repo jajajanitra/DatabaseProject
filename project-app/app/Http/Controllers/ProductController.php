@@ -69,7 +69,9 @@ class ProductController extends Controller
     {
         //
         $product = Product::all();
-        return view('showproduct' , ['products' => $product]);
+        $productVendor = Product::where('productVendor',$product)->getModel()->select('productVendor')->distinct()->get();
+        $filter = Product::where('productVendor','=','$productVendor')->getModel()->select('productName')->get();
+        return view('showproduct' , ['products' => $product],['productVendor' => $productVendor],['products' => $filter]);
     }
 
     /**
@@ -131,9 +133,32 @@ class ProductController extends Controller
         return redirect('/stock-in/products');
     }
 
-    public function category($productVendor)
+    public function categoryvendor(Request $request)
     {
-            $products = Product::where('productVendor',$productVendor)->get();
-            return view('category' , compact('products'));    
+        $products = Product::all();
+        $productVendor = Product::where('productVendor',$products)->getModel()->select('productVendor')->distinct()->get();
+        $filters = [
+            'productVendor' => $request->vendor
+        ];
+        $filter = Product::where(function($query) use($filters){
+            if ($filters['productVendor']) {
+                $query->where('productVendor', '=', $filters['productVendor']);
+            }
+        })
+        ->get();
+        return redirect()->back()->with('categoryvendor' , compact('productVendor','filter'));  
+    }
+
+    public function categoryscale(Request $request)
+    {
+        $products = Product::all();
+        $productScale = Product::where('productScale',$products)->getModel()->select('productScale')->distinct()->get();
+        $filter = Product::where(function($query) use($request){
+            return $request->productScale ?
+                $query->from('products')->where('id',$request->productScale): '';
+        })
+        ->get();
+        
+        return view('categoryscale' , compact('productScale','filter'));  
     }
 }

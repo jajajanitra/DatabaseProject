@@ -9,24 +9,21 @@
 <body>
     <div class="content">
         <div class="select-table"> 
-            <label>catalog</label>
-            <select>
-                <a href="{{ config('app.url')}}/products" class="select-table"><option>All product</option></a>
-                <a href="{{ config('app.url')}}/products/vendor" class="select-table"><option>vendor</option></a>
-                <a href="{{ config('app.url')}}/products/scale" class="select-table"><option>scale</option></a>
-                <a href="{{ config('app.url')}}/preorder" class="select-table"><option>preorder</option></a>
-            </select>
+            <h1>Catalog</h1>
+                <botton><a href="{{ config('app.url')}}/products" class="select-table"><option>All product</option></a></botton>
+                <botton><a href="{{ config('app.url')}}/products/vendor" class="select-table"><option>vendor</option></a></botton>
+                <botton><a href="{{ config('app.url')}}/products/scale" class="select-table"><option>scale</option></a></botton>
+                <botton><a href="{{ config('app.url')}}/preorder" class="select-table"><option>preorder</option></a></botton>
         </div>
         <h2>All Product</h2>
         <div class="table-showproducts">
             <table>
                 <thead>
-                    <td>Name</td>
-                    <td>Scale</td>
-                    <td>Vendor</td>
-                    <td>Buyprice</td>
-                    <td>Status</td>
-                    <td></td>
+                    <th>Name</th>
+                    <th>Scale</th>
+                    <th>Vendor</th>
+                    <th>Buyprice</th>
+                    <th>Status</th>
                 </thead>
                 <tbody>
                     @foreach( $products as $product)
@@ -35,6 +32,7 @@
                         <td>{{ $product ->productScale }}</td>
                         <td>{{ $product ->productVendor }}</td>
                         <td>{{ $product ->buyPrice }}</td>
+                        <td>{{ $product ->productStatus }}</td>
                         <td><a href="{{ config('app.url')}}/products/addtocart" class="button"><button>add to cart</button></a></td>
                     </tr>
                     @endforeach
@@ -44,4 +42,3 @@
     </div>
 </body>
 </html>
-
