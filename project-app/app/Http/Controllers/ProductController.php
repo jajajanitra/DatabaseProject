@@ -135,27 +135,27 @@ class ProductController extends Controller
 
     public function categoryvendor(Request $request)
     {
-        $products = Product::all();
-        $productVendor = Product::where('productVendor',$products)->getModel()->select('productVendor')->distinct()->get();
         $filters = [
-            'productVendor' => $request->vendor
+            'vendor' => $request->vendor
         ];
         $filter = Product::where(function($query) use($filters){
-            if ($filters['productVendor']) {
-                $query->where('productVendor', '=', $filters['productVendor']);
+            if ($filters['vendor']) {
+                $query->where('productVendor', '=', $filters['vendor']);
             }
+            else $filter = Product::all();
         })
+        
         ->get();
-        return redirect()->back()->with('categoryvendor' , compact('productVendor','filter'));  
+        return view('categoryvendor' , compact('filter'));  
     }
 
-    public function categoryscale(Request $request)
+    public function categoryscale($vendor)
     {
         $products = Product::all();
         $productScale = Product::where('productScale',$products)->getModel()->select('productScale')->distinct()->get();
-        $filter = Product::where(function($query) use($request){
-            return $request->productScale ?
-                $query->from('products')->where('id',$request->productScale): '';
+        $filter = Product::where(function($query) use($vendor){
+            return $vendor->productScale ?
+                $query->from('products')->where('id',$vendor->productScale): '';
         })
         ->get();
         

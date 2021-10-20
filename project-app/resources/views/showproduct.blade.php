@@ -15,6 +15,18 @@
                 <botton><a href="{{ config('app.url')}}/products/scale" class="select-table"><option>scale</option></a></botton>
                 <botton><a href="{{ config('app.url')}}/preorder" class="select-table"><option>preorder</option></a></botton>
         </div>
+        <div class="Dropdown-vendor">
+            <label>vendor</label>
+            <form action="{{ route('filter','$vendor->id') }}" method="GET">
+                <select name="vendor" id="input">
+                    <option value="0">Select Vendor</option>
+                    @foreach( $productVendor as $vendor)
+                    <option value="{{$vendor->id}}">{{ $vendor->productVendor}}</option>   
+                    @endforeach
+                </select>
+                <input type="submit" class="btn btn-danger btn-sm" value="select">
+            </form>
+        </div>
         <h2>All Product</h2>
         <div class="table-showproducts">
             <table>
