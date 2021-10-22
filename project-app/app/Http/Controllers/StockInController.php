@@ -40,6 +40,8 @@ class StockInController extends Controller
         //
         //$productlines = Productline::all();
         $stockin = new Stockin([
+            'stockInNumber' => $request->stockInNumber,
+            'employeeNumber' => $request->employeeNumber,
             'productCode' => $request->productCode,
             'quantityToOrder' => $request->quantityToOrder,
             'date' => $request->date,

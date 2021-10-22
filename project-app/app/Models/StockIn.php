@@ -13,6 +13,7 @@ class StockIn extends Model
     
     const CREATED_AT = 'null';
     const UPDATED_AT = 'null';
+    public $timestamps = false;
 
     protected $fillable = [
         'stockInNumber',
