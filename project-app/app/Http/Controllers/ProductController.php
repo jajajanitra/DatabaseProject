@@ -70,8 +70,8 @@ class ProductController extends Controller
         //
         $product = Product::all();
         $productVendor = Product::where('productVendor',$product)->getModel()->select('productVendor')->distinct()->get();
-        $filter = Product::where('productVendor','=','$productVendor')->getModel()->select('productName')->get();
-        return view('showproduct' , ['products' => $product],['productVendor' => $productVendor],['products' => $filter]);
+        $productScale = Product::where('productScale',$product)->getModel()->select('productScale')->distinct()->get();
+        return view('showproduct' , ['products' => $product],['productVendor' => $productVendor],['productScale' => $productScale]);
     }
 
     /**
@@ -144,21 +144,22 @@ class ProductController extends Controller
             }
             else $filter = Product::all();
         })
-        
         ->get();
         return view('categoryvendor' , compact('filter'));  
     }
 
-    public function categoryscale($vendor)
+    public function categoryscale(Request $request)
     {
-        $products = Product::all();
-        $productScale = Product::where('productScale',$products)->getModel()->select('productScale')->distinct()->get();
-        $filter = Product::where(function($query) use($vendor){
-            return $vendor->productScale ?
-                $query->from('products')->where('id',$vendor->productScale): '';
+        $filters = [
+            'scale' => $request->scale
+        ];
+        $filter = Product::where(function($query) use($filters){
+            if ($filters['scale']) {
+                $query->where('productScale', '=', $filters['scale']);
+            }
+            else $filter = Product::all();
         })
         ->get();
-        
-        return view('categoryscale' , compact('productScale','filter'));  
+        return view('categoryscale' , compact('filter')); 
     }
 }
