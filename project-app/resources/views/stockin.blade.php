@@ -9,12 +9,20 @@
     <body>
         <div class="content">
             <div class="product-form">
-                <form method="POST" action="{{ config('app.url')}}/stock-in/add">
+                <form method="POST" action="{{ config('app.url')}}/stock-inadd">
                 @csrf
                 <div class="form-group">
                     <h1>Add Stock-In</h1>
                 </div>              
                 <div class="form-input">
+                        <div>
+                            <label>stockInNumber</label>
+                            <input type="number" name="stockInNumber">  
+                        </div>
+                        <div>
+                            <label>employeeNumber</label>
+                            <input type="number" name="employeeNumber">  
+                        </div>
                         <div>
                             <label>Product code</label>
                             <input type="text" name="productCode">  
