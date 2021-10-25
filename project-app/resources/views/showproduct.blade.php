@@ -15,7 +15,8 @@
             <botton><a href="{{ config('app.url')}}/products/scale" class="select-table"><option>scale</option></a></botton>
             <botton><a href="{{ config('app.url')}}/preorder" class="select-table"><option>preorder</option></a></botton>
         </div>
-        <div class="Dropdown-vendor">
+
+        <div class="Dropdown">
             <label>vendor</label>
             <form action="{{ url('/products/vendor/vendor') }}" method="GET">
                 @csrf
@@ -27,8 +28,7 @@
                 </select>
                 <input type="submit" class="btn btn-danger btn-sm" value="select">
             </form>
-        </div>
-        <div class="Dropdown-scale">
+
             <label>scale</label>
             <form action="{{ url('/products/scale/scale') }}" method="GET">
                 @csrf
@@ -40,7 +40,15 @@
                 </select>
                 <input type="submit" class="btn btn-danger btn-sm" value="select">
             </form>
+            
+            
         </div>
+        
+        <div class="cart">
+            <i class="shopping-cart"></i>
+            Cart(0)
+        </div>
+
         <h2>All Product</h2>
         <div class="table-showproducts">
             <table>
@@ -52,14 +60,14 @@
                     <th>Status</th>
                 </thead>
                 <tbody>
-                    @foreach( $products as $product)
+                    @foreach( $product as $product)
                     <tr>
                         <td>{{ $product ->productName }}</td>
                         <td>{{ $product ->productScale }}</td>
                         <td>{{ $product ->productVendor }}</td>
                         <td>{{ $product ->buyPrice }}</td>
                         <td>{{ $product ->productStatus }}</td>
-                        <td><a href="{{ config('app.url')}}/products/addtocart" class="button"><button>add to cart</button></a></td>
+                        <td><a href="{{url('/products/cart/AddToCart/' .$product->id)}}" class="button"><button>add to cart</button></a></td>
                     </tr>
                     @endforeach
                 </tbody>

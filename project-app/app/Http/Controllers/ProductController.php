@@ -71,7 +71,8 @@ class ProductController extends Controller
         $product = Product::all();
         $productVendor = Product::where('productVendor',$product)->getModel()->select('productVendor')->distinct()->get();
         $productScale = Product::where('productScale',$product)->getModel()->select('productScale')->distinct()->get();
-        return view('showproduct' , ['products' => $product],['productVendor' => $productVendor],['productScale' => $productScale]);
+        $productStatus = Product::where('productStatus',$product)->getModel()->select('productStatus')->distinct()->get();
+        return view(('showproduct') ,compact('product','productVendor','productScale','productStatus'));
     }
 
     /**
@@ -133,33 +134,92 @@ class ProductController extends Controller
         return redirect('/stock-in/products');
     }
 
+    /*filter product*/
+
     public function categoryvendor(Request $request)
     {
-        $filters = [
-            'vendor' => $request->vendor
-        ];
+        $filters = ['vendor' => $request->vendor];
         $filter = Product::where(function($query) use($filters){
-            if ($filters['vendor']) {
-                $query->where('productVendor', '=', $filters['vendor']);
-            }
-            else $filter = Product::all();
-        })
-        ->get();
-        return view('categoryvendor' , compact('filter'));  
+            $query->where('productVendor', '=', $filters['vendor']);
+        }) ->get();
+        return view('category' , compact('filter'));  
     }
 
     public function categoryscale(Request $request)
     {
-        $filters = [
-            'scale' => $request->scale
-        ];
+        $filters = ['scale' => $request->scale];
         $filter = Product::where(function($query) use($filters){
-            if ($filters['scale']) {
-                $query->where('productScale', '=', $filters['scale']);
+            $query->where('productScale', '=', $filters['scale']);
+        }) ->get();
+        return view('category' , compact('filter')); 
+    }
+    
+    public function categorystatus(Request $request)
+    {
+        $filters = ['status' => $request->status];
+        $filter = Product::where(function($query) use($filters){
+            $query->where('productStatus', '=', $filters['status']);
+        }) ->get();
+        return view('category' , compact('filter')); 
+    }
+
+    /*My Cart*/
+
+    public function cart()
+    {
+        return view('cart');  
+    }
+
+    public function AddToCart($id)
+    {
+        $product = Product::find($id);
+        $cart = session()->get('cart');
+        /*if(!$cart) {
+            $cart = [$id => [
+                "name" => $product->name,
+                "quantity" => 1,
+                "price" => $product->price,
+                "photo" => $product->photo
+            ]];
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'added to cart successfully!');
+        }
+
+        // if cart not empty then check if this product exist then increment quantity
+        if(isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart); // this code put product of choose in cart
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+        // if item not exist in cart then add to cart with quantity = 1*/
+        $cart[$id] = [
+            "name" => $product->name,
+            "quantity" => 1,
+            "price" => $product->price,
+            "photo" => $product->photo
+        ];
+        session()->put('cart', $cart); // this code put product of choose in cart
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+
+    public function UpdateCart(Request $request){
+        if($request->id and $request->quantity){
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart updated successfully');
+        }
+    }
+
+    public function RemoveFromCart(Request $request)
+    {
+        if($request->id) {
+            $cart = session()->get('cart');
+            if(isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
             }
-            else $filter = Product::all();
-        })
-        ->get();
-        return view('categoryscale' , compact('filter')); 
+            session()->flash('success', 'Product removed successfully');
+        }
     }
 }
