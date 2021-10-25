@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Orderdetail;
 
+
 class OrderdetailController extends Controller
 {
     /**
