@@ -52,9 +52,17 @@ Route::get('/erm', [EmployeeController::class, 'erm']);
 Route::get('/erm/edit/{employee}', [EmployeeController::class, 'edit']); 
 Route::put('/erm/edit/{employee}', [EmployeeController::class, 'update']);
 
+//ProductFront
 Route::get('/products',[ProductController::class,'show']);
 Route::get('/products/vendor/{vendor}', [ProductController::class,'categoryvendor']);
 Route::get('/products/scale/{scale}',[ProductController::class,'categoryscale']);
+Route::get('/products/scale/{status}',[ProductController::class,'categorystatus']);
+
+//cart
+Route::get('/products/cart',[ProductController::class,'cart']);
+Route::get('/products/cart/addtocart/{id}',[ProductController::class,'AddToCart']);
+Route::delete('/products/cart/removefromcart',[ProductController::class,'RemoveFromCart']);
+Route::patch('/products/cart/updatecart',[ProductController::class,'UpdateCart']);
 
 
 Route::resource('/stock-in', StockInController::class);
