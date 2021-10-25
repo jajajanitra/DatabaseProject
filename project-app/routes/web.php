@@ -68,14 +68,17 @@ Route::get('/products/addtocart' ,[OrderdetailController::class, 'create']);
 
 
 //Customer
-Route::resource('/customer/show', CustomerController::class);
+Route::resource('/customer', CustomerController::class);
 Route::get('/customer/create' ,[CustomerController::class, 'create']);
-Route::post('/customer/add' ,[CustomerController::class, 'store'])->name('addCustomer');
+Route::post('/customer/add' ,[CustomerController::class, 'store']);
 
 //Order
-Route::resource('/order/show', OrderController::class);
+Route::resource('/order', OrderController::class);
 Route::get('/order/edit/{id}', [OrderController::class, 'edit']);
 Route::post('/order/update/{id}', [OrderController::class, 'update']);
+
+//payments
+Route::get('/payment/create/{id}', [PaymentController::class, 'show']);
 
 //add to cart
 //Route::put('/products/addtocart',[OrderController::class],'show');

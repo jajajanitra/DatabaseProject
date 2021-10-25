@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
+use App\Models\Payment;
 
 class OrderController extends Controller
 {
@@ -76,7 +77,7 @@ class OrderController extends Controller
             'status'=>$request->status,
             'comments'=>$request->comments
         ]);
-        return redirect('/order/show');
+        return redirect('/order');
     }
 
     /**

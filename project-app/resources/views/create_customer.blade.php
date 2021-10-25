@@ -14,11 +14,10 @@
     </style>
 </head>
 <body>
-  
                     <div class="card">
                             <div class="card-header"><h1>Customer Form</h1></div>
                             <div class="card-body">
-                                <form action="{{route('addCustomer')}}" method="post">
+                                <form action="{{url('/customer/add')}}" method="post">
                                 @csrf
                                     <div class="form-group">
                                         <label for="customerNumber">Customer Number</label>
@@ -178,10 +177,9 @@
                                     </div>
                                 </form>
                                 </div>
-                                    <a href="{{ config('app.url')}}/customer/show"><button>Cancel</button></a>
+                                    <a href="{{ config('app.url')}}/customer"><button>Cancel</button></a>
                                     </div>
                             </div>
     </div>
-
     </body>
 </html>

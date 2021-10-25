@@ -56,7 +56,7 @@
                                     </div>
                                 </form>
                                 </div>
-                                    <a href="{{config('app.url')}}/order/show"><button>Cancel</button></a>
+                                    <a href="{{config('app.url')}}/order"><button>Cancel</button></a>
                                     </div>
                             </div>
     </div>

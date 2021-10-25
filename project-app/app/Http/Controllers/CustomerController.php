@@ -72,7 +72,7 @@ class CustomerController extends Controller
     $customer->points = $request->points;
     $customer->save();
     $customer=Customer::all();
-    return redirect('/customer/show');
+    return redirect('/customer');
     }
 
     /**
