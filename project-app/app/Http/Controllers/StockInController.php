@@ -26,7 +26,7 @@ class StockInController extends Controller
      */
     public function create()
     {
-        //
+        return view('stockin');
     }
 
     /**
@@ -38,6 +38,17 @@ class StockInController extends Controller
     public function store(Request $request)
     {
         //
+        //$productlines = Productline::all();
+        $stockin = new Stockin([
+            'stockInNumber' => $request->stockInNumber,
+            'employeeNumber' => $request->employeeNumber,
+            'productCode' => $request->productCode,
+            'quantityToOrder' => $request->quantityToOrder,
+            'date' => $request->date,
+        ]);
+        $stockin->save();
+        $stockin = Stockin::all();
+        return redirect('/stock-in');
     }
 
     /**

@@ -49,6 +49,12 @@ class EmployeeController extends Controller
     public function show($id)
     {
         //
+        $employee = Employee::find($id);
+        if($employee->jobTitle == 'VP Sales'){
+            return view('employeeERM', compact('employee'));
+        }else{
+            return view('employee', compact('employee'));
+        }
     }
 
     /**
@@ -60,6 +66,8 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         //
+        $employee = Employee::find($id);
+        return view('editjobtitle', compact('employee'));
     }
 
     /**
@@ -72,6 +80,11 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $input = $request->all();
+        $employee = Employee::find($id);
+        $employee->jobTitle = $input['jobTitle'];
+        $employee->save();
+        return redirect('/erm');
     }
 
     /**
@@ -83,5 +96,13 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function erm()
+    {
+        $employee = Employee::all();
+        $filtered = $employee->where('jobTitle', 'Sales Rep');
+        $filtered -> all();
+        return view('erm' , ['employees' => $filtered]);
     }
 }

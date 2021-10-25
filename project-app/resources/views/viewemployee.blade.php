@@ -12,19 +12,21 @@
             <table>
                 <thead>
                     <td> </td>
-                    <td>employeeNumber</td>
+                    <td>Employee No.</td>
                     <td> </td>
-                    <td>FirstName</td>
+                    <td>First name</td>
                     <td> </td>
-                    <td>LastName</td>
+                    <td>Last name</td>
                     <td> </td>
                     <td>extension</td>
                     <td> </td>
                     <td>email</td>
                     <td> </td>
-                    <td>officeCode</td>
+                    <td>Office code</td>
                     <td> </td>
-                    <td>reportsTo</td>
+                    <td>Reports to</td>
+                    <td> </td>
+                    <td>Job title</td>
                     <td> </td>
                 </thead>
                 <tbody>
@@ -44,6 +46,8 @@
                         <td>{{ $employee ->officeCode}}</td>
                         <td> </td>
                         <td>{{ $employee ->reportsTo}}</td>
+                        <td> </td>
+                        <td>{{ $employee ->jobTitle}}</td>
                         <td> </td>
                     </tr>
                     @endforeach

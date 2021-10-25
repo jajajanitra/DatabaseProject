@@ -69,7 +69,9 @@ class ProductController extends Controller
     {
         //
         $product = Product::all();
-        return view('showproduct' , ['products' => $product]);
+        $productVendor = Product::where('productVendor',$product)->getModel()->select('productVendor')->distinct()->get();
+        $productScale = Product::where('productScale',$product)->getModel()->select('productScale')->distinct()->get();
+        return view('showproduct' , ['products' => $product],['productVendor' => $productVendor],['productScale' => $productScale]);
     }
 
     /**
@@ -131,9 +133,33 @@ class ProductController extends Controller
         return redirect('/stock-in/products');
     }
 
-    public function category($productVendor)
+    public function categoryvendor(Request $request)
     {
-            $products = Product::where('productVendor',$productVendor)->get();
-            return view('category' , compact('products'));    
+        $filters = [
+            'vendor' => $request->vendor
+        ];
+        $filter = Product::where(function($query) use($filters){
+            if ($filters['vendor']) {
+                $query->where('productVendor', '=', $filters['vendor']);
+            }
+            else $filter = Product::all();
+        })
+        ->get();
+        return view('categoryvendor' , compact('filter'));  
+    }
+
+    public function categoryscale(Request $request)
+    {
+        $filters = [
+            'scale' => $request->scale
+        ];
+        $filter = Product::where(function($query) use($filters){
+            if ($filters['scale']) {
+                $query->where('productScale', '=', $filters['scale']);
+            }
+            else $filter = Product::all();
+        })
+        ->get();
+        return view('categoryscale' , compact('filter')); 
     }
 }

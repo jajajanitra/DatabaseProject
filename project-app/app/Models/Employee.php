@@ -10,7 +10,7 @@ class Employee extends Model
     use HasFactory;
     protected $table = 'employees';
     protected $primaryKey = 'employeeNumber';
-
+    public $timestamps = false;
     const CREATED_AT = 'null';
     const UPDATED_AT = 'null';
 
