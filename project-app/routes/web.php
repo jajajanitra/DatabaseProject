@@ -61,7 +61,7 @@ Route::get('/products/scale/{status}',[ProductController::class,'categorystatus'
 //cart
 Route::get('/products/cart/addtocart/{id}',[ProductController::class,'AddToCart']);
 Route::delete('/products/cart/removefromcart',[ProductController::class,'RemoveFromCart']);
-Route::patch('/products/cart/updatecart',[ProductController::class,'UpdateCart']);
+Route::put('/products/cart/updatecart',[ProductController::class,'UpdateCart']);
 Route::get('/products/cart' ,[ProductController::class, 'cart']);
 
 Route::resource('/stock-in', StockInController::class);

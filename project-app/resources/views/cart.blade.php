@@ -36,9 +36,18 @@
                     <td data-th="Subtotal" class="text-center">${{ $j['buyPrice'] * $j['quantity'] }}</td>
                     <td class="actions" data-th="">
                     <!-- this button is to update card -->
-                        <a href="{{url('/products/cart/updatecart')}}" class="button"><button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}"><i class="fa fa-refresh"></i></button></a>
-                       <!-- this button is for update card -->
-                        <a href="{{url('/products/cart/removefromcart')}}" class="button"><button class="btn btn-danger btn-sm remove-from-cart delete" data-id="{{ $id }}"><i class="fa fa-trash-o"></i>bhh</button></a>
+                    <form method="POST" >
+                    @csrf
+                    @method('PUT')
+                        <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}"><i class="fa fa-refresh"></i></button>
+                    </form>
+                    <!-- this button is for update card -->
+                    <form method="POST">
+                    @csrf
+                    @method('DELETE')
+                        <button class="btn btn-danger btn-sm remove-from-cart delete" data-id="{{ $id }}"><i class="fa fa-trash-o"></i>bhh</button>
+                    </form>
+    
                     </td>
                 </tr>
             @endforeach
@@ -46,7 +55,7 @@
 
         </tbody>
         <tfoot>
-       
+
         <tr>
             <td><a href="{{ config('app.url')}}/products" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
             <td colspan="2" class="hidden-xs"></td>
@@ -67,8 +76,8 @@
            e.preventDefault();
            var ele = $(this);
             $.ajax({
-               url: '{{ url('updatecart') }}',
-               method: "patch",
+               url: '{{ url('/products/cart/updatecart') }}',
+               method: "put",
                data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: ele.parents("tr").find(".quantity").val()},
                success: function (response) {
                    window.location.reload();
@@ -80,7 +89,7 @@
             var ele = $(this);
             if(confirm("Are you sure")) {
                 $.ajax({
-                    url: '{{ url('remove-from-cart') }}',
+                    url: '{{ url('/products/cart/removefromcart') }}',
                     method: "DELETE",
                     data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
                     success: function (response) {
