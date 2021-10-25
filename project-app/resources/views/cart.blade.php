@@ -1,9 +1,6 @@
 @extends('layout')
-
 @section('title', 'Cart')
-
 @section('content')
-
 
     <table id="cart" class="table table-hover table-condensed">
         <thead>
@@ -20,28 +17,28 @@
         <?php $total = 0 ?>
 <!-- by this code session get all product that user chose -->
         @if(session('cart'))
-            @foreach(session('cart') as $id => $details)
+            @foreach(session('cart') as $id => $j)
 
-                <?php $total += $details['price'] * $details['quantity'] ?>
+                <?php $total += $j['buyPrice'] * $j['quantity'] ?>
 
                 <tr>
                     <td data-th="Product">
                         <div class="row">
                             <div class="col-sm-9">
-                                <h4 class="nomargin">{{ $details['name'] }}</h4>
+                                <h4 class="nomargin">{{ $j['productName'] }}</h4>
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">${{ $details['price'] }}</td>
-                    <td data-th="Quantity">
-                        <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity" />
+                    <td data-th="buyPrice">${{ $j['buyPrice'] }}</td>
+                    <td data-th="Quantity"> 
+                        <input type="number" value="{{ $j['quantity'] }}" class="form-control quantity" />
                     </td>
-                    <td data-th="Subtotal" class="text-center">${{ $details['price'] * $details['quantity'] }}</td>
+                    <td data-th="Subtotal" class="text-center">${{ $j['buyPrice'] * $j['quantity'] }}</td>
                     <td class="actions" data-th="">
                     <!-- this button is to update card -->
-                        <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}"><i class="fa fa-refresh"></i></button>
+                        <a href="{{url('/products/cart/updatecart')}}" class="button"><button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}"><i class="fa fa-refresh"></i></button></a>
                        <!-- this button is for update card -->
-                        <button class="btn btn-danger btn-sm remove-from-cart delete" data-id="{{ $id }}"><i class="fa fa-trash-o"></i>bhh</button>
+                        <a href="{{url('/products/cart/removefromcart')}}" class="button"><button class="btn btn-danger btn-sm remove-from-cart delete" data-id="{{ $id }}"><i class="fa fa-trash-o"></i>bhh</button></a>
                     </td>
                 </tr>
             @endforeach

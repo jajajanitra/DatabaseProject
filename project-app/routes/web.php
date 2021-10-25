@@ -59,11 +59,10 @@ Route::get('/products/scale/{scale}',[ProductController::class,'categoryscale'])
 Route::get('/products/scale/{status}',[ProductController::class,'categorystatus']);
 
 //cart
-Route::get('/products/cart',[ProductController::class,'cart']);
 Route::get('/products/cart/addtocart/{id}',[ProductController::class,'AddToCart']);
 Route::delete('/products/cart/removefromcart',[ProductController::class,'RemoveFromCart']);
 Route::patch('/products/cart/updatecart',[ProductController::class,'UpdateCart']);
-
+Route::get('/products/cart' ,[ProductController::class, 'cart']);
 
 Route::resource('/stock-in', StockInController::class);
 Route::get('/stock-inadd', [StockInController::class , 'create']);
@@ -72,7 +71,7 @@ Route::post('/stock-inadd' ,[StockInController::class, 'store']);
 Route::resource('/employee', EmployeeController::class);
 
 
-Route::get('/products/addtocart' ,[OrderdetailController::class, 'create']);
+
 
 
 //Customer
