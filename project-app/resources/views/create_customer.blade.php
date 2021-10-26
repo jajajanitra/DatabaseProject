@@ -17,18 +17,7 @@
                     <div class="card">
                             <div class="card-header"><h1>Customer Form</h1></div>
                             <div class="card-body">
-                                <form action="{{url('/customer/add')}}" method="post">
-                                @csrf
-                                    <div class="form-group">
-                                        <label for="customerNumber">Customer Number</label>
-                                        <input type="text" class="form-control" name="customerNumber">
-                                    </div>
-                                    @error('customerNumber')
-                                        <div>
-                                            <span class="text-danger">{{$message}}</span>
-                                        </div>
-                                    @enderror
-                                    <br>
+                                <form action="{{url('/customer/add')}}" method="post">                            
                                     @csrf
                                     <div class="form-group">
                                         <label for="customerName">Customer Name</label>
@@ -42,7 +31,7 @@
                                     <br>
                                     @csrf
                                     <div class="form-group">
-                                        <label for="contactLastName">Contact</label>
+                                        <label for="contactLastName">Contact LastName</label>
                                         <input type="text" class="form-control" name="contactLastName">
                                     </div>
                                     @error('contactLastName')
@@ -53,7 +42,7 @@
                                     <br>
                                     @csrf
                                     <div class="form-group">
-                                        <label for="contactFirstName"></label>
+                                        <label for="contactFirstName">Contact FirstName</label>
                                         <input type="text" class="form-control" name="contactFirstName">
                                     </div>
                                     @error('contactFirstName')
