@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Orderdetail;
-
+use App\Models\Product;
 
 
 class OrderdetailController extends Controller
@@ -48,10 +48,10 @@ class OrderdetailController extends Controller
             'orderLineNumber' => $i+1,
         ]);
         $orderdetail->save();
-        // $product = Product::find($request->productCode[$i]);
-        // $product->quantityInStock = $request->quantityInStock[$i]-$request->quantityOrdered[$i];
-        // $product->save();
-        // $product = Product::all();
+        $product = Product::find($request->productCode[$i]);
+        $product->quantityInStock = $request->quantityInStock[$i]-$request->quantityOrdered[$i];
+        $product->save();
+        $product = Product::all();
         }
         $orderdetail = Orderdetail::all();
         return redirect('/order');
