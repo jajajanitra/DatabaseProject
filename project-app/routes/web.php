@@ -86,7 +86,7 @@ Route::post('/order/update/{id}', [OrderController::class, 'update']);
 Route::get('/orderdetail/{id}', [OrderdetailController::class, 'show']);
 
 //payments
-//Route::get('/payment/{orderNumber}', [OrderController::class, 'show']);
+Route::get('/mypayment/{id}', [PaymentController::class, 'show']);
 
 //add to cart
 //Route::put('/products/addtocart',[OrderController::class],'show');

@@ -64,7 +64,7 @@
                         <td>{{ $order ->customerNumber}}</td>
                         <td> </td>
                         <td>{{ $order ->paymentNumber}}</td>
-                        <td><a href="{{url('/payment/'.$order->customerNumber)}}"><button> payment </button></a></td>
+                        <td><a href="{{url('/mypayment/'.$order->customerNumber)}}"><button> my payment </button></a></td>
                         <td> </td>
                         <td> <a href="{{url('/order/edit/'.$order->orderNumber)}}"><button> edit </button></a></td>
                     </tr>
