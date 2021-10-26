@@ -55,29 +55,34 @@
                 <input  type="number" name="pointReceived" value="{{$order -> pointReceived}}" readonly>
             </div>
             <form action="{{url('/payment/'. $order->orderNumber)}}" method="post">
-                @csrf
-                @method('POST')
                 <div>
-                    <label>Customer Number :</label>
-                    <input  type="text" name="customerNumber" value="{{$order -> customerNumber}}" readonly>
-                </div>
-                <div>
-                    <label>paymentDate :</label>
-                    <input  type="date" name="paymentDate" required>
-                </div>
-                <div>
-                    <label>amount :</label>
-                    <input  type="number" name="amount" value="{{$order -> total}}" readonly>
-                </div>
-                
-                <div>
-                    <label>checkNumber :</label>
-                    <input type="text" name="checkNumber">
+                    @csrf
+                    @method('PUT')
+                    <div>
+                        <label>Customer Number :</label>
+                        <input  type="text" name="customerNumber" value="{{$order -> customerNumber}}" readonly>
+                    </div>
+                    <div>
+                        <label>paymentDate :</label>
+                        <input  type="date" name="paymentDate" required>
+                    </div>
+                    <div>
+                        <label>amount :</label>
+                        <input  type="number" name="amount" value="{{$order -> total}}" readonly>
+                    </div>
+                    <div>
+                        <label>checkNumber :</label>
+                        <input type="text" name="checkNumber">
+                    </div>
+                    <div>
+                        <label for="status">State :</label>
+                            <select name="status"  >
+                                <option value="shipped" selected>shipped </option>
+                            </select>
+                    </div>
                 </div>
                 <button type="submit">purchase</button>
             </form>
-
-
         </tfoot>
     </table>
 

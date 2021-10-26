@@ -37,20 +37,7 @@ class PaymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-        $payment = Payment::all();
-        $payment = new Payment([
-            'customerNumber'=> $request->customerNumber,
-            'checkNumber'=> $request->checkNumber,
-            'paymentDate'=> $request->paymentDate,
-            'amount'=> $request->amount
-        ]);
-        $payment->save();
-        $payment = Payment::all();
-        return redirect('/home');
-    }
+
 
     /**
      * Display the specified resource.
@@ -96,5 +83,22 @@ class PaymentController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function updatestatus(Request $request, $id){
+        //
+        $payment = Payment::all();
+        $payment = new Payment([
+            'customerNumber'=> $request->customerNumber,
+            'checkNumber'=> $request->checkNumber,
+            'paymentDate'=> $request->paymentDate,
+            'amount'=> $request->amount
+        ]);
+        $payment->save();
+        $payment = Payment::all();
+
+        Order::find($id)->update([
+            'status'=>$request->status,
+        ]);
+        return redirect('/home');
     }
 }
