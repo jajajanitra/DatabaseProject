@@ -56,7 +56,7 @@
                     <label>Status</label>
                     <select name="productStatus">
                         <option value="normal">normal</option>
-                        <option value="preorder">perorder</option>
+                        <option value="preorder">preorder</option>
                     </select>
                 </div>
                 

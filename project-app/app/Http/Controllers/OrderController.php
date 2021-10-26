@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 use App\Models\Payment;
+use App\Models\Productline;
 
 class OrderController extends Controller
 {
@@ -27,6 +28,7 @@ class OrderController extends Controller
     public function create()
     {
         //
+        return view('cart');
     }
 
     /**
@@ -38,6 +40,25 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         //
+        
+        $productlines = Productline::all();
+        $order = Order::all();
+        $order = new Order([
+            'orderNumber' => $request->orderNumber,
+            'orderDate' => $request->orderDate,
+            'requiredDate' => $request->requiredDate,
+            'shippedDate' => $request->shippedDate,
+            'status' => $request->status,
+            'comments' => $request->comments,
+            'total' => $request->total,
+            'pointReceived' => $request->pointReceived,
+            'orderType' => $request->orderType,
+            'couponNumber' => $request->couponNumber,
+            'paymentNumber' => $request->paymentNumber
+        ]);
+        $order->save();
+        $order = Order::all();
+        return redirect('/order');
     }
 
     /**
@@ -49,6 +70,8 @@ class OrderController extends Controller
     public function show($id)
     {
         //
+        $orderNumber = Order::find($id);
+        return view('payment',compact('orderNumber')); 
     }
 
     /**

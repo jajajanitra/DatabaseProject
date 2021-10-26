@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-sm-2">
             @if(session('cart'))
-                <a href="{{ url('cart') }}" class="btn btn-primary  mt-3 mb-3 btn-block">
+                <a href="{{ url('/products/cart') }}" class="btn btn-primary  mt-3 mb-3 btn-block">
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                      Cart
                     <!-- this code count product of choose tha user choose -->

@@ -137,21 +137,29 @@ class ProductController extends Controller
     /*filter product*/
 
     public function categoryvendor(Request $request)
-    {
+    {   
+        $product = Product::all();
+        $productVendor = Product::where('productVendor',$product)->getModel()->select('productVendor')->distinct()->get();
+        $productScale = Product::where('productScale',$product)->getModel()->select('productScale')->distinct()->get();
+        $productStatus = Product::where('productStatus',$product)->getModel()->select('productStatus')->distinct()->get();
         $filters = ['vendor' => $request->vendor];
         $filter = Product::where(function($query) use($filters){
             $query->where('productVendor', '=', $filters['vendor']);
         }) ->get();
-        return view('category' , compact('filter'));  
+        return view('category' , compact('product','productVendor','productScale','productStatus','filter'));  
     }
 
     public function categoryscale(Request $request)
-    {
+    {   
+        $product = Product::all();
+        $productVendor = Product::where('productVendor',$product)->getModel()->select('productVendor')->distinct()->get();
+        $productScale = Product::where('productScale',$product)->getModel()->select('productScale')->distinct()->get();
+        $productStatus = Product::where('productStatus',$product)->getModel()->select('productStatus')->distinct()->get();
         $filters = ['scale' => $request->scale];
         $filter = Product::where(function($query) use($filters){
             $query->where('productScale', '=', $filters['scale']);
         }) ->get();
-        return view('category' , compact('filter')); 
+        return view('category' , compact('product','productVendor','productScale','productStatus','filter')); 
     }
     
     public function categorystatus(Request $request)
@@ -167,19 +175,25 @@ class ProductController extends Controller
 
     public function cart()
     {
-        return view('cart');  
+        return view('cart');
+
     }
 
     public function AddToCart($id)
     {
+
         $product = Product::find($id);
         $cart = session()->get('cart');
-        /*if(!$cart) {
+        if(!$cart) {
             $cart = [$id => [
-                "name" => $product->name,
-                "quantity" => 1,
-                "price" => $product->price,
-                "photo" => $product->photo
+            "buyPrice"=> $product->buyPrice,
+            "productName"=> $product->productName,
+            "productLine"=> $product->productLine,
+            "productScale"=> $product->productScale,
+            "productVendor"=> $product->productVendor,
+            "productDescription"=> $product->productDescription,
+            "quantity"=> 1
+            
             ]];
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'added to cart successfully!');
@@ -191,15 +205,24 @@ class ProductController extends Controller
             session()->put('cart', $cart); // this code put product of choose in cart
             return redirect()->back()->with('success', 'Product added to cart successfully!');
         }
-        // if item not exist in cart then add to cart with quantity = 1*/
+        // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
-            "name" => $product->name,
-            "quantity" => 1,
-            "price" => $product->price,
-            "photo" => $product->photo
+            "buyPrice"=> $product->buyPrice,
+            "productName"=> $product->productName,
+            "productLine"=> $product->productLine,
+            "productScale"=> $product->productScale,
+            "productVendor"=> $product->productVendor,
+            "productDescription"=> $product->productDescription,
+            "quantity"=> 1
+            
         ];
         session()->put('cart', $cart); // this code put product of choose in cart
+        unset($cart);
+        $cart = session()->get('cart');
+        //dd($cart);
+        session()->get('cart',$cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
+
     }
 
     public function UpdateCart(Request $request){
@@ -222,4 +245,5 @@ class ProductController extends Controller
             session()->flash('success', 'Product removed successfully');
         }
     }
+
 }

@@ -67,11 +67,10 @@
                                         <select name="state"  >
                                             <option value="canceled">canceled</option>
                                             <option value="disputed ">disputed </option>
-                                            <option value="n process">in process</option>
+                                            <option value="in process">in process</option>
                                             <option value="on hold">on hold</option>
                                             <option value="resolved ">resolved </option>
                                             <option value="shipped" selected>shipped </option>
-                                            
                                         </select>
                                     </div> 
                                     <br>
