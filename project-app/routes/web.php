@@ -94,3 +94,7 @@ Route::post('/payment/{id}', [PaymentController::class, 'store']);
 
 //add to cart
 //Route::put('/products/addtocart',[OrderController::class],'show');
+
+Route::get('/coupons', [CouponController::class, 'index']);
+Route::get('/coupons/add' , [CouponController::class, 'create']);
+Route::post('/coupons/add' , [CouponController::class, 'store']);
