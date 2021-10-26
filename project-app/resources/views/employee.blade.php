@@ -1,53 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee's information</title>
-</head>
-<body>
-<div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+@extends('layouts.app')
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-        </nav>
-</div>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"><h4>Employee's information</h4></div>
-
-                <div class="card-body">
+@section('content')
+<div>
+    <div>
+        <div>
+            <div>
+                <div>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-                    <h5>Employee No. : {{ $employee -> employeeNumber}}</h5>
-                    <h5>Name : {{ $employee -> firstName }} {{ $employee -> lastName}}</h5>
-                    <h5>Email : {{ $employee -> email}}</h5>
-                    <h5>Job title : {{ $employee -> jobTitle}}</h5>
+                    <nav>
+                        <div class="nav-header">Management</div>
+                        <p class="menubar1"></p>
+                        <a href="{{ url('/stock-in') }}" class="nav-subheader-1">stock-in</a>
+                        <p class="submenubar1" style></p>
+                        <a href="{{ url('/stock-inadd') }}" class="nav-sub-subheader-1">add stock-in</a>
+                        <p class="submenubar2" style></p>
+                        <a href="{{ url('/stock-inadd') }}" class="nav-sub-subheader-2">edit product</a>
+                        <p class="menubar2" style></p>
+                        <a href="{{ url('/order') }}" class="nav-subheader-2">order</a>
+                        <p class="menubar3" style></p>
+                        <a href="{{ url('/customer') }}" class="nav-subheader-3">customer</a>
+                        <p class="menubar4" style></p>
+                        <a href="{{ url('/employee') }}" class="nav-subheader-4">employee</a>
+                        <p class="submenubar3" style></p>
+                        <a href="{{ url('/erm') }}" class="nav-sub-subheader-3">ERM</a>
+                    </nav>
+                    <article>  
+                        <div class="headertext">Employee's information</div>
+                            <div class="subtext">
+                                @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
+                                <p style="padding-top: 10px;">Employee No. : {{ $employee -> employeeNumber}}</p>
+                                <p>Name : {{ $employee -> firstName }} {{ $employee -> lastName}}</p>
+                                <p>Email : {{ $employee -> email}}</p>
+                                <p>Job title : {{ $employee -> jobTitle}}</p>
+                            </div>
+                    </article>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</body>
-</html>
+@endsection
