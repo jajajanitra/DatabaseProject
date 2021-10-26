@@ -99,12 +99,8 @@
                     <label>couponNumber :</label>
                     <input type="nymber" name="couponNumber" >
                 </div>
-                <form method="POST" >
-                    @csrf
-                    @method('PUT')
-                        <button class="btn btn-info btn-sm update-total" data-id="{{ $id }}"><i class="fa fa-refresh"></i></button>
-                </form>
-                <?php $total -= $discount  ?>
+                <button class="btn btn-info btn-sm update-total" 
+                onclick="window.location.href=window.location.href"><i class="fa fa-refresh"></i></button>
                 <div>
                     <label>paymentNumber :</label>
                     <input type="number" name="paymentNumber" required>
@@ -158,6 +154,9 @@
                 });
             }
         });
+        function passIDto(couponnumber,date){    
+            window.location.href = '{{ url('/products/cart/usecoupon/') }}' + couponnumber + date ;
+        }  
         $(".update-total").click(function (e) {
             var couponnum = document.getElementById("e").value;
             var orderdate = document.getElementById("orderdate").value;

@@ -67,6 +67,7 @@ Route::put('/products/cart/updatecart',[ProductController::class,'UpdateCart']);
 Route::put('/products/cart/usecoupon',[ProductController::class,'UseCoupon']);
 Route::get('/products/cart' ,[OrderController::class, 'create']);
 Route::post('/products/cart' ,[OrderController::class, 'store']);
+Route::post('/products/cart/{couponnumber/{date}' ,[OrderController::class, 'UpdateTotal']);
 
 Route::resource('/stock-in', StockInController::class);
 Route::get('/stock-inadd', [StockInController::class , 'create']);
