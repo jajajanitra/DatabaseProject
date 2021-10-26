@@ -64,6 +64,7 @@ Route::get('/products/scale/{status}',[ProductController::class,'categorystatus'
 Route::get('/products/cart/addtocart/{id}',[ProductController::class,'AddToCart']);
 Route::delete('/products/cart/removefromcart',[ProductController::class,'RemoveFromCart']);
 Route::put('/products/cart/updatecart',[ProductController::class,'UpdateCart']);
+Route::put('/products/cart/usecoupon',[ProductController::class,'UseCoupon']);
 Route::get('/products/cart' ,[OrderController::class, 'create']);
 Route::post('/products/cart' ,[OrderController::class, 'store']);
 
@@ -90,7 +91,9 @@ Route::get('/orderdetail/{id}', [OrderdetailController::class, 'show']);
 //payments
 Route::get('/mypayment/{id}', [PaymentController::class, 'show']);
 Route::get('/payment/{id}', [PaymentController::class, 'create']);
-Route::post('/payment/{id}', [PaymentController::class, 'store']);
+Route::put('/payment/{id}', [PaymentController::class, 'updatestatus']);
 
-//add to cart
-//Route::put('/products/addtocart',[OrderController::class],'show');
+
+Route::get('/coupons', [CouponController::class, 'index']);
+Route::get('/coupons/add' , [CouponController::class, 'create']);
+Route::post('/coupons/add' , [CouponController::class, 'store']);

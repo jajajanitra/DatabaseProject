@@ -11,6 +11,8 @@ class Coupon extends Model
     protected $title = 'coupons';
     protected $primaryKey = 'couponNumber';
 
+    public $timestamps = false;
+
     const CREATED_AT = 'null';
     const UPDATED_AT = 'null';
 

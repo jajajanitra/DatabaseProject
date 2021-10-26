@@ -71,7 +71,8 @@
                 </div>
                 <div>
                     <label>order Date :</label>
-                    <input type="date" name="orderDate" required>
+                    <input type="date" name="orderDate" id=e readonly>
+                    <script>document.getElementById('e').value = new Date().toISOString().substring(0, 10);</script>
                 </div>
                 <div>
                     <label>requiredDate :</label>
@@ -135,15 +136,15 @@
     <script type="text/javascript">
 // this function is for update card
         $(".update-cart").click(function (e) {
-           e.preventDefault();
-           var ele = $(this);
+            e.preventDefault();
+            var ele = $(this);
             $.ajax({
-               url: '{{ url('/products/cart/updatecart') }}',
-               method: "put",
-               data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: ele.parents("tr").find(".quantity").val()},
-               success: function (response) {
-                   window.location.reload();
-               }
+                url: '{{ url('/products/cart/updatecart') }}',
+                method: "put",
+                data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: ele.parents("tr").find(".quantity").val()},
+                success: function (response) {
+                    window.location.reload();
+                }
             });
         });
         $(".remove-from-cart").click(function (e) {
@@ -160,6 +161,21 @@
                     }
                 });
             }
+        });
+        $(".update-total").click(function (e) {
+            var couponnum = document.getElementById("e").value;
+            var orderdate = document.getElementById("orderdate").value;
+            e.preventDefault();
+            var ele = $(this);
+            $.ajax({
+                url: '{{ url('/products/cart/usecoupon') }}',
+                method: "put",
+                data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), couponNumber: ele.parents("tr").find(".couponNumber").val()},
+                data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), couponNumber: ele.parents("tr").find(".orderdate").val()},
+                success: function (response) {
+                    window.location.reload();
+                }
+            });
         });
     </script>
 

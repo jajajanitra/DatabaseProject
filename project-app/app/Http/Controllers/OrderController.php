@@ -113,6 +113,7 @@ class OrderController extends  OrderdetailController
         return redirect('/order');
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
