@@ -40,7 +40,7 @@
                     @foreach( $orders as $order) 
                     <tr>
                         <td> </td>
-                        <td><a href="{{url('/payment/'.$order->customerNumber)}}"><button> {{ $order ->orderNumber}}</button></a>
+                        <td><a href="{{url('/orderdetail/'.$order->orderNumber)}}"><button> {{ $order ->orderNumber}}</button></a>
                         </td>
                         <td> </td>
                         <td>{{ $order ->orderDate}}</td>
@@ -64,6 +64,8 @@
                         <td>{{ $order ->customerNumber}}</td>
                         <td> </td>
                         <td>{{ $order ->paymentNumber}}</td>
+                        <td><a href="{{url('/payment/'.$order->customerNumber)}}"><button> payment </button></a></td>
+                        <td> </td>
                         <td> <a href="{{url('/order/edit/'.$order->orderNumber)}}"><button> edit </button></a></td>
                     </tr>
                     @endforeach
