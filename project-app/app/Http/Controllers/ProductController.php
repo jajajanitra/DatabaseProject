@@ -186,6 +186,7 @@ class ProductController extends Controller
         $cart = session()->get('cart');
         if(!$cart) {
             $cart = [$id => [
+            "productCode"=> $product->productCode,
             "buyPrice"=> $product->buyPrice,
             "productName"=> $product->productName,
             "productLine"=> $product->productLine,
@@ -207,6 +208,7 @@ class ProductController extends Controller
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
+            "productCode"=> $product->productCode,
             "buyPrice"=> $product->buyPrice,
             "productName"=> $product->productName,
             "productLine"=> $product->productLine,
