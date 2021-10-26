@@ -92,7 +92,7 @@ Route::get('/orderdetail/{id}', [OrderdetailController::class, 'show']);
 //payments
 Route::get('/mypayment/{id}', [PaymentController::class, 'show']);
 Route::get('/payment/{id}', [PaymentController::class, 'create']);
-Route::post('/payment/{id}', [PaymentController::class, 'store']);
+Route::put('/payment/{id}', [PaymentController::class, 'updatestatus']);
 
 //add to cart
 //Route::put('/products/addtocart',[OrderController::class],'show');

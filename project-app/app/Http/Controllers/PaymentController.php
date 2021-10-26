@@ -97,4 +97,22 @@ class PaymentController extends Controller
     {
         //
     }
+
+    public function updatestatus(Request $request, $id){
+        //
+        $payment = Payment::all();
+        $payment = new Payment([
+            'customerNumber'=> $request->customerNumber,
+            'checkNumber'=> $request->checkNumber,
+            'paymentDate'=> $request->paymentDate,
+            'amount'=> $request->amount
+        ]);
+        $payment->save();
+        $payment = Payment::all();
+
+        Order::find($id)->update([
+            'status'=>$request->status,
+        ]);
+        return redirect('/home');
+    }
 }
