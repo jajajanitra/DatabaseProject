@@ -25,8 +25,8 @@
     position: absolute;
     width: 173px;
     height: 96px;
-    left: 1025px;
-    top: 32px;
+    left: 1135px;
+    top: 22px;
 
     font-style: normal;
     font-size: 24px;
@@ -51,6 +51,14 @@
     color: #7E7E7E;
 }
 
+.contenttext {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    /* identical to box height */
+    color: #000000;
+}
+
 .circle {
     position: absolute;
     width: 60px;
@@ -67,8 +75,8 @@
     position: absolute;
     width: 50px;
     height: 50px;
-    left: 1261px;
-    top: 60px;
+    left: 1350px;
+    top: 50px;
 }
 
 .cart {
@@ -77,8 +85,8 @@
     position: absolute;
     width: 50px;
     height: 50px;
-    left: 1191px;
-    top: 60px;
+    left: 1290px;
+    top: 50px;
 }
 
 .menubar1 {
@@ -401,7 +409,132 @@ article {
     margin: 0px 0px;
 }
 
-.edit-button {
+.tablepd-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 10px;
+    width: 1089px;
+    table-layout: fixed;
+    
+    /* Theme/White/Default */
+
+    background: #FAFAFB;
+    border-radius: 16px;
+}
+
+.tablepd-header {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height, or 133% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    /* Table/Head/Text */
+
+    color: #8492A6;
+
+    padding: 10px;
+    box-shadow: inset 0px -1px 0px #EDF2F7;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 0px;
+}
+
+
+.tablepd-row {
+    font-style: normal;
+    font-weight: 100;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.06em;
+    height: 100px;
+    /* Table/Head/Text */
+
+    padding: 10px;
+    background-color: white;
+    box-shadow: inset 0px -1px 0px #EDF2F7;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 0px;
+}
+
+
+.tablestk-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 10px;
+    width: 770px;
+    table-layout: fixed;
+    
+    /* Theme/White/Default */
+
+    background: #FAFAFB;
+    border-radius: 16px;
+}
+
+.tablestk-header {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height, or 133% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    /* Table/Head/Text */
+
+    color: #8492A6;
+
+    padding: 10px;
+    box-shadow: inset 0px -1px 0px #EDF2F7;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 0px;
+}
+
+
+.tablestk-row {
+    font-style: normal;
+    font-weight: 100;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.06em;
+
+    /* Table/Head/Text */
+
+    padding: 10px;
+    background-color: white;
+    box-shadow: inset 0px -1px 0px #EDF2F7;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 0px;
+}
+
+.edit-btn {
     background: #FFE761;
     width: 60px;
     height: 40px;
@@ -412,13 +545,26 @@ article {
     text-decoration: none;
 }
 
+.add-btn {
+    font-size: 20px;
+    background: #FFE761;
+    width: 180px;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+    display: block;
+    margin: auto;
+    text-decoration: none;
+}
+
 .submit-btn {
+    font-size:18px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 16px 24px;
-
+    width: 115px;
     background: #FFE761;
     border-radius: 7px;
     border: none;
@@ -430,6 +576,7 @@ article {
 }
 
 .cancel-btn {
+    font-size:18px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -444,6 +591,46 @@ article {
     flex-grow: 0;
     margin: 0px 9px;
     text-decoration: none;
-    
+    width: 115px;
     color: white;
+}
+
+.delete-btn {
+    font-size:18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 24px;
+    /* Gray colors/Gray 4 */
+    background: #BC2F2F;
+    border-radius: 7px;
+    border: none;
+    /* Inside Auto Layout */
+    flex: none;
+    flex-grow: 0;
+    margin: 0px 9px;
+    text-decoration: none;
+    width: 115px;
+    color: white;
+}
+
+.text-overflow {
+    display: block;
+    overflow: scroll;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.input-box{
+    display: flex;
+    width: 300px;
+    padding: 5px;
+    padding-left: 20px;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    box-sizing: border-box;
+    border-radius: 15px;
+    font-size: 14px;
+    color: #7E7E7E;
 }

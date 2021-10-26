@@ -18,7 +18,7 @@
                         <p class="submenubar1" style></p>
                         <a href="{{ url('/stock-inadd') }}" class="nav-sub-subheader-1">add stock-in</a>
                         <p class="submenubar2" style></p>
-                        <a href="{{ url('/stock-inadd') }}" class="nav-sub-subheader-2">edit product</a>
+                        <a href="{{ url('/stock-in/products') }}" class="nav-sub-subheader-2">edit product</a>
                         <p class="menubar2" style></p>
                         <a href="{{ url('/order') }}" class="nav-subheader-2">order</a>
                         <p class="menubar3" style></p>
@@ -46,7 +46,7 @@
                                         <td style="width:120px;">{{ $employee -> firstName }}</td>
                                         <td style="width:120px;">{{ $employee -> lastName }}</td>
                                         <td style="width:120px;">{{ $employee -> jobTitle }}</td>
-                                        <td style="width:120px;"> <a href="{{url('/erm/edit/' .$employee->employeeNumber)}}" style="text-decoration: none;"><button class="edit-button"> edit </button></a></td>
+                                        <td style="width:120px;"> <a href="{{url('/erm/edit/' .$employee->employeeNumber)}}" style="text-decoration: none;"><button class="edit-btn"> edit </button></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
