@@ -219,10 +219,9 @@ class ProductController extends Controller
             
         ];
         session()->put('cart', $cart); // this code put product of choose in cart
-        unset($cart);
-        $cart = session()->get('cart');
-        //dd($cart);
-        session()->get('cart',$cart);
+        // $cart = session()->get('cart');
+        // //dd($cart);
+        // session()->get('cart',$cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
 
     }
