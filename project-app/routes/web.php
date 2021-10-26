@@ -42,6 +42,8 @@ Route::get('/stock-in/products/addproduct' , function () {
     return view('createproduct' , compact('productlines'));
 });
 
+
+
 Route::post('/stock-in/products/addproduct' ,[ProductController::class, 'store']);
 Route::get('/stock-in/products', [ProductController::class, 'index']);
 Route::get('/stock-in/products/edit/{product}' ,[ProductController::class, 'edit']);
@@ -62,16 +64,16 @@ Route::get('/products/scale/{status}',[ProductController::class,'categorystatus'
 Route::get('/products/cart/addtocart/{id}',[ProductController::class,'AddToCart']);
 Route::delete('/products/cart/removefromcart',[ProductController::class,'RemoveFromCart']);
 Route::put('/products/cart/updatecart',[ProductController::class,'UpdateCart']);
-Route::get('/products/cart' ,[ProductController::class, 'cart']);
+Route::put('/products/cart/usecoupon',[ProductController::class,'UseCoupon']);
+Route::get('/products/cart' ,[OrderController::class, 'create']);
+Route::post('/products/cart' ,[OrderController::class, 'store']);
+Route::post('/products/cart/{couponnumber/{date}' ,[OrderController::class, 'UpdateTotal']);
 
 Route::resource('/stock-in', StockInController::class);
 Route::get('/stock-inadd', [StockInController::class , 'create']);
 Route::post('/stock-inadd' ,[StockInController::class, 'store']);
 
 Route::resource('/employee', EmployeeController::class);
-
-
-
 
 
 //Customer
@@ -84,8 +86,17 @@ Route::resource('/order', OrderController::class);
 Route::get('/order/edit/{id}', [OrderController::class, 'edit']);
 Route::post('/order/update/{id}', [OrderController::class, 'update']);
 
+//Orderdetail
+Route::get('/orderdetail/{id}', [OrderdetailController::class, 'show']);
+
 //payments
-Route::get('/payment/{id}', [PaymentController::class, 'show']);
+Route::get('/mypayment/{id}', [PaymentController::class, 'show']);
+Route::get('/payment/{id}', [PaymentController::class, 'create']);
+Route::put('/payment/{id}', [PaymentController::class, 'updatestatus']);
 
 //add to cart
 //Route::put('/products/addtocart',[OrderController::class],'show');
+
+Route::get('/coupons', [CouponController::class, 'index']);
+Route::get('/coupons/add' , [CouponController::class, 'create']);
+Route::post('/coupons/add' , [CouponController::class, 'store']);

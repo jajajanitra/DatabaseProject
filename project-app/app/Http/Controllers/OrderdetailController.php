@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Orderdetail;
 
 
+
 class OrderdetailController extends Controller
 {
     /**
@@ -35,9 +36,25 @@ class OrderdetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function stored(Request $request,$check)
     {
         //
+        for ($i = 0; $i < count($request->productCode); $i++){
+        $orderdetail = new Orderdetail([
+            'orderNumber' => $check,
+            'productCode' => $request->productCode[$i],
+            'quantityOrdered' => $request->quantityOrdered[$i],
+            'priceEach' => $request->priceEach[$i],
+            'orderLineNumber' => $i+1,
+        ]);
+        $orderdetail->save();
+        // $product = Product::find($request->productCode[$i]);
+        // $product->quantityInStock = $request->quantityInStock[$i]-$request->quantityOrdered[$i];
+        // $product->save();
+        // $product = Product::all();
+        }
+        $orderdetail = Orderdetail::all();
+        return redirect('/order');
     }
 
     /**
@@ -48,7 +65,8 @@ class OrderdetailController extends Controller
      */
     public function show($id)
     {
-        //
+        $orderdetails = Orderdetail::find($id);
+        return view('vieworderdetail',compact('orderdetails'));
     }
 
     /**

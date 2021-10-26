@@ -175,7 +175,8 @@ class ProductController extends Controller
 
     public function cart()
     {
-        return view('cart');  
+        return view('cart');
+
     }
 
     public function AddToCart($id)
@@ -185,12 +186,16 @@ class ProductController extends Controller
         $cart = session()->get('cart');
         if(!$cart) {
             $cart = [$id => [
+            "productCode"=> $product->productCode,
             "buyPrice"=> $product->buyPrice,
             "productName"=> $product->productName,
             "productLine"=> $product->productLine,
+            "quantityInStock"=>$product->quantityInStock,
             "productScale"=> $product->productScale,
             "productVendor"=> $product->productVendor,
             "productDescription"=> $product->productDescription,
+            "MSRP" => $product->MSRP,
+            "productStatus" => $product->productStatus,
             "quantity"=> 1
             
             ]];
@@ -206,20 +211,23 @@ class ProductController extends Controller
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
+            "productCode"=> $product->productCode,
             "buyPrice"=> $product->buyPrice,
             "productName"=> $product->productName,
             "productLine"=> $product->productLine,
+            "quantityInStock"=>$product->quantityInStock,
             "productScale"=> $product->productScale,
             "productVendor"=> $product->productVendor,
             "productDescription"=> $product->productDescription,
+            "MSRP" => $product->MSRP,
+            "productStatus" => $product->productStatus,
             "quantity"=> 1
             
         ];
         session()->put('cart', $cart); // this code put product of choose in cart
-        unset($cart);
-        $cart = session()->get('cart');
-        //dd($cart);
-        session()->get('cart',$cart);
+        // $cart = session()->get('cart');
+        // //dd($cart);
+        // session()->get('cart',$cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
 
     }
@@ -245,4 +253,11 @@ class ProductController extends Controller
         }
     }
 
+    public function UseCoupon(Request $request,$orderDate){
+        $filters = ['coupon' => $request->coupon];
+        $filter = Coupon::where(function($query) use($filters){
+            $query->where('couponCode', '=', $filters['coupon'])->where('couponEXP','>=',$orderDate)->select('discount');
+        }) ->get();
+        return compact('filter'); 
+    }
 }

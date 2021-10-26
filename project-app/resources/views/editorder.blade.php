@@ -20,7 +20,7 @@
                             <form action="{{url('/order/update/'.$order->orderNumber)}}" method="post">
                                     <div class="form-group">
                                         <label for="orderNumberr">Order Number</label>
-                                        <input type="text" class="form-control" name="orderNumber" value = "{{$order->orderNumber}}">                              
+                                        <input type="text" class="form-control" name="orderNumber" value = "{{$order->orderNumber}}" readonly>                              
                                     </div>
                                     <br>
                                     @csrf

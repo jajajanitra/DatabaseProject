@@ -5,8 +5,9 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 use App\Models\Payment;
+use App\Models\Orderdetail;
 
-class OrderController extends Controller
+class OrderController extends  OrderdetailController
 {
     /**
      * Display a listing of the resource.
@@ -27,6 +28,7 @@ class OrderController extends Controller
     public function create()
     {
         //
+        return view('cart');
     }
 
     /**
@@ -37,7 +39,36 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());             
+        $orders = Order::all();
+        $check = $orders->max('orderNumber')+1;
+        $order = new Order([
+            'orderNumber' => $orders->max('orderNumber')+1,
+            'orderDate' => $request->orderDate,
+            'requiredDate' => $request->requiredDate,
+            'shippedDate' => $request->shippedDate,
+            'status' => $request->status,
+            'comments' => $request->comments,
+            'total' => $request->total,
+            'pointReceived' => $request->pointReceived,
+            'orderType' => $request->orderType,
+            'customerNumber' => $request->customerNumber,
+            'couponNumber' => $request->couponNumber,
+            'paymentNumber' => $request->paymentNumber
+        ]);
+        $order->save();
+        $order = Order::all();
+        OrderdetailController::stored($request,$check);
+        // $orderdetail = new Orderdetail([
+        //     'orderNumber' => $check,
+        //     'productCode' => $request->productCode,
+        //     'quantityOrdered' => $request->quantityOrdered,
+        //     'priceEach' => $request->priceEach,
+        //     'orderLineNumber' => $request->orderLineNumber,
+        // ]);
+        // $orderdetail->save();
+        // $orderdetail = Orderdetails::all();
+        return redirect('/payment/'. $check);
     }
 
     /**
@@ -49,6 +80,8 @@ class OrderController extends Controller
     public function show($id)
     {
         //
+        $orderNumber = Order::find($id);
+        return view('payment',compact('orderNumber')); 
     }
 
     /**
@@ -79,6 +112,7 @@ class OrderController extends Controller
         ]);
         return redirect('/order');
     }
+
 
     /**
      * Remove the specified resource from storage.
