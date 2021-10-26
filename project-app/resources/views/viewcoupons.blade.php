@@ -15,6 +15,7 @@
             <Thead>
                 <td>CouponCode</td>
                 <td>Discount</td>
+                <td>Number of coupons</td>
                 <td>CouponEXP</td>
             </Thead>
             <tbody>
@@ -22,6 +23,7 @@
                 <tr>
                     <td>{{ $coupon ->couponCode}}</td>
                     <td>{{ $coupon ->discount}}</td>
+                    <td>{{ $coupon ->couponLimit}}</td>
                     <td>{{ $coupon ->couponEXP}}</td>
                 </tr>
                 @endforeach

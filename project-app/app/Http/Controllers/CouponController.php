@@ -44,6 +44,7 @@ class CouponController extends Controller
             'couponNumber' => $coupons->max('couponNumber')+1,
             'couponCode' => $request->couponCode,
             'discount' => $request->discount,
+            'couponLimit' => $request->couponLimit,
             'couponEXP' => $request->couponEXP
         ]);
         $coupon->save();
