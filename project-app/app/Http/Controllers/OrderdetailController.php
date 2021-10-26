@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Orderdetail;
 
 
+
 class OrderdetailController extends Controller
 {
     /**
@@ -48,7 +49,8 @@ class OrderdetailController extends Controller
      */
     public function show($id)
     {
-        //
+        $orderdetails = Orderdetail::find($id);
+        return view('vieworderdetail',compact('orderdetails'));
     }
 
     /**
