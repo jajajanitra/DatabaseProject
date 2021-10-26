@@ -219,10 +219,9 @@ class ProductController extends Controller
             
         ];
         session()->put('cart', $cart); // this code put product of choose in cart
-        unset($cart);
-        $cart = session()->get('cart');
-        //dd($cart);
-        session()->get('cart',$cart);
+        // $cart = session()->get('cart');
+        // //dd($cart);
+        // session()->get('cart',$cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
 
     }
@@ -248,4 +247,11 @@ class ProductController extends Controller
         }
     }
 
+    public function UseCoupon(Request $request,$orderDate){
+        $filters = ['coupon' => $request->coupon];
+        $filter = Coupon::where(function($query) use($filters){
+            $query->where('couponCode', '=', $filters['coupon'])->where('couponEXP','>=',);
+        }) ->get();
+        return view(compact('product','productVendor','productScale','productStatus','filter')); 
+    }
 }

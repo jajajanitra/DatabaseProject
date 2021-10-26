@@ -73,7 +73,7 @@
                     <div>
                         <label>checkNumber :</label>
                         <input type="text" name="checkNumber">
-                    </div>
+                    </div> 
                     <div>
                         <label for="status">State :</label>
                             <select name="status"  >

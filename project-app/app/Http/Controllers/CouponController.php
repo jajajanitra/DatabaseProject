@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Coupon;
 
 class CouponController extends Controller
 {
@@ -14,6 +15,8 @@ class CouponController extends Controller
     public function index()
     {
         //
+        $coupons = Coupon::all();
+        return view('viewcoupons', compact('coupons'));
     }
 
     /**
@@ -24,6 +27,7 @@ class CouponController extends Controller
     public function create()
     {
         //
+        return view('createcoupon');
     }
 
     /**
@@ -35,6 +39,16 @@ class CouponController extends Controller
     public function store(Request $request)
     {
         //
+        $coupons = Coupon::all();
+        $coupon = new Coupon([
+            'couponNumber' => $coupons->max('couponNumber')+1,
+            'couponCode' => $request->couponCode,
+            'discount' => $request->discount,
+            'couponEXP' => $request->couponEXP
+        ]);
+        $coupon->save();
+        $coupons=Coupon::all();
+        return view('viewcoupons',compact('coupons'));
     }
 
     /**
