@@ -113,6 +113,10 @@ class PaymentController extends Controller
         Order::find($id)->update([
             'status'=>$request->status,
         ]);
-        return redirect('/home');
+        $cart = session()->get('cart');
+        unset($cart);
+        session()->put('cart', null);
+        session()->flash('success', 'Product removed successfully');
+        return redirect('/products');
     }
 }

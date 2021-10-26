@@ -190,9 +190,12 @@ class ProductController extends Controller
             "buyPrice"=> $product->buyPrice,
             "productName"=> $product->productName,
             "productLine"=> $product->productLine,
+            "quantityInStock"=>$product->quantityInStock,
             "productScale"=> $product->productScale,
             "productVendor"=> $product->productVendor,
             "productDescription"=> $product->productDescription,
+            "MSRP" => $product->MSRP,
+            "productStatus" => $product->productStatus,
             "quantity"=> 1
             
             ]];
@@ -212,9 +215,12 @@ class ProductController extends Controller
             "buyPrice"=> $product->buyPrice,
             "productName"=> $product->productName,
             "productLine"=> $product->productLine,
+            "quantityInStock"=>$product->quantityInStock,
             "productScale"=> $product->productScale,
             "productVendor"=> $product->productVendor,
             "productDescription"=> $product->productDescription,
+            "MSRP" => $product->MSRP,
+            "productStatus" => $product->productStatus,
             "quantity"=> 1
             
         ];
