@@ -6,6 +6,7 @@ use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 use App\Models\Payment;
 use App\Models\Orderdetail;
+use App\Models\Customer;
 
 class OrderController extends  OrderdetailController
 {
@@ -68,6 +69,10 @@ class OrderController extends  OrderdetailController
         // ]);
         // $orderdetail->save();
         // $orderdetail = Orderdetails::all();
+        $customer = Customer::find($request->customerNumber);
+        $customer->points = $customer->points+$request->pointReceived;
+        $customer->save();
+        $customer = Customer::all();
         return redirect('/payment/'. $check);
     }
 
