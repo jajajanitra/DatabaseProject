@@ -64,9 +64,10 @@ class OrderdetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   
+        $orderdetail1 = Orderdetail::all();
         $orderdetails = Orderdetail::find($id);
-        return view('vieworderdetail',compact('orderdetails'));
+        return view('vieworderdetail',compact('orderdetails','orderdetail1'));
     }
 
     /**

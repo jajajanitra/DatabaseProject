@@ -10,21 +10,49 @@
     <h1>Orderdetails</h1>
     <div class="content">
         <div class="table-products">
-            <table>
-                    <tr><b>Order Number : </b> {{ $orderdetails ->orderNumber}}</tr>
-                    <br>
-                    <br>
-                    <tr><b>Product Code : </b> {{ $orderdetails ->productCode}}</tr>
-                    <br>
-                    <br>
-                    <tr><b>QuantityOrdered : </b> {{ $orderdetails ->quantityOrdered}}</tr>
-                    <br>
-                    <br>
-                    <tr><b>Price Each : </b>{{ $orderdetails ->priceEach}}</tr>
-                    <br>
-                    <br>
-                    <tr><b>Order LineNumber : </b>{{ $orderdetails ->orderLineNumber}}</tr>
-
+    <b>Order Number :</b> {{$orderdetails ->orderNumber }} 
+    <br>
+    <?php
+    $orderNum = $orderdetails->orderNumber;
+    ?>
+    <br> 
+        <table>
+                <thead>
+                    <td>Product Code</td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td>Quantity Ordered</td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td>Price Each</td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td>Order LineNumber</td>
+                </thead>
+                <tbody>
+                @foreach( $orderdetail1 as $orderdetail) 
+                    @if($orderdetail->orderNumber == $orderNum)
+                    <tr>
+                        <td>{{ $orderdetail ->productCode }}</td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td>{{ $orderdetail ->quantityOrdered}}</td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td>{{ $orderdetail ->priceEach}}</td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td>{{ $orderdetail ->orderLineNumber}}</td>
+                    </tr>
+                    @endif
+                @endforeach
+                </tbody>
             </table>
             <div>
                 <br>
