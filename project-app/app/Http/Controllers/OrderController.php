@@ -38,6 +38,23 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         //
+        $order = Order::all();
+        $order = new Order([
+            'orderNumber' => $request->orderNumber,
+            'orderDate' => $request->orderDate,
+            'requiredDate' => $request->requiredDate,
+            'shippedDate' => $request->shippedDate,
+            'status' => $request->status,
+            'comments' => $request->comments,
+            'total' => $request->total,
+            'pointReceived' => $request->pointReceived,
+            'orderType' => $request->orderType,
+            'couponNumber' => $request->couponNumber,
+            'paymentNumber' => $request->paymentNumber
+        ]);
+        $product->save();
+        $product = Product::all();
+        return redirect('/payment');
     }
 
     /**
@@ -49,6 +66,8 @@ class OrderController extends Controller
     public function show($id)
     {
         //
+        $orderNumber = Order::find($id);
+        return view('payment',compact('orderNumber')); 
     }
 
     /**

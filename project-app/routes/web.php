@@ -63,15 +63,15 @@ Route::get('/products/cart/addtocart/{id}',[ProductController::class,'AddToCart'
 Route::delete('/products/cart/removefromcart',[ProductController::class,'RemoveFromCart']);
 Route::put('/products/cart/updatecart',[ProductController::class,'UpdateCart']);
 Route::get('/products/cart' ,[ProductController::class, 'cart']);
+Route::post('/products/cart' ,[OrderController::class, 'store']);
+//Route::get('/products', [ProductController::class , 'create']);
+//Route::post('/products' ,[ProductController::class, 'store']);
 
 Route::resource('/stock-in', StockInController::class);
 Route::get('/stock-inadd', [StockInController::class , 'create']);
 Route::post('/stock-inadd' ,[StockInController::class, 'store']);
 
 Route::resource('/employee', EmployeeController::class);
-
-
-
 
 
 //Customer
@@ -85,7 +85,7 @@ Route::get('/order/edit/{id}', [OrderController::class, 'edit']);
 Route::post('/order/update/{id}', [OrderController::class, 'update']);
 
 //payments
-Route::get('/payment/{id}', [PaymentController::class, 'show']);
+//Route::get('/payment/{orderNumber}', [OrderController::class, 'show']);
 
 //add to cart
 //Route::put('/products/addtocart',[OrderController::class],'show');
