@@ -20,6 +20,10 @@
                     <input type="number" name="discount" required>  
                 </div>
                 <div>
+                    <label>Number of coupons</label>
+                    <input type="number" name="couponLimit" required>  
+                </div>
+                <div>
                     <label>couponEXP</label>
                     <input type="date" name="couponEXP" required>  
                 </div>
