@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -26,7 +27,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('create_customer');
+        $customer = Customer::all();
+        return view('create_customer',['customers' => $customer]);
     }
 
     /**
@@ -38,8 +40,8 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
        //ตรวจสอบข้อมูล
+
         $request->validate([
-        'customerNumber'=>'required|unique:customers|max:10',
         'customerName'=>'required|max:50',
         'contactLastName'=>'required|max:50',
         'contactFirstName'=>'required|max:50',
@@ -52,24 +54,25 @@ class CustomerController extends Controller
         'country'=>'required|max:50',
         'salesRepEmployeeNumber'=>'max:50',
         'creditLimit'=>'required|max:50',
-        'points'=>'required|max:50'
     ]);
     //บันทึกข้อมูล
-    $customer = new Customer;
-    $customer->customerNumber = $request->customerNumber;
-    $customer->customerName = $request->customerName;
-    $customer->contactLastName = $request->contactLastName;
-    $customer->contactFirstName = $request->contactFirstName;
-    $customer->phone = $request->phone;
-    $customer->addressLine1 = $request->addressLine1;
-    $customer->addressLine2 = $request->addressLine2;
-    $customer->city = $request->city;
-    $customer->state = $request->state;
-    $customer->postalCode = $request->postalCode;
-    $customer->country = $request->country;
-    $customer->salesRepEmployeeNumber = $request->salesRepEmployeeNumber;
-    $customer->creditLimit = $request->creditLimit;
-    $customer->points = $request->points;
+    $customers = Customer::all();
+    $customer = new Customer([
+        'customerNumber' => $customers->max('customerNumber')+1,
+        'customerName'=> $request->customerName,
+        'contactLastName'=> $request->contactLastName,
+        'contactFirstName'=> $request->contactFirstName,
+        'phone'=> $request->phone,
+        'addressLine1'=> $request->addressLine1,
+        'addressLine2'=> $request->addressLine2,
+        'city'=> $request->city,
+        'state'=> $request->state,
+        'postalCode'=> $request->postalCode,
+        'country'=> $request->country,
+        'salesRepEmployeeNumber'=> $request->salesRepEmployeeNumber,
+        'creditLimit'=> $request->creditLimit,
+        'points'=> $request->points
+    ]);
     $customer->save();
     $customer=Customer::all();
     return redirect('/customer');

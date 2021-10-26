@@ -1,0 +1,100 @@
+.container {
+    font-family: 'Poppins', serif;
+    font-size: 24px;
+}
+
+.card-header {
+    position: absolute;
+width: 163px;
+height: 39px;
+left: 912px;
+top: 240px;
+
+font-family: Poppins;
+font-style: normal;
+font-weight: bold;
+font-size: 26px;
+line-height: 39px;
+
+color: #333333;
+}
+
+.card-subheader {
+    position: absolute;
+    width: 134px;
+    height: 27px;
+    left: 913px;
+    top: 279px;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
+
+    color: #333333;
+    opacity: 0.4;
+}
+.usersty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 18px 26px;
+
+    position: absolute;
+    width: 307px;
+    height: 60px;
+    left: 886px;
+    top: 340px;
+
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    box-sizing: border-box;
+    border-radius: 30px;
+}
+
+.pswsty{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 18px 26px;
+    
+    position: absolute;
+    width: 307px;
+    height: 60px;
+    left: 886px;
+    top: 414px;
+    
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    box-sizing: border-box;
+    border-radius: 30px;
+}
+
+.login_btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 26px;
+
+    position: absolute;
+    width: 307px;
+    height: 57px;
+    left: 886px;
+    top: 490px;
+
+    background: #FFE761;
+    border-radius: 30px;
+    border: none;
+    font-size: 14px;
+}
+
+::placeholder { 
+    font-family: 'Poppins', serif;
+    font-size: 14px;
+    color: gray;
+}

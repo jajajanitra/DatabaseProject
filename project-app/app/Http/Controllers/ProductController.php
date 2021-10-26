@@ -164,11 +164,15 @@ class ProductController extends Controller
     
     public function categorystatus(Request $request)
     {
+        $product = Product::all();
+        $productVendor = Product::where('productVendor',$product)->getModel()->select('productVendor')->distinct()->get();
+        $productScale = Product::where('productScale',$product)->getModel()->select('productScale')->distinct()->get();
+        $productStatus = Product::where('productStatus',$product)->getModel()->select('productStatus')->distinct()->get();
         $filters = ['status' => $request->status];
         $filter = Product::where(function($query) use($filters){
             $query->where('productStatus', '=', $filters['status']);
         }) ->get();
-        return view('category' , compact('filter')); 
+        return view('category' , compact('product','productVendor','productScale','productStatus','filter')); 
     }
 
     /*My Cart*/
