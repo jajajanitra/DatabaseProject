@@ -54,9 +54,10 @@ class OrderController extends Controller
             'couponNumber' => $request->couponNumber,
             'paymentNumber' => $request->paymentNumber
         ]);
+        $ordernum = $orders->max('orderNumber')+1;
         $order->save();
         $order = Order::all();
-        return redirect('/order');
+        return redirect('/payment/'. $ordernum);
     }
 
     /**
