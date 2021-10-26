@@ -36,19 +36,20 @@ class OrderdetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$check)
+    public function stored(Request $request,$check)
     {
         //
-    
+        for ($i = 0; $i < count($request->productCode); $i++){
         $orderdetail = new Orderdetail([
             'orderNumber' => $check,
-            'productCode' => $request->productCode,
-            'quantityOrdered' => $request->quantityOrdered,
-            'priceEach' => $request->priceEach,
-            'orderLineNumber' => $request->orderLineNumber,
+            'productCode' => $request->productCode[$i],
+            'quantityOrdered' => $request->quantityOrdered[$i],
+            'priceEach' => $request->priceEach[$i],
+            'orderLineNumber' => $i+1,
         ]);
         $orderdetail->save();
-        $orderdetail = Orderdetails::all();
+        }
+        $orderdetail = Orderdetail::all();
         return redirect('/order');
     }
 

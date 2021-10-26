@@ -5,8 +5,9 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 use App\Models\Payment;
+use App\Models\Orderdetail;
 
-class OrderController extends Controller
+class OrderController extends  OrderdetailController
 {
     /**
      * Display a listing of the resource.
@@ -38,8 +39,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //       
+        //dd($request->all());             
         $orders = Order::all();
+        $check = $orders->max('orderNumber')+1;
         $order = new Order([
             'orderNumber' => $orders->max('orderNumber')+1,
             'orderDate' => $request->orderDate,
@@ -54,10 +56,19 @@ class OrderController extends Controller
             'couponNumber' => $request->couponNumber,
             'paymentNumber' => $request->paymentNumber
         ]);
-        $ordernum = $orders->max('orderNumber')+1;
         $order->save();
         $order = Order::all();
-        return redirect('/payment/'. $ordernum);
+        OrderdetailController::stored($request,$check);
+        // $orderdetail = new Orderdetail([
+        //     'orderNumber' => $check,
+        //     'productCode' => $request->productCode,
+        //     'quantityOrdered' => $request->quantityOrdered,
+        //     'priceEach' => $request->priceEach,
+        //     'orderLineNumber' => $request->orderLineNumber,
+        // ]);
+        // $orderdetail->save();
+        // $orderdetail = Orderdetails::all();
+        return redirect('/payment/'. $check);
     }
 
     /**

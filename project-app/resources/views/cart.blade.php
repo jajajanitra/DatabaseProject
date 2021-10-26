@@ -15,12 +15,13 @@
 
         <?php $total = 0 ?>
 <!-- by this code session get all product that user chose -->
-    
+        <?php $k?>
+        <?php $i=0?>
         @if(session('cart'))
             @foreach(session('cart') as $id => $j)
 
                 <?php $total += $j['buyPrice'] * $j['quantity'] ?>
-
+                <?php $i+=1?>
                 <tr>
                     <td data-th="Product">
                         <div class="row">
@@ -49,6 +50,7 @@
                     </form>
                     </td>
                 </tr>
+                <?php $k[$i]=[$j['productCode'],$j['buyPrice'],$j['quantity']]?>
             @endforeach
         @endif
         <tr>
@@ -57,6 +59,7 @@
             <td class="hidden-xs text-center"><strong>Total ${{ $total }}</strong></td>
         </tr>
         </tbody>
+        <div>
         <tfoot>
             
             <form action="{{url('/products/cart')}}" method="post">
@@ -111,9 +114,16 @@
                     <label>pointReceived : </label>
                     <input  type="number" name="pointReceived" value="{{ $totalpoint }}" readonly>
                 </div>
+                @for ($p = 1; $p <= $i; $p++)
+                  <input type="text" name="productCode[]" value="{{$k[$p][0]}}">
+                 <input type="number" name="priceEach[]" value="{{$k[$p][1]}}">
+                <input type="number" name="quantityOrdered[]" value="{{$k[$p][2]}}">
+                @endfor
                 <button type="submit"> PlaceOrder </button>
+
             </form>
         </tfoot>
+        </div>
     </table>
 
 
