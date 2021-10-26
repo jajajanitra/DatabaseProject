@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 use App\Models\Payment;
-use App\Models\Productline;
 
 class OrderController extends Controller
 {
@@ -39,12 +38,10 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        
-        $productlines = Productline::all();
-        $order = Order::all();
+        //       
+        $orders = Order::all();
         $order = new Order([
-            'orderNumber' => $request->orderNumber,
+            'orderNumber' => $orders->max('orderNumber')+1,
             'orderDate' => $request->orderDate,
             'requiredDate' => $request->requiredDate,
             'shippedDate' => $request->shippedDate,
@@ -53,6 +50,7 @@ class OrderController extends Controller
             'total' => $request->total,
             'pointReceived' => $request->pointReceived,
             'orderType' => $request->orderType,
+            'customerNumber' => $request->customerNumber,
             'couponNumber' => $request->couponNumber,
             'paymentNumber' => $request->paymentNumber
         ]);

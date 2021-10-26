@@ -56,9 +56,6 @@
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><strong>Total ${{ $total }}</strong></td>
         </tr>
-        <tr>
-            <td><a href="{{ config('app.url')}}/order" class="btn btn-warning"><i class="fa fa-primary"></i> PlaceOrder </a></td>
-        </tr>
         </tbody>
         <tfoot>
             
@@ -83,8 +80,8 @@
                 </div>
                 <div>
                     <label for="status">State</label>
-                        <select name="state"  >
-                        <option value="in process">in process</option> 
+                        <select name="status"  >
+                        <option value="In Process">In Process</option> 
                     </select>
                 </div>
                 <div>
@@ -106,9 +103,16 @@
                     <input type="number" name="paymentNumber">
                 </div>
                 <div>
-                    <label>total : ${{ $total }}</label>
+                    <label>total : </label>
+                    <input  type="number" name="total" value="{{ $total }}" readonly>
                 </div>
-                <button type="submit">Confirm</button>
+                <div>
+                <?php $totalpoint =  floor($total/100) ?>
+                    <label>pointReceived : </label>
+                    <input  type="number" name="pointReceived" value="{{ $totalpoint }}" readonly>
+                </div>
+               
+         <button type="submit"> PlaceOrder </button>
             </form>
         </tfoot>
     </table>
