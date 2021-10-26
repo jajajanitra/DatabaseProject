@@ -1,7 +1,6 @@
 @extends('layout')
 @section('title', 'Cart')
 @section('content')
-
     <table id="cart" class="table table-hover table-condensed">
         <thead>
         <tr>
@@ -62,6 +61,12 @@
             <td class="hidden-xs text-center"><strong>Total ${{ $total }}</strong></td>
         </tr>
         </tfoot>
+        <tfoot>
+
+        <tr>
+            <td><a href="{{ config('app.url')}}/products" class="btn btn-warning"><i class="fa fa-primary"></i> PlaceOrder</a></td>
+        </tr>
+        </tfoot>
     </table>
 
 @endsection
@@ -72,7 +77,7 @@
 
     <script type="text/javascript">
 // this function is for update card
-        $(".updatecart").click(function (e) {
+        $(".update-cart").click(function (e) {
            e.preventDefault();
            var ele = $(this);
             $.ajax({
