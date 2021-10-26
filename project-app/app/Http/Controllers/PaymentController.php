@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Payment;
+use App\Models\Order;
 
 class PaymentController extends Controller
 {
@@ -22,9 +23,12 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
+        $order = Order::find($id);
+        $payment = Payment::find($id);
+        return view('payment' ,compact('payment', 'order'));
     }
 
     /**
@@ -36,6 +40,16 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         //
+        $payment = Payment::all();
+        $payment = new Payment([
+            'customerNumber'=> $request->customerNumber,
+            'checkNumber'=> $request->checkNumber,
+            'paymentDate'=> $request->paymentDate,
+            'amount'=> $request->amount
+        ]);
+        $payment->save();
+        $payment = Payment::all();
+        return redirect('/home');
     }
 
     /**

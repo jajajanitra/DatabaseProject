@@ -42,6 +42,8 @@ Route::get('/stock-in/products/addproduct' , function () {
     return view('createproduct' , compact('productlines'));
 });
 
+
+
 Route::post('/stock-in/products/addproduct' ,[ProductController::class, 'store']);
 Route::get('/stock-in/products', [ProductController::class, 'index']);
 Route::get('/stock-in/products/edit/{product}' ,[ProductController::class, 'edit']);
@@ -87,6 +89,8 @@ Route::get('/orderdetail/{id}', [OrderdetailController::class, 'show']);
 
 //payments
 Route::get('/mypayment/{id}', [PaymentController::class, 'show']);
+Route::get('/payment/{id}', [PaymentController::class, 'create']);
+Route::post('/payment/{id}', [PaymentController::class, 'store']);
 
 //add to cart
 //Route::put('/products/addtocart',[OrderController::class],'show');

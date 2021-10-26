@@ -64,25 +64,25 @@
             @method('POST')
                 <div class="form-group">
                     <label>Customer Number :</label>
-                    <input type="number" name="customerNumber">                              
+                    <input type="number" name="customerNumber" required>                              
                 </div>
                 <div>
                     <label>order Date :</label>
-                    <input type="date" name="orderDate">
+                    <input type="date" name="orderDate" required>
                 </div>
                 <div>
                     <label>requiredDate :</label>
-                    <input type="date" name="requiredDate">
+                    <input type="date" name="requiredDate" required>
                 </div>
                 <div>
                     <label>shippedDate :</label>
-                    <input type="date" name="shippedDate">
+                    <input type="date" name="shippedDate" required>
                 </div>
                 <div>
                     <label for="status">State</label>
                         <select name="status"  >
-                        <option value="In Process">In Process</option> 
-                    </select>
+                            <option value="In Process">In Process</option> 
+                        </select>
                 </div>
                 <div>
                     <label>comment :</label>
@@ -90,17 +90,17 @@
                 </div>
                 <div>
                     <label>OrderType</label>
-                    <select name="orderType">
+                    <select name="orderType" required>
                         <option value="normal">normal</option>
                         <option value="preorder">preorder</option>
                     </select>
                 <div>
                     <label>couponNumber :</label>
-                    <input type="nymber" name="couponNumber">
+                    <input type="nymber" name="couponNumber" >
                 </div>
                 <div>
                     <label>paymentNumber :</label>
-                    <input type="number" name="paymentNumber">
+                    <input type="number" name="paymentNumber" required>
                 </div>
                 <div>
                     <label>total : </label>
@@ -111,8 +111,7 @@
                     <label>pointReceived : </label>
                     <input  type="number" name="pointReceived" value="{{ $totalpoint }}" readonly>
                 </div>
-               
-         <button type="submit"> PlaceOrder </button>
+                <button type="submit"> PlaceOrder </button>
             </form>
         </tfoot>
     </table>
