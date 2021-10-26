@@ -20,6 +20,7 @@
             </div>
 
             <div class="Dropdown">
+                
                 <label>vendor</label>
                 <form action="{{ url('/products/vendor/vendor') }}" method="GET">
                     @csrf
@@ -43,7 +44,18 @@
                     </select>
                     <input type="submit" class="btn btn-danger btn-sm" value="select">
                 </form>
-                
+
+                <label>status</label>
+                <form action="{{ url('/products/status/status') }}" method="GET">
+                    @csrf
+                    <select name="status" id="status">
+                        <option value="0">Select Status</option>
+                        @foreach( $productStatus as $status)
+                        <option value="{{$status->productStatus}}">{{ $status->productStatus }}</option>   
+                        @endforeach
+                    </select>
+                    <input type="submit" class="btn btn-danger btn-sm" value="select">
+                </form>
                 
             </div>
         

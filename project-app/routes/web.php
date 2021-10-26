@@ -58,7 +58,7 @@ Route::put('/erm/edit/{employee}', [EmployeeController::class, 'update']);
 Route::get('/products',[ProductController::class,'show']);
 Route::get('/products/vendor/{vendor}', [ProductController::class,'categoryvendor']);
 Route::get('/products/scale/{scale}',[ProductController::class,'categoryscale']);
-Route::get('/products/scale/{status}',[ProductController::class,'categorystatus']);
+Route::get('/products/status/{status}',[ProductController::class,'categorystatus']);
 
 //cart
 Route::get('/products/cart/addtocart/{id}',[ProductController::class,'AddToCart']);
