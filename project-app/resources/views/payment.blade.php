@@ -15,12 +15,48 @@
 
         <?php $total = 0 ?>
 <!-- by this code session get all product that user chose -->
-        <label>Customer name : {{ $order -> customerNumber }}</label>
-        <label>Point Balance : {{ $order -> pointReceived }}</label>
-        <label>Order : {{ $order -> orderNumber }}</label>
-        <label>patment number : {{ $order -> paymentNumber }}</label>
-
-        <option value="in process">in process</option>
+        @method('POST')
+    <form action="{{url('/products/cart')}}" method="post">
+        <div class="form-group">
+            <label>Customer Number :</label>
+            <input type="number" name="customerNumber">                              
+        </div>
+        <div>
+            <label>order Date :</label>
+            <input type="date" name="orderDate">
+        </div>
+        <div>
+            <label>requiredDate :</label>
+            <input type="date" name="requiredDate">
+        </div>
+        <div>
+            <label>shippedDate :</label>
+            <input type="date" name="shippedDate">
+        </div>
+        <div>
+            <label for="status">State</label>
+                <select name="state"  >
+                <option value="in process">in process</option> 
+            </select>
+        </div>
+        <div>
+            <label>comment :</label>
+            <input type="text" name="comments">
+        </div>
+        <div>
+            <label>OrderType</label>
+            <select name="orderType">
+                <option value="normal">normal</option>
+                <option value="preorder">preorder</option>
+            </select>
+        <div>
+            <label>couponNumber :</label>
+            <input type="nymber" name="couponNumber">
+        </div>
+        <div>
+            <label>paymentNumber :</label>
+            <input type="number" name="paymentNumber">
+        </div>
 
         @if(session('cart'))
             @foreach(session('cart') as $id => $j)
@@ -42,6 +78,16 @@
                     <td data-th="Subtotal" class="text-center">${{ $j['buyPrice'] * $j['quantity'] }}</td>
                     <td class="actions" data-th="">
                     <!-- this button is to update card -->
+                    <form method="POST" >
+                    @csrf
+                    @method('PUT')
+                        <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}"><i class="fa fa-refresh"></i></button>
+                    </form>
+                    <!-- this button is for update card -->
+                    <form method="POST">
+                    @csrf
+                    @method('DELETE')
+                        <button class="btn btn-danger btn-sm remove-from-cart delete" data-id="{{ $id }}"><i class="fa fa-trash-o"></i>DELETE</button>
                     </form>
                     </td>
                 </tr>
@@ -63,10 +109,13 @@
         <tfoot>
 
         <tr>
-            <td><a href="{{ config('app.url')}}/order" class="btn btn-warning"><i class="fa fa-primary"></i> PlaceOrder </a></td>
+            <td><a href="{{ config('app.url')}}/order" class="btn btn-warning"><i class="fa fa-primary"></i> PlaceOrder </a></td> 
         </tr>
         </tfoot>
+
     </table>
+
+    </form>
 
 @endsection
 

@@ -15,49 +15,7 @@
 
         <?php $total = 0 ?>
 <!-- by this code session get all product that user chose -->
-        @method('POST')
-    <form action="{{url('/products/cart')}}" method="post">
-        <div class="form-group">
-            <label>Customer Number :</label>
-            <input type="number" name="orderNumber">                              
-        </div>
-        <div>
-            <label>order Date :</label>
-            <input type="date" name="orderDate">
-        </div>
-        <div>
-            <label>requiredDate :</label>
-            <input type="date" name="requiredDate">
-        </div>
-        <div>
-            <label>shippedDate :</label>
-            <input type="date" name="shippedDate">
-        </div>
-        <div>
-            <label for="status">State</label>
-                <select name="state"  >
-                <option value="in process">in process</option> 
-            </select>
-        </div>
-        <div>
-            <label>comment :</label>
-            <input type="text" name="comments">
-        </div>
-        <div>
-            <label>OrderType</label>
-            <select name="orderType">
-                <option value="normal">normal</option>
-                <option value="preorder">preorder</option>
-            </select>
-        <div>
-            <label>couponNumber :</label>
-            <input type="nymber" name="couponNumber">
-        </div>
-        <div>
-            <label>paymentNumber :</label>
-            <input type="number" name="paymentNumber">
-        </div>
-
+    
         @if(session('cart'))
             @foreach(session('cart') as $id => $j)
 
@@ -92,33 +50,69 @@
                     </td>
                 </tr>
             @endforeach
-            
         @endif
-        <div>
-            <label>total : ${{ $total }}</label>
-        </div>
-        </tbody>
-        <tfoot>
-
         <tr>
             <td><a href="{{ config('app.url')}}/products" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><strong>Total ${{ $total }}</strong></td>
         </tr>
-        </tfoot>
-        <tfoot>
-
         <tr>
             <td><a href="{{ config('app.url')}}/order" class="btn btn-warning"><i class="fa fa-primary"></i> PlaceOrder </a></td>
-            
         </tr>
+        </tbody>
+        <tfoot>
+            
+            <form action="{{url('/products/cart')}}" method="post">
+            @csrf
+            @method('POST')
+                <div class="form-group">
+                    <label>Customer Number :</label>
+                    <input type="number" name="customerNumber">                              
+                </div>
+                <div>
+                    <label>order Date :</label>
+                    <input type="date" name="orderDate">
+                </div>
+                <div>
+                    <label>requiredDate :</label>
+                    <input type="date" name="requiredDate">
+                </div>
+                <div>
+                    <label>shippedDate :</label>
+                    <input type="date" name="shippedDate">
+                </div>
+                <div>
+                    <label for="status">State</label>
+                        <select name="state"  >
+                        <option value="in process">in process</option> 
+                    </select>
+                </div>
+                <div>
+                    <label>comment :</label>
+                    <input type="text" name="comments">
+                </div>
+                <div>
+                    <label>OrderType</label>
+                    <select name="orderType">
+                        <option value="normal">normal</option>
+                        <option value="preorder">preorder</option>
+                    </select>
+                <div>
+                    <label>couponNumber :</label>
+                    <input type="nymber" name="couponNumber">
+                </div>
+                <div>
+                    <label>paymentNumber :</label>
+                    <input type="number" name="paymentNumber">
+                </div>
+                <div>
+                    <label>total : ${{ $total }}</label>
+                </div>
+                <button type="submit">Confirm</button>
+            </form>
         </tfoot>
-
     </table>
-    <div>
-        <input type="submit">
-    </div>
-    </form>
+
 
 @endsection
 
