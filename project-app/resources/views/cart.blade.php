@@ -17,6 +17,7 @@
         <?php $total = 0 ?>
 <!-- by this code session get all product that user chose -->
         <?php $k?>
+        <?php $couponCode ?>
         <?php $i=0?>
         @if(session('cart'))
             @foreach(session('cart') as $id => $j)
@@ -68,24 +69,27 @@
                     <div>
                         <label>couponCode :</label>
                         <input type="text" name="couponCode" id="couponnum">
+                        <button type="submit"> apply </button>
                     </div>
-                    <button type="submit">sub</button>
             </form>
             @if(is_null($coupon))
                 <div>
                         <?php $totalad = $total?>
+                        <?php $couponCode = null?>
                 </div>
                 @else
-                    @if($coupon->discount < $total && $coupon->couponLimit != 0 && $date < $coupon->couponEXP)
+                    @if($coupon->discount < $total && $coupon->couponLimit > 0 && $date < $coupon->couponEXP)
                     <div>
                         coupon is used
                         discount $ {{$coupon->discount}}
                         <?php $totalad = $total - $coupon->discount?>
+                        <?php $couponCode = $coupon->couponNumber?>
                     </div>
                     @else
                     <div>
                         can not use this coupon
                         <?php $totalad = $total?>
+                        <?php $couponCode = null?>
                     </div>
                     @endif
             @endif
@@ -130,18 +134,18 @@
                             <option value="preorder">preorder</option>
                         </select>
                     <div>
-                        <input type="hidden" type="text" name="couponCode" id="couponnum" value=" {{$coupon->couponNumber}} ">
+                        <input type="hidden" type="text" name="couponNumber"  value="{{$couponCode}}" id="couponnum" >
                     </div>
                     <div>
                         <label>paymentNumber :</label>
                         <input type="number" name="paymentNumber" required>
                     </div>
                     <div>
-                        <label>total : </label>
-                        <input type="number" name="total" value="{{ $totalad }}" readonly>
+                        <label>total after discount : </label>
+                        <input type="number" name="total"  value="{{$totalad}}" readonly>
                     </div>
                     <div>
-                    <?php $totalpoint =  floor($total/100) ?>
+                    <?php $totalpoint =  floor($total/100) *3 ?>
                         <label>pointReceived : </label>
                         <input  type="number" name="pointReceived" value="{{ $totalpoint }}" readonly>
                     </div>
