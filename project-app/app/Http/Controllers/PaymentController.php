@@ -104,7 +104,7 @@ class PaymentController extends Controller
         $payment = Payment::all();
         $payment = new Payment([
             'customerNumber'=> $request->customerNumber,
-            'checkNumber'=> $request->checkNumber,
+            'checkNumber'=> $request->paymentNumber,
             'paymentDate'=> $request->paymentDate,
             'amount'=> $request->amount
         ]);

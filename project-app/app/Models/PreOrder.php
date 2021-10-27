@@ -14,6 +14,8 @@ class PreOrder extends Model
     const CREATED_AT = 'null';
     const UPDATED_AT = 'null';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'preOrderNumber',
         'customerNumber',
