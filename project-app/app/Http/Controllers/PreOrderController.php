@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\PreOrder;
 class PreOrderController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class PreOrderController extends Controller
      */
     public function index()
     {
-        //
+        $preorder = PreOrder::all();
+        return view('viewpreorder' , ['preorders' => $preorder]);
     }
 
     /**

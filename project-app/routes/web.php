@@ -84,6 +84,9 @@ Route::resource('/order', OrderController::class);
 Route::get('/order/edit/{id}', [OrderController::class, 'edit']);
 Route::post('/order/update/{id}', [OrderController::class, 'update']);
 
+//PreOrder
+Route::resource('/preorder', PreOrderController::class);
+
 //Orderdetail
 Route::get('/orderdetail/{id}', [OrderdetailController::class, 'show']);
 

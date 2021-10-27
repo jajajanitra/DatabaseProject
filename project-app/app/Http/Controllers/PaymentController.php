@@ -100,7 +100,8 @@ class PaymentController extends Controller
     }
 
     public function updatestatus(Request $request, $id){
-        //
+        
+    
         $payment = Payment::all();
         $payment = new Payment([
             'customerNumber'=> $request->customerNumber,
@@ -111,13 +112,18 @@ class PaymentController extends Controller
         $payment->save();
         $payment = Payment::all();
 
-        Order::find($id)->update([
-            'status'=>$request->status,
-        ]);
+        $order = Order::all();
+        if($request->orderType == 'normal'){
+            Order::find($id)->update([
+            'status'=>$request->status = 'shipped',
+            ]);
+        }
+
         $cart = session()->get('cart');
         unset($cart);
         session()->put('cart', null);
         session()->flash('success', 'Product removed successfully');
         return redirect('/products');
+        
     }
 }
