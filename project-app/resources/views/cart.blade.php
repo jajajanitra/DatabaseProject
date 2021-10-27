@@ -7,12 +7,12 @@
     <table id="cart" class="table-card" style="width:1000px; margin-left: auto; margin-right: auto; padding-top: 20px;">
         <thead class="table-header" style="width:1000px;">
         <tr style="width:1000px;">
-            <th style="width:50%">Product</th>
-            <th style="width:10%">Price</th>
-            <th style="width:8%">Status</th>
-            <th style="width:8%">Quantity</th>
-            <th style="width:22%" class="text-center">Subtotal</th>
-            <th style="width:10%"></th>
+            <th style="width: 350px;">Product</th>
+            <th style="width: 140px;">Price</th>
+            <th style="width: 145px;">Status</th>
+            <th style="width: 145px;">Quantity</th>
+            <th style="width: 100px;">Subtotal</th>
+            <th style="width: 100px;"></th>
         </tr>
         </thead>
         <tbody>
@@ -37,18 +37,19 @@
                             </div>
                         </div>
                     </td>
-                    <td data-th="buyPrice" style="align:center; width:10%;">${{ $j['buyPrice'] }}</td>
-                    <td data-th="status" style="width: 8%;">{{ $j['productStatus'] }}</td>
-                    <td data-th="Quantity" style="width: 8%;"> 
+                    <td data-th="buyPrice" style="align:center; width:20%;">${{ $j['buyPrice'] }}</td>
+                    <td data-th="status" style="width: 20%;">{{ $j['productStatus'] }}</td>
+                    <td data-th="Quantity" style="width: 20%;"> 
                     @if($j['productStatus']=="Preorder") 
-                        <input type="number" value="{{ $j['quantity'] }}" min="0" class="input-box" style="width: 60px; color:#000000;"/>
+                        <input type="number" value="{{ $j['quantity'] }}" min="0" class="form-control quantity" style="width: 60px; color:#000000;"/>
                     @else   
-                        <input type="number" value="{{ $j['quantity'] }}" min="0" max="{{$j['quantityInStock']}}" class="input-box" style="width: 60px; color:#000000; margin-left:10px;"/>
+                        <input type="number" value="{{ $j['quantity'] }}" min="0" max="{{$j['quantityInStock']}}" class="form-control quantity" style="width: 60px; color:#000000; margin-left:10px;"/>
                     @endif
                     </td>
-                    <td data-th="Subtotal" class="text-center" style="width: 22%;">${{ $j['buyPrice'] * $j['quantity'] }}</td>
-                    <td class="actions" data-th="" style="width: 10%;">
+                    <td data-th="Subtotal" class="text-center" style="width: 10%;">${{ $j['buyPrice'] * $j['quantity'] }}</td>
+                    <td class="actions" data-th="" style="width: 20%;">
                     <!-- this button is to update card -->
+                    
                     <table>
                     <tbody>
                     <tr>
@@ -112,14 +113,14 @@
                 </div>
                 @else
                     @if($coupon->discount < $total && $coupon->couponLimit > 0 && $date < $coupon->couponEXP)
-                    <div>
-                        coupon is used
+                    <div class="sb">
+                        coupon is used 
                         discount $ {{$coupon->discount}}
                         <?php $totalad = $total - $coupon->discount?>
                         <?php $couponCode = $coupon->couponNumber?>
                     </div>
                     @else
-                    <div>
+                    <div class="sb">
                         can not use this coupon
                         <?php $totalad = $total?>
                         <?php $couponCode = null?>

@@ -186,7 +186,7 @@ class ProductController extends Controller
         if(isset($cart[$id])) {
             $cart[$id]['quantity']++;
             session()->put('cart', $cart); // this code put product of choose in cart
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return redirect()->back()->with('success');
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [

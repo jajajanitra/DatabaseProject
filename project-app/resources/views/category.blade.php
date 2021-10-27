@@ -6,30 +6,31 @@
     <div>
     <div class="headertext">Catalog</div>
     <div class="contenttext"> 
-    <h1>Catalog</h1>
-            <div class="Dropdown">
+            <div class="dropdown">
                 <form action="{{ url('/products/category/' .$status) }}" method="GET" >
                     @csrf
                     <label>vendor</label>
-                    <select name="vendor" id="vendor" class="form-select" style="   border: 1px solid #EEEEEE; box-sizing: border-box; border-radius: 15px;">
+                    <select name="vendor" id="vendor" class="form-select" style="width: 200px; border: 1px solid #EEEEEE; box-sizing: border-box; border-radius: 15px;">
                         <option value="0">Select Vendor</option>
                         @foreach( $productVendor as $vendor)
                         <option value="{{$vendor->productVendor}}">{{ $vendor -> productVendor }}</option>   
                         @endforeach
                     </select>
-                    <label>scale</label>
-                    <select name="scale" id="scale" class="form-select" style="   border: 1px solid #EEEEEE; box-sizing: border-box; border-radius: 15px;">
+                    <label style="padding-top:10px;">scale</label>
+                    <select name="scale" id="scale" class="form-select" style="width:200px; border: 1px solid #EEEEEE; box-sizing: border-box; border-radius: 15px;">
                         <option value="0">Select Scale</option>
                         @foreach( $productScale as $scale)
                         <option value="{{$scale->productScale}}">{{ $scale -> productScale }}</option>   
                         @endforeach
                     </select>
-                    <input type="submit" class="btn btn-danger btn-sm" value="select">
+                    <div style="padding-top:10px;">
+                    <input type="submit" class="edit-btn" value="select" style="width:150px;">
+                    </div>
                 </form>
             </div>
         
 
-        <table class="table-card" style="Width:1100px;">
+        <table class="table-card" style="Width:1100px; margin-top:10px;">
             <thead class="table-header">
             <tr>
                 <th style="width: 400px;">Name</th>

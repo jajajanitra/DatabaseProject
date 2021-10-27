@@ -13,13 +13,15 @@
                 <label>status</label>
                 <form action="{{ url('/products/status/status') }}" method="GET">
                     @csrf
-                    <select name="status" id="status" class="form-select" style="   border: 1px solid #EEEEEE; box-sizing: border-box; border-radius: 15px;">
+                    <select name="status" id="status" class="form-select" style="width:200px;  border: 1px solid #EEEEEE; box-sizing: border-box; border-radius: 15px;">
                         <option value="0">Select Status</option>
                         @foreach( $productStatus as $status)
                         <option value="{{$status->productStatus}}">{{ $status->productStatus }}</option>   
                         @endforeach
                     </select>
-                    <input type="submit" class="btn btn-danger btn-sm" value="select">
+                    <div style="padding-top:10px;">
+                    <input type="submit" class="edit-btn" value="select" style="width:150px;">
+                    </div>
                 </form>
                 
                 

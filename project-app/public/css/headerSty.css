@@ -75,6 +75,17 @@
     color: #7E7E7E;
 }
 
+.sb{
+    font-style: normal;
+    font-weight: 200;
+    font-size: 18px;
+    /* identical to box height */
+    color: #7E7E7E;
+    position: absolute; 
+    right: 180px; 
+    top: 120px;
+}
+
 .contenttext {
     font-style: normal;
     font-weight: 200;
@@ -388,7 +399,6 @@ a:hover{
     border-radius: 50px;
     border: none;
     display: block;
-    margin: auto;
     text-decoration: none;
 }
 
