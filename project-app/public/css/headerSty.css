@@ -75,8 +75,8 @@
     position: absolute;
     width: 50px;
     height: 50px;
-    left: 1350px;
-    top: 50px;
+    left: 1300px;
+    top: -10px;
 }
 
 .cart {
@@ -437,4 +437,8 @@ article {
     border-radius: 15px;
     font-size: 14px;
     color: #7E7E7E;
+}
+.dropdown-menu > a:active {
+    background-image: none;
+    background-color: #FFE761;
 }
