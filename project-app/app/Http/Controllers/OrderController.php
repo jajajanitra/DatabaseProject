@@ -30,7 +30,7 @@ class OrderController extends  OrderdetailController
     public function create()
     {
         //
-        $coupon = Coupon::all();
+        $coupon = null;
         return view('cart',compact('coupon'));
     }
 
@@ -131,4 +131,5 @@ class OrderController extends  OrderdetailController
     {
         //
     }
+
 }

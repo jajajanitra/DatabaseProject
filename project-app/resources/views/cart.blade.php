@@ -130,7 +130,7 @@
                             <option value="preorder">preorder</option>
                         </select>
                     <div>
-                        <input type="hidden" type="text" name="couponCode" id="couponnum" value=" {{$coupon->couponNumber}} ">
+                        <input  type="text" name="couponNumber"  id="couponnum" >
                     </div>
                     <div>
                         <label>paymentNumber :</label>
@@ -138,7 +138,7 @@
                     </div>
                     <div>
                         <label>total : </label>
-                        <input type="number" name="total" value="{{ $totalad }}" readonly>
+                        <input type="number" name="total"  value="{{$totalad}}" readonly>
                     </div>
                     <div>
                     <?php $totalpoint =  floor($total/100) ?>
