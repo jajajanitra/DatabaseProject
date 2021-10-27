@@ -241,7 +241,7 @@ class ProductController extends Controller
         $productStatus  = Product::where(function($query) use($status){
             $query->where('productStatus', '=', $status); }) ->get();
         
-        if($request->vendor == 0 ){
+        if($request->vendor == 0){
             if($request->scale == 0){
                 $filter = Product::where(function($query) use($status){
                     $query->where('productStatus', '=', $status); }) ->get();
@@ -253,8 +253,9 @@ class ProductController extends Controller
             }
         }else{
             if($request->scale == 0){
+                //dd($request->vendor);
                 $filter  = Product::where(function($query) use($status){
-                    $query->where('productStatus', '=', $status); })->where('productVendor', '=',$request->vender) ->get();
+                    $query->where('productStatus', '=', $status); })->where('productVendor', '=',$request->vendor) ->get();
                 return view('category' , compact('product','productVendor','productScale','productStatus','filter','status')); 
             }else{
                 $filter  = Product::where(function($query) use($status){
