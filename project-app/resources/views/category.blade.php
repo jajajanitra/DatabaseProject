@@ -14,10 +14,6 @@
     <div class="select-table"> 
                 <h1>Catalog</h1>
                 <botton><a href="{{ config('app.url')}}/products" class="select-table"><option>All product</option></a></botton>
-                <botton><a href="{{ config('app.url')}}/products/vendor" class="select-table"><option>vendor</option></a></botton>
-                <botton><a href="{{ config('app.url')}}/products/scale" class="select-table"><option>scale</option></a></botton>
-                <botton><a href="{{ config('app.url')}}/preorder" class="select-table"><option>preorder</option></a></botton>
-            </div>
 
             <div class="Dropdown">
                 
@@ -45,18 +41,6 @@
                     <input type="submit" class="btn btn-danger btn-sm" value="select">
                 </form>
 
-                <label>status</label>
-                <form action="{{ url('/products/status/status') }}" method="GET">
-                    @csrf
-                    <select name="status" id="status">
-                        <option value="0">Select Status</option>
-                        @foreach( $productStatus as $status)
-                        <option value="{{$status->productStatus}}">{{ $status->productStatus }}</option>   
-                        @endforeach
-                    </select>
-                    <input type="submit" class="btn btn-danger btn-sm" value="select">
-                </form>
-                
             </div>
         
         <h2>All Category</h2>

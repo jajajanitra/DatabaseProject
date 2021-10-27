@@ -6,6 +6,7 @@
         <tr>
             <th style="width:50%">Product</th>
             <th style="width:10%">Price</th>
+            <th style="width:8%">Status</th>
             <th style="width:8%">Quantity</th>
             <th style="width:22%" class="text-center">Subtotal</th>
             <th style="width:10%"></th>
@@ -33,6 +34,7 @@
                         </div>
                     </td>
                     <td data-th="buyPrice">${{ $j['buyPrice'] }}</td>
+                    <td data-th="status">{{ $j['productStatus'] }}</td>
                     <td data-th="Quantity"> 
                     @if($j['productStatus']=="Preorder") 
                         <input type="number" value="{{ $j['quantity'] }}" min="0" class="form-control quantity" />
@@ -59,8 +61,9 @@
                 <?php $k[$i]=[$j['productCode'],$j['buyPrice'],$j['quantity'],$j['productName'],$j['productLine'],$j['quantityInStock'],$j['productScale'],$j['productVendor'],$j['productDescription'],$j['MSRP'],$j['productStatus']]?>
             @endforeach
         @endif
+        <?php $status = $j['productStatus'] ?>
         <tr>
-            <td><a href="{{ config('app.url')}}/products" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+            <td><button type="button" onClick="window.history.back();"class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</button></td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><strong>Total ${{ $total }}</strong></td>
         </tr>
@@ -133,10 +136,13 @@
                     </div>
                     <div>
                         <label>OrderType</label>
-                        <select name="orderType" required>
-                            <option value="normal">normal</option>
-                            <option value="preorder">preorder</option>
-                        </select>
+                        <!-- @if($status != NULL){
+                            <input type="text" name="orderType"  value="{{$status}}" readonly>
+                        }
+                        @else{
+                            <input type="text" name="orderType"  value=0 readonly>
+                        }
+                        @endif -->
                     <div>
                         <input type="hidden" type="text" name="couponNumber"  value="{{$couponCode}}" id="couponnum" >
                     </div>
@@ -208,6 +214,9 @@
                 });
             }
         });
+        function autoRefresh() {
+            window.location = window.location.href;
+        }
     </script>
 
 @endsection
