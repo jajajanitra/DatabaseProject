@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\Orderdetail;
 use App\Models\Customer;
 use App\Models\Coupon;
+use App\Models\PreOrder;
 
 class OrderController extends  OrderdetailController
 {
@@ -61,6 +62,20 @@ class OrderController extends  OrderdetailController
         ]);
         $order->save();
         $order = Order::all();
+
+        if($request->orderType == "preorder"){
+            $preorders = PreOrder::all();
+            $preorder = new PreOrder([
+                'preOrderNumber' => $preorders->max('preOrderNumber')+1,
+                'customerNumber' => $request->customerNumber,
+                'orderNumber' => $check,
+                'upFrontPaid' => $request->total
+            
+            ]);
+            $preorder->save();
+            $preorder = PreOrder::all();
+
+        }
         OrderdetailController::stored($request,$check);
         // $orderdetail = new Orderdetail([
         //     'orderNumber' => $check,

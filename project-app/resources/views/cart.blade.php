@@ -6,6 +6,7 @@
         <tr>
             <th style="width:50%">Product</th>
             <th style="width:10%">Price</th>
+            <th style="width:8%">Status</th>
             <th style="width:8%">Quantity</th>
             <th style="width:22%" class="text-center">Subtotal</th>
             <th style="width:10%"></th>
@@ -18,6 +19,7 @@
 <!-- by this code session get all product that user chose -->
         <?php $k?>
         <?php $couponCode ?>
+        <?php $status = null?>
         <?php $i=0?>
         @if(session('cart'))
             @foreach(session('cart') as $id => $j)
@@ -33,6 +35,7 @@
                         </div>
                     </td>
                     <td data-th="buyPrice">${{ $j['buyPrice'] }}</td>
+                    <td data-th="status">{{ $j['productStatus'] }}</td>
                     <td data-th="Quantity"> 
                     @if($j['productStatus']=="Preorder") 
                         <input type="number" value="{{ $j['quantity'] }}" min="0" class="form-control quantity" />
@@ -55,12 +58,23 @@
                         <button class="btn btn-danger btn-sm remove-from-cart delete" data-id="{{ $id }}"><i class="fa fa-trash-o"></i>DELETE</button>
                     </form>
                     </td>
+                    
+                    <?php $status = $j['productStatus'] ?>
+                    
                 </tr>
                 <?php $k[$i]=[$j['productCode'],$j['buyPrice'],$j['quantity'],$j['productName'],$j['productLine'],$j['quantityInStock'],$j['productScale'],$j['productVendor'],$j['productDescription'],$j['MSRP'],$j['productStatus']]?>
             @endforeach
+            @if($status == 'preorder')
+                <?php $total = $total/2 
+                ?>
+            @endif
         @endif
         <tr>
-            <td><a href="{{ config('app.url')}}/products" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+            @if(is_null($status))
+            <td><button type="button" onClick="location.href='{{config('app.url')}}/products'"class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</button></td>
+            @else
+            <td><button type="button" onClick="window.history.back();"class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</button></td>
+            @endif
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><strong>Total ${{ $total }}</strong></td>
         </tr>
@@ -122,7 +136,7 @@
                         <input type="date" name="shippedDate" required>
                     </div>
                     <div>
-                        <label for="status">State</label>
+                        <label for="status">Status</label>
                             <select name="status"  >
                                 <option value="In Process">In Process</option> 
                             </select>
@@ -133,16 +147,13 @@
                     </div>
                     <div>
                         <label>OrderType</label>
-                        <select name="orderType" required>
-                            <option value="normal">normal</option>
-                            <option value="preorder">preorder</option>
-                        </select>
+                        <input type="text" name="orderType"  value="{{$status}}" readonly>
                     <div>
                         <input type="hidden" type="text" name="couponNumber"  value="{{$couponCode}}" id="couponnum" >
                     </div>
                     <div>
-                        <label>paymentNumber :</label>
-                        <input type="number" name="paymentNumber" required>
+                            <label>paymentNumber/checkNumber :</label>
+                            <input type="text" name="paymentNumber" required>                    
                     </div>
                     <div>
                         <label>total after discount : </label>
@@ -208,6 +219,9 @@
                 });
             }
         });
+        function autoRefresh() {
+            window.location = window.location.href;
+        }
     </script>
 
 @endsection

@@ -56,9 +56,8 @@ Route::put('/erm/edit/{employee}', [EmployeeController::class, 'update']);
 
 //ProductFront
 Route::get('/products',[ProductController::class,'show']);
-Route::get('/products/vendor/{vendor}', [ProductController::class,'categoryvendor']);
-Route::get('/products/scale/{scale}',[ProductController::class,'categoryscale']);
-Route::get('/products/status/{status}',[ProductController::class,'categorystatus']);
+Route::get('/products/{status}',[ProductController::class,'categorystatus']);
+Route::get('/products/category/{status}',[ProductController::class,'category']);
 
 //cart
 Route::get('/products/cart/addtocart/{id}',[ProductController::class,'AddToCart']);
@@ -83,6 +82,9 @@ Route::post('/customer/add' ,[CustomerController::class, 'store']);
 Route::resource('/order', OrderController::class);
 Route::get('/order/edit/{id}', [OrderController::class, 'edit']);
 Route::post('/order/update/{id}', [OrderController::class, 'update']);
+
+//PreOrder
+Route::resource('/preorder', PreOrderController::class);
 
 //Orderdetail
 Route::get('/orderdetail/{id}', [OrderdetailController::class, 'show']);

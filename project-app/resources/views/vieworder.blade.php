@@ -44,7 +44,7 @@
                                             <td style="width:84px; text-align: center;">{{ $order ->orderType}}</td>
                                             <td style="width:84px; text-align: center;">{{ $order ->couponNumber}}</td>
                                             <td style="width:84px; text-align: center;">{{ $order ->customerNumber}}</td>
-                                            <td style="width:84px; text-align: center;"><a href="{{url('/mypayment/'.$order->customerNumber)}}" style="text-decoration: none;"><button class="edit-btn" style="width:85px;">view payment</button></a></td>
+                                            <td style="width:84px; text-align: center;"><a href="{{url('/mypayment/'.$order->orderNumber)}}" style="text-decoration: none;"><button class="edit-btn" style="width:85px;">view payment</button></a></td>
                                             <td style="width:80px; text-align: center;"> <a href="{{url('/order/edit/'.$order->orderNumber)}}" style="text-decoration: none;"><button class="edit-btn"> edit </button></a></td>
                                         </tr>
                                     @endforeach
