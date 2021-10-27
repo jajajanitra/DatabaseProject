@@ -200,6 +200,11 @@ article {
     color: #7E7E7E;
 }
 
+a:hover{
+    text-decoration: none;
+    color: #000000;
+}
+
 .nav-subheader-2{
     text-decoration: none;
     position: absolute;
