@@ -6,34 +6,28 @@
     <div>
     <div class="headertext">Catalog</div>
     <div class="contenttext"> 
-            <div class="dropdown">
-                <form action="{{ url('/products/category/' .$status) }}" method="GET">
+    <h1>Catalog</h1>
+            <div class="Dropdown">
+                <form action="{{ url('/products/category/' .$status) }}" method="GET" >
                     @csrf
-                    <table>
-                        <tr>
-                            <td><label>vendor</label></td>
-                    <td style="padding:10px;">
-                    <select name="vendor" id="vendor" class="form-select" style="width:200px; border: 1px solid #EEEEEE; box-sizing: border-box; border-radius: 15px;">
+                    <label>vendor</label>
+                    <select name="vendor" id="vendor" class="form-select" style="   border: 1px solid #EEEEEE; box-sizing: border-box; border-radius: 15px;">
                         <option value="0">Select Vendor</option>
                         @foreach( $productVendor as $vendor)
                         <option value="{{$vendor->productVendor}}">{{ $vendor -> productVendor }}</option>   
                         @endforeach
                     </select>
-                    </td>
-                    <td><label>scale</label></td>
-                    <td style="padding:10px;">
-                    <select name="scale" id="scale" class="form-select" style="width:200px; border: 1px solid #EEEEEE; box-sizing: border-box; border-radius: 15px;">
+                    <label>scale</label>
+                    <select name="scale" id="scale" class="form-select" style="   border: 1px solid #EEEEEE; box-sizing: border-box; border-radius: 15px;">
                         <option value="0">Select Scale</option>
                         @foreach( $productScale as $scale)
                         <option value="{{$scale->productScale}}">{{ $scale -> productScale }}</option>   
                         @endforeach
                     </select>
-                </td>
-                    <td><input type="submit" class="edit-btn" value="select" style="width:100px;"></td>
-                </tr>
-                </body>
+                    <input type="submit" class="btn btn-danger btn-sm" value="select">
                 </form>
             </div>
+        
 
         <table class="table-card" style="Width:1100px;">
             <thead class="table-header">
