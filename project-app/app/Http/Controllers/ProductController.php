@@ -243,7 +243,9 @@ class ProductController extends Controller
         
         if($request->vendor == 0 ){
             if($request->scale == 0){
-               return "Please select vendor or scale";
+                $filter = Product::where(function($query) use($status){
+                    $query->where('productStatus', '=', $status); }) ->get();
+                return view('category' , compact('productVendor','productScale','productStatus','filter','status')); 
             }else{
                 $filter  = Product::where(function($query) use($status){
                     $query->where('productStatus', '=', $status); })->where('productScale', '=',$request->scale) ->get();
