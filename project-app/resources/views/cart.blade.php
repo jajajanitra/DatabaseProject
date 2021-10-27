@@ -64,6 +64,9 @@
                 </tr>
                 <?php $k[$i]=[$j['productCode'],$j['buyPrice'],$j['quantity'],$j['productName'],$j['productLine'],$j['quantityInStock'],$j['productScale'],$j['productVendor'],$j['productDescription'],$j['MSRP'],$j['productStatus']]?>
             @endforeach
+            @if($status == 'preorder')
+                <?php $total = $total/2 ?>
+            @endif
         @endif
         <tr>
             @if(is_null($status))
