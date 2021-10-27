@@ -147,7 +147,7 @@ class ProductController extends Controller
         $filter = Product::where(function($query) use($filters){
             $query->where('productStatus', '=', $filters['status']);
         }) ->get();
-        return view('category' , compact('status','productVendor','productScale','productStatus','filter')); 
+        return view('category' , compact('product','status','productVendor','productScale','productStatus','filter')); 
     }
 
     /*My Cart*/
@@ -245,21 +245,21 @@ class ProductController extends Controller
             if($request->scale == 0){
                 $filter = Product::where(function($query) use($status){
                     $query->where('productStatus', '=', $status); }) ->get();
-                return view('category' , compact('productVendor','productScale','productStatus','filter','status')); 
+                return view('category' , compact('product','productVendor','productScale','productStatus','filter','status')); 
             }else{
                 $filter  = Product::where(function($query) use($status){
                     $query->where('productStatus', '=', $status); })->where('productScale', '=',$request->scale) ->get();
-                return view('category' , compact('productVendor','productScale','productStatus','filter','status')); 
+                return view('category' , compact('product','productVendor','productScale','productStatus','filter','status')); 
             }
         }else{
             if($request->scale == 0){
                 $filter  = Product::where(function($query) use($status){
                     $query->where('productStatus', '=', $status); })->where('productVendor', '=',$request->vender) ->get();
-                return view('category' , compact('productVendor','productScale','productStatus','filter','status')); 
+                return view('category' , compact('product','productVendor','productScale','productStatus','filter','status')); 
             }else{
                 $filter  = Product::where(function($query) use($status){
                     $query->where('productStatus', '=', $status); })->where('productScale', '=',$request->scale)->where('productVendor', '=',$request->vendor) ->get();
-                return view('category' , compact('productVendor','productScale','productStatus','filter','status')); 
+                return view('category' , compact('product','productVendor','productScale','productStatus','filter','status')); 
             }
         }
     }
