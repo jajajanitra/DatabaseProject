@@ -35,6 +35,24 @@
 <body>
     <div id="app" class="uni">
     <header>    
+    <div>
+        @if(session('cart'))
+                <a href="{{ url('/products/cart') }}" class="cart">
+                    <!-- this code count product of choose tha user choose -->
+                    <div class="badge badge-pill badge-danger" style="position: absolute; top: 15px; right: 10px;">{{ count(session('cart')) }}</div>
+                </a>
+        </div>
+        <div class="col-sm-4 text-center">
+            @if(session('success'))
+            <p class="btn-success  mt-3 mb-3 btn-block session" style='padding: .375rem .75rem;'>{{ session('success') }}</p>
+        </div>
+            @endif
+            <!-- if user dont choose any product -->
+            @else
+            <a href="" class="cart" role="button">
+            </a> 
+            @endif 
+        </div>
             <div>
             <div class="dropdown">
                 <a class="user" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: none;">
@@ -66,24 +84,6 @@
         <main>
             @yield('content')
         </main>
-        <div>
-        @if(session('cart'))
-                <a href="{{ url('/products/cart') }}" class="cart">
-                    <!-- this code count product of choose tha user choose -->
-                    <div class="badge badge-pill badge-danger" style="position: absolute; top: 15px; right: 10px;">{{ count(session('cart')) }}</div>
-                </a>
-        </div>
-        <div class="col-sm-4 text-center">
-            @if(session('success'))
-            <p class="btn-success  mt-3 mb-3 btn-block session" style='padding: .375rem .75rem;'>{{ session('success') }}</p>
-        </div>
-            @endif
-            <!-- if user dont choose any product -->
-            @else
-            <a href="" class="cart" role="button">
-            </a> 
-            @endif 
-        </div>
     </div>
     @yield('scripts')
 
