@@ -50,11 +50,7 @@ class EmployeeController extends Controller
     {
         //
         $employee = Employee::find($id);
-        if($employee->jobTitle == 'VP Sales'){
-            return view('employeeERM', compact('employee'));
-        }else{
             return view('employee', compact('employee'));
-        }
     }
 
     /**
@@ -98,11 +94,17 @@ class EmployeeController extends Controller
         //
     }
 
-    public function erm()
+    public function erm($id)
     {
         $employee = Employee::all();
         $filtered = $employee->where('jobTitle', 'Sales Rep');
         $filtered -> all();
-        return view('erm' , ['employees' => $filtered]);
+        $current = Employee::find($id);
+        if($current->jobTitle == 'VP Sales'){
+            return view('erm' , ['employees' => $filtered]);
+        }else{
+            return view('noerm');
+        }
+        
     }
 }

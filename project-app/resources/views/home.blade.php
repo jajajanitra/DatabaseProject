@@ -25,6 +25,8 @@
                         <a href="{{ url('/customer') }}" class="nav-subheader-3">customer</a>
                         <p class="menubar4" style></p>
                         <a href="{{ url('/employee') }}" class="nav-subheader-4">employee</a>
+                        <p class="submenubar3" style></p>
+                        <a href="{{ url('/erm/' .Auth::user()->username) }}" class="nav-sub-subheader-3">ERM</a>
                     </nav>
                     <article>  
                             <div class="headertext">Login Success!</div>

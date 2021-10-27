@@ -26,13 +26,13 @@
                         <p class="menubar4" style></p>
                         <a href="{{ url('/employee') }}" class="nav-subheader-4">employee</a>
                         <p class="submenubar3" style></p>
-                        <a href="{{ url('/erm') }}" class="nav-sub-subheader-3">ERM</a>
+                        <a href="{{ url('/erm/' .Auth::user()->username) }}" class="nav-sub-subheader-3">ERM</a>
                     </nav>
                     <article>  
                         <div class="headertext">Employee Information</div>
                         <div>
-                            <table class="tableemp-card">
-                                <thead class="tableemp-header">
+                            <table class="table-card" style="width:1100px;">
+                                <thead class="table-header">
                                     <td style="width:80px; text-align: center;">Emp No.</td>
                                     <td style="width:135px;">First name</td>
                                     <td style="width:135px;">Last name</td>
@@ -44,7 +44,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach( $employees as $employee) 
-                                        <tr class="tableemp-row">
+                                        <tr class="table-row">
                                             <td style="width:80px; text-align: center;">{{ $employee ->employeeNumber}}</td>
                                             <td style="width:135px;">{{ $employee ->firstName}}</td>
                                             <td style="width:135px;">{{ $employee ->lastName}}</td>

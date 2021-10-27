@@ -1,33 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Payment</h1>
-    <div class="content">
-        <div class="table-products">
-            <table>
-                    <tr><b>Customer Number : </b> {{ $payment ->customerNumber}}</tr>
-                    <br>
-                    <br>
-                    <tr><b>checkNumber : </b> {{ $payment ->checkNumber}}</tr>
-                    <br>
-                    <br>
-                    <tr><b>Date : </b> {{ $payment ->paymentDate}}</tr>
-                    <br>
-                    <br>
-                    <tr><b>Amount : </b>{{ $payment ->amount}}</tr>
-            </table>
+@extends('layouts.app')
+
+@section('content')
+<div>
+    <div>
+        <div>
             <div>
-                <br>
-                <br>               
-                <a href="{{ config('app.url')}}/order"><button>Back</button></a>
+                <div>
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <nav>
+                        <div class="nav-header">Management</div>
+                        <p class="menubar1"></p>
+                        <a href="{{ url('/stock-in') }}" class="nav-subheader-1">stock-in</a>
+                        <p class="submenubar1" style></p>
+                        <a href="{{ url('/stock-inadd') }}" class="nav-sub-subheader-1">add stock-in</a>
+                        <p class="submenubar2" style></p>
+                        <a href="{{ url('/stock-in/products') }}" class="nav-sub-subheader-2">edit product</a>
+                        <p class="menubar2" style></p>
+                        <a href="{{ url('/order') }}" class="nav-subheader-2">order</a>
+                        <p class="menubar3" style></p>
+                        <a href="{{ url('/customer') }}" class="nav-subheader-3">customer</a>
+                        <p class="menubar4" style></p>
+                        <a href="{{ url('/employee') }}" class="nav-subheader-4">employee</a>
+                        <p class="submenubar3" style></p>
+                        <a href="{{ url('/erm/' .Auth::user()->username) }}" class="nav-sub-subheader-3">ERM</a>
+                    </nav>
+                    <article>  
+                        <div class="headertext">Payment detail</div>
+                        <div class="subtext">
+                        <div style="padding-top: 10px;"><b style="color:#000000;">Customer Number : </b> {{ $payment ->customerNumber}}</div>
+                        <div style="padding-top: 5px;"><b style="color:#000000;">checkNumber : </b> {{ $payment ->checkNumber}}</div>
+                        <div style="padding-top: 5px;"><b style="color:#000000;">Date : </b> {{ $payment ->paymentDate}}</div>
+                        <div style="padding-top: 5px;"><b style="color:#000000;">Amount : </b>{{ $payment ->amount}}</div>
+                        </div>
+                    </article>
+                </div>
             </div>
-</div>
+        </div>
     </div>
-</body>
-</html>
+</div>
+@endsection

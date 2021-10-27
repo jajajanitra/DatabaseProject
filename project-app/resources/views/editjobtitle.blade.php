@@ -26,7 +26,7 @@
                         <p class="menubar4" style></p>
                         <a href="{{ url('/employee') }}" class="nav-subheader-4">employee</a>
                         <p class="submenubar3" style></p>
-                        <a href="{{ url('/erm') }}" class="nav-sub-subheader-3">ERM</a>
+                        <a href="{{ url('/erm/' .Auth::user()->username) }}" class="nav-sub-subheader-3">ERM</a>
                     </nav>
                     <article>  
                         <div class="headertext">Employee's information</div>
