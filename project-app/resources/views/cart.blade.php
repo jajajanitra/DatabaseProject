@@ -13,6 +13,7 @@
         </thead>
         <tbody>
 
+        <?php $date = date('Y-m-d', time());?>
         <?php $total = 0 ?>
 <!-- by this code session get all product that user chose -->
         <?php $k?>
@@ -60,6 +61,35 @@
         </tr>
         </tbody>
         <div>
+            <div>
+                <p> Please apply coupon before insert the form below </p>
+            <form action="{{ url('/usecoupon/couponnum') }}" method="GET" >
+                @csrf
+                    <div>
+                        <label>couponCode :</label>
+                        <input type="text" name="couponCode" id="couponnum">
+                    </div>
+                    <button type="submit">sub</button>
+            </form>
+            @if(is_null($coupon))
+                <div>
+                        <?php $totalad = $total?>
+                </div>
+                @else
+                    @if($coupon->discount < $total && $coupon->couponLimit != 0 && $date < $coupon->couponEXP)
+                    <div>
+                        coupon is used
+                        discount $ {{$coupon->discount}}
+                        <?php $totalad = $total - $coupon->discount?>
+                    </div>
+                    @else
+                    <div>
+                        can not use this coupon
+                        <?php $totalad = $total?>
+                    </div>
+                    @endif
+            @endif
+            </div>
         <tfoot>
             <form action="{{url('/products/cart')}}" method="post">
             <div>
@@ -73,6 +103,7 @@
                         <label>order Date :</label>
                         <input type="date" name="orderDate" id=e readonly>
                         <script>document.getElementById('e').value = new Date().toISOString().substring(0, 10);</script>
+                        
                     </div>
                     <div>
                         <label>requiredDate :</label>
@@ -99,8 +130,7 @@
                             <option value="preorder">preorder</option>
                         </select>
                     <div>
-                        <label>couponCode :</label>
-                        <input type="text" name="couponCode" id="couponnum">
+                        <input type="hidden" type="text" name="couponCode" id="couponnum" value=" {{$coupon->couponNumber}} ">
                     </div>
                     <div>
                         <label>paymentNumber :</label>
@@ -108,7 +138,7 @@
                     </div>
                     <div>
                         <label>total : </label>
-                        <input type="number" name="total" value="{{ $total }}" readonly>
+                        <input type="number" name="total" value="{{ $totalad }}" readonly>
                     </div>
                     <div>
                     <?php $totalpoint =  floor($total/100) ?>
@@ -132,32 +162,6 @@
                     <button type="submit"> PlaceOrder </button>
                 </div>
             </form>
-            <form action="{{ url('/usecoupon/couponnum') }}" method="GET" >
-                @csrf
-                    <div>
-                        <label>couponCode :</label>
-                        <input type="text" name="couponCode" id="couponnum">
-                    </div>
-                    <button type="submit">sub</button>
-            </form>
-            @if(is_null($coupon))
-                <div>
-                        can not use this coupon
-                </div>
-                @else
-                    @if($coupon->discount < $total && $coupon->couponLimit != 0 )
-                    <div>
-                        coupon is used
-                        discount {{$coupon->discount}}
-                        <?php $totalad = $total - $coupon->discount?>
-                        total : {{$totalad}}
-                    </div>
-                    @else
-                    <div>
-                        can not use this coupon
-                    </div>
-                    @endif
-            @endif
         </tfoot>
     </table>
 

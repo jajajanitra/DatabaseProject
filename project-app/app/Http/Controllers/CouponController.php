@@ -106,7 +106,7 @@ class CouponController extends Controller
     }
 
     public function discount(Request $request){
-    $coupon = Coupon::where('couponCode',$request->couponCode)->first();
-    return view('cart',compact('coupon'));
+        $coupon = Coupon::where('couponCode',$request->couponCode)->first();
+        return view('cart',compact('coupon'));
     }
 }
