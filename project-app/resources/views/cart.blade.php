@@ -78,7 +78,7 @@
                         <?php $couponCode = null?>
                 </div>
                 @else
-                    @if($coupon->discount < $total && $coupon->couponLimit != 0 && $date < $coupon->couponEXP)
+                    @if($coupon->discount < $total && $coupon->couponLimit > 0 && $date < $coupon->couponEXP)
                     <div>
                         coupon is used
                         discount $ {{$coupon->discount}}
@@ -141,7 +141,7 @@
                         <input type="number" name="paymentNumber" required>
                     </div>
                     <div>
-                        <label>total : </label>
+                        <label>total after discount : </label>
                         <input type="number" name="total"  value="{{$totalad}}" readonly>
                     </div>
                     <div>
