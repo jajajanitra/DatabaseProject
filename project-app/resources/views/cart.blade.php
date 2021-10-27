@@ -34,7 +34,11 @@
                     </td>
                     <td data-th="buyPrice">${{ $j['buyPrice'] }}</td>
                     <td data-th="Quantity"> 
-                        <input type="number" value="{{ $j['quantity'] }}" class="form-control quantity" />
+                    @if($j['productStatus']=="Preorder") 
+                        <input type="number" value="{{ $j['quantity'] }}" min="0" class="form-control quantity" />
+                    @else   
+                        <input type="number" value="{{ $j['quantity'] }}" min="0" max="{{$j['quantityInStock']}}" class="form-control quantity" />
+                    @endif
                     </td>
                     <td data-th="Subtotal" class="text-center">${{ $j['buyPrice'] * $j['quantity'] }}</td>
                     <td class="actions" data-th="">
