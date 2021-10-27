@@ -13,11 +13,7 @@
     <div class="container">
     <div class="select-table"> 
                 <h1>Catalog</h1>
-                <botton><a href="{{ config('app.url')}}/products" class="select-table"><option>All product</option></a></botton>
-
             <div class="Dropdown">
-                
-                
                 <form action="{{ url('/products/category/' .$status) }}" method="GET">
                     @csrf
                     <label>vendor</label>
