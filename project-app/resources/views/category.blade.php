@@ -1,40 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-@extends('layout')
+@extends('layouts.store')
 @section('content')
 @section('title', 'Products')
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>showproduct</title>
-</head>
-<body>
-    <div class="container">
-    <div class="select-table"> 
-                <h1>Catalog</h1>
-            <div class="Dropdown">
+
+<article>
+    <div>
+    <div class="headertext">Catalog</div>
+    <div class="contenttext"> 
+            <div class="dropdown">
                 <form action="{{ url('/products/category/' .$status) }}" method="GET">
                     @csrf
-                    <label>vendor</label>
-                    <select name="vendor" id="vendor">
+                    <table>
+                        <tr>
+                            <td><label>vendor</label></td>
+                    <td style="padding:10px;">
+                    <select name="vendor" id="vendor" class="form-select" style="width:200px; border: 1px solid #EEEEEE; box-sizing: border-box; border-radius: 15px;">
                         <option value="0">Select Vendor</option>
                         @foreach( $productVendor as $vendor)
                         <option value="{{$vendor->productVendor}}">{{ $vendor -> productVendor }}</option>   
                         @endforeach
                     </select>
-                    <label>scale</label>
-                    <select name="scale" id="scale">
+                    </td>
+                    <td><label>scale</label></td>
+                    <td style="padding:10px;">
+                    <select name="scale" id="scale" class="form-select" style="width:200px; border: 1px solid #EEEEEE; box-sizing: border-box; border-radius: 15px;">
                         <option value="0">Select Scale</option>
                         @foreach( $productScale as $scale)
                         <option value="{{$scale->productScale}}">{{ $scale -> productScale }}</option>   
                         @endforeach
                     </select>
-                    <input type="submit" class="btn btn-danger btn-sm" value="select">
+                </td>
+                    <td><input type="submit" class="edit-btn" value="select" style="width:100px;"></td>
+                </tr>
+                </body>
                 </form>
             </div>
-        
-        <h2>All Category</h2>
+
         <table class="table table-stripped">
 	    	<thead>
 	    	<tr>
@@ -60,20 +60,25 @@
 	    	</tbody>
 	    </table>
     </div>
-</body>
-</html>
+</article>
+
+@endsection
+
+@section('scripts')
+
 
 <script type='text/javascript'>
- (function()
- {
-  if( window.localStorage ){
-    if(!localStorage.getItem('firstReLoad')){
-     localStorage['firstReLoad'] = true;
-     window.location.reload();
-    } else {
-     localStorage.removeItem('firstReLoad');
+    (function()
+    {
+    if( window.localStorage ){
+        if(!localStorage.getItem('firstReLoad')){
+        localStorage['firstReLoad'] = true;
+        window.location.reload();
+        } else {
+        localStorage.removeItem('firstReLoad');
+        }
     }
-  }
- })();
+})();
 </script>
 
+@endsection
