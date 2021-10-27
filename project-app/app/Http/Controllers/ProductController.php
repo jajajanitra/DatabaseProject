@@ -257,11 +257,4 @@ class ProductController extends Controller
         }
     }
 
-    public function UseCoupon(Request $request,$orderDate){
-        $filters = ['coupon' => $request->coupon];
-        $filter = Coupon::where(function($query) use($filters){
-            $query->where('couponCode', '=', $filters['coupon'])->where('couponEXP','>=',$orderDate)->select('discount');
-        }) ->get();
-        return compact('filter'); 
-    }
 }
