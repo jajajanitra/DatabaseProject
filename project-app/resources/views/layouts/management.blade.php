@@ -40,9 +40,9 @@
             </form>
                 </div>
                 </div>
-            <div class="cart"></div>
+            <a class="cart" href="{{ url('/products') }}"></a>
             <div class="circle"></div>
-            <a class="store-text" href="{{ url('/') }}">{{ __('Store')}} </a>  
+            <a class="store-text" href="{{ url('/products') }}">{{ __('Store')}} </a>  
             
         </div>
         </header>

@@ -35,26 +35,6 @@
 <body>
     <div id="app" class="uni">
     <header>    
-        <div>
-        @if(session('cart'))
-                <a href="{{ url('/products/cart') }}" class="cart">
-                    <!-- this code count product of choose tha user choose -->
-                    <span class="badge badge-pill badge-danger" style="position: absolute; top: 15px; right: 6px;">{{ count(session('cart')) }}</span>
-                </a>
-        </div>
-        <div class="col-sm-4 text-center">
-            @if(session('success'))
-            <p class="btn-success  mt-3 mb-3 btn-block session" style='padding: .375rem .75rem;'>{{ session('success') }}</p>
-        </div>
-            @endif
-            <!-- if user dont choose any product -->
-            @else
-            <a href="" class="btn text-light bg-warning mt-3 mb-3" role="button">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    Cart Empty
-            </a> 
-            @endif 
-        </div>
             <div>
             <div class="dropdown">
                 <a class="user" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: none;">
@@ -71,25 +51,39 @@
                 </div>
             <!-- <div class="cart"></div> -->
             <div class="circle"></div>
-            <a class="store-text" href="{{ url('/') }}">{{ __('Store')}} </a>  
+            <a class="store-text" href="{{ url('/products') }}">{{ __('Store')}} </a>  
             
         </div>
         </header>
         <nav>
                         <div class="nav-header">Explore</div>
                         <p class="menubar1"></p>
-                        <a href="{{ url('/products') }}" class="nav-subheader-1">catalog</a>
-                        <p class="submenubar1" style></p>
-                        <a href="{{ url('/products') }}" class="nav-sub-subheader-1">vendors</a>
-                        <p class="submenubar2" style></p>
-                        <a href="{{ url('products') }}" class="nav-sub-subheader-2">scales</a>
-                        <p class="menubar2" style></p>
-                        <a href="{{ url('/products') }}" class="nav-subheader-2">pre-order</a>
+                        <a href="{{ url('/products/category/normal') }}" class="nav-subheader-1">catalog</a>
+                        <p class="menubar2" style="top:257px;"></p>
+                        <a href="{{ url('/products/category/preorder') }}" class="nav-subheader-2" style="top:250px;">pre-order</a>
                     </nav>
 
         <main>
             @yield('content')
         </main>
+        <div>
+        @if(session('cart'))
+                <a href="{{ url('/products/cart') }}" class="cart">
+                    <!-- this code count product of choose tha user choose -->
+                    <div class="badge badge-pill badge-danger" style="position: absolute; top: 15px; right: 10px;">{{ count(session('cart')) }}</div>
+                </a>
+        </div>
+        <div class="col-sm-4 text-center">
+            @if(session('success'))
+            <p class="btn-success  mt-3 mb-3 btn-block session" style='padding: .375rem .75rem;'>{{ session('success') }}</p>
+        </div>
+            @endif
+            <!-- if user dont choose any product -->
+            @else
+            <a href="" class="cart" role="button">
+            </a> 
+            @endif 
+        </div>
     </div>
     @yield('scripts')
 

@@ -35,30 +35,32 @@
                 </form>
             </div>
 
-        <table class="table table-stripped">
-	    	<thead>
-	    	<tr>
-                <th>Name</th>
-                <th>Scale</th>
-                <th>Vendor</th>
-                <th>Buyprice</th>
-	    	</tr>
-	    	</thead>
-	    	<tbody>
-	    		@forelse($filter as $product )
-	    		<tr>
-	    		    <td>{{ $product ->productName }}</td>
-                    <td>{{ $product ->productScale }}</td>
-                    <td>{{ $product ->productVendor }}</td>
-                    <td>{{ $product ->buyPrice }}</td>
-                    <td>{{ $product ->productStatus }}</td>
-                    <td><a href="{{url('/products/cart/addtocart',['id' => $product -> productCode])}}" class="button"><button>add to cart</button></a></td>
-	    		</tr>
-	    		@empty
-	    		<p> No data Found </p>
-	    		@endforelse
-	    	</tbody>
-	    </table>
+        <table class="table-card" style="Width:1100px;">
+            <thead class="table-header">
+            <tr>
+                <th style="width: 400px;">Name</th>
+                <th style="width: 140px;">Scale</th>
+                <th style="width: 180px;">Vendor</th>
+                <th style="width: 130px;">Buyprice</th>
+                <th style="width: 110px;">Status</th>
+                <th style="width: 140px;"></th>
+            </tr>
+            </thead>
+            <tbody>
+                @forelse($filter as $product )
+                <tr class="table-row">
+                    <td style="width: 400px;">{{ $product ->productName }}</td>
+                    <td style="width: 120px;">{{ $product ->productScale }}</td>
+                    <td style="width: 200px;">{{ $product ->productVendor }}</td>
+                    <td style="width: 120px;">{{ $product ->buyPrice }}</td>
+                    <td style="width: 140px;">{{ $product ->productStatus }}</td>
+                    <td style="width: 120px;"><a href="{{url('/products/cart/addtocart',['id' => $product -> productCode])}}" class="button"><button class="edit-btn" style="width:100px;">add to cart</button></a></td>
+                </tr>
+                @empty
+                <p> No data Found </p>
+                @endforelse
+            </tbody>
+        </table>
     </div>
 </article>
 
@@ -82,3 +84,4 @@
 </script>
 
 @endsection
+

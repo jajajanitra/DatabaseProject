@@ -33,7 +33,7 @@
                     <td data-th="Product" style="width: 50%;">
                         <div class="row">
                             <div class="col-sm-9">
-                                <h4 class="nomargin">{{ $j['productName'] }}</h4>
+                                <h5 class="nomargin">{{ $j['productName'] }}</h5>
                             </div>
                         </div>
                     </td>
@@ -230,10 +230,6 @@
                         </tr>
                     </tbody>
                     </table> 
-                    </td>
-                    </tr>
-                    </tbody>
-                </table>
                     @for ($p = 1; $p <= $i; $p++)
                     <input type="hidden" type="text" name="productCode[]" value="{{$k[$p][0]}}">
                     <input type="hidden" type="number" name="priceEach[]" value="{{$k[$p][1]}}">
@@ -248,10 +244,26 @@
                     <input type="hidden" type="number" name="MSRP[]" value="{{$k[$p][9]}}">
                     <input type="hidden" type="text" name="productStatus[]" value="{{$k[$p][10]}}">
                     @endfor
-                    <button type="submit" class="edit-btn" style="width:200px; position:absolute; left:1000px; margin-top:10px;"> Place order </button>
+<td style="padding-left:30px;"> 
+                    <table>
+                        <tbody>
+                            <tr>
+                    <button type="submit" class="edit-btn" style="width:200px; margin-top:10px;"> Place order </button>
+                    </tr>
+                    <tr>
+                    <button type="button" onClick="location.href='{{config('app.url')}}/products'"class="edit-btn" style="width:200px; margin-top:10px; background: #6B7280;  color: white;">Back to store</button>
+</tr>
+</tbody>
+</table>
+</td>
+                    </td>
+                    </tr>
+                    </tbody>
+                </table>
                 </div>
             </form>
-            <td><button type="button" onClick="location.href='{{config('app.url')}}/products'"class="edit-btn" style="width:200px; position:absolute; left:540px; margin-top:10px;">Back to store</button></td>
+            <div class="carding">
+</div>
         </tfoot>
     </table>
 </div>
