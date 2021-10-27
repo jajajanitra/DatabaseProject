@@ -17,7 +17,7 @@
             </div>
             <div class="Dropdown">
                 <label>status</label>
-                <form action="{{ url('/products/status/status') }}" method="GET">
+                <form action="{{ url('/products/status') }}" method="GET">
                     @csrf
                     <select name="status" id="status">
                         <option value="0">Select Status</option>

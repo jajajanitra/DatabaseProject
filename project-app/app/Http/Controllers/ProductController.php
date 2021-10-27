@@ -136,35 +136,10 @@ class ProductController extends Controller
 
     /*filter product*/
 
-    public function categoryvendor(Request $request)
-    {   
-        $product = Product::all();
-        $productVendor = Product::where('productVendor',$product)->getModel()->select('productVendor')->distinct()->get();
-        $productScale = Product::where('productScale',$product)->getModel()->select('productScale')->distinct()->get();
-        $productStatus = Product::where('productStatus',$product)->getModel()->select('productStatus')->distinct()->get();
-        $filters = ['vendor' => $request->vendor];
-        $filter = Product::where(function($query) use($filters){
-            $query->where('productVendor', '=', $filters['vendor']);
-        }) ->get();
-        return view('category' , compact('product','productVendor','productScale','productStatus','filter'));  
-    }
-
-    public function categoryscale(Request $request)
-    {   
-        $product = Product::all();
-        $productVendor = Product::where('productVendor',$product)->getModel()->select('productVendor')->distinct()->get();
-        $productScale = Product::where('productScale',$product)->getModel()->select('productScale')->distinct()->get();
-        $productStatus = Product::where('productStatus',$product)->getModel()->select('productStatus')->distinct()->get();
-        $filters = ['scale' => $request->scale];
-        $filter = Product::where(function($query) use($filters){
-            $query->where('productScale', '=', $filters['scale']);
-        }) ->get();
-        return view('category' , compact('product','productVendor','productScale','productStatus','filter')); 
-    }
-    
     public function categorystatus(Request $request)
     {
         $product = Product::all();
+        $status = $request->status;
         $productVendor = Product::where('productVendor',$product)->getModel()->select('productVendor')->distinct()->get();
         $productScale = Product::where('productScale',$product)->getModel()->select('productScale')->distinct()->get();
         $productStatus = Product::where('productStatus',$product)->getModel()->select('productStatus')->distinct()->get();
@@ -172,7 +147,7 @@ class ProductController extends Controller
         $filter = Product::where(function($query) use($filters){
             $query->where('productStatus', '=', $filters['status']);
         }) ->get();
-        return view('category' , compact('product','productVendor','productScale','productStatus','filter')); 
+        return view('category' , compact('status','productVendor','productScale','productStatus','filter')); 
     }
 
     /*My Cart*/
@@ -254,6 +229,36 @@ class ProductController extends Controller
                 session()->put('cart', $cart);
             }
             session()->flash('success', 'Product removed successfully');
+        }
+    }
+
+    public function category(Request $request,$status)
+    {
+        $product = Product::all();
+        $status = $status;
+        $productVendor = Product::where('productVendor',$product)->getModel()->select('productVendor')->distinct()->get();
+        $productScale = Product::where('productScale',$product)->getModel()->select('productScale')->distinct()->get();
+        $productStatus  = Product::where(function($query) use($status){
+            $query->where('productStatus', '=', $status); }) ->get();
+        
+        if($request->vendor == 0 ){
+            if($request->scale == 0){
+               return "Please select vendor or scale";
+            }else{
+                $filter  = Product::where(function($query) use($status){
+                    $query->where('productStatus', '=', $status); })->where('productScale', '=',$request->scale) ->get();
+                return view('category' , compact('productVendor','productScale','productStatus','filter','status')); 
+            }
+        }else{
+            if($request->scale == 0){
+                $filter  = Product::where(function($query) use($status){
+                    $query->where('productStatus', '=', $status); })->where('productVendor', '=',$request->vender) ->get();
+                return view('category' , compact('productVendor','productScale','productStatus','filter','status')); 
+            }else{
+                $filter  = Product::where(function($query) use($status){
+                    $query->where('productStatus', '=', $status); })->where('productScale', '=',$request->scale)->where('productVendor', '=',$request->vendor) ->get();
+                return view('category' , compact('productVendor','productScale','productStatus','filter','status')); 
+            }
         }
     }
 
