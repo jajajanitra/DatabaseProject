@@ -60,8 +60,9 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        $payment = Payment::find($id);
-        return view('viewpayment',compact('payment'));
+        $order = Order::find($id);
+        $payments = Payment::all();
+        return view('viewpayment',compact('payments','order'));
     }
 
     /**
