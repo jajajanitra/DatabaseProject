@@ -19,6 +19,7 @@
 <!-- by this code session get all product that user chose -->
         <?php $k?>
         <?php $couponCode ?>
+        <?php $status = null?>
         <?php $i=0?>
         @if(session('cart'))
             @foreach(session('cart') as $id => $j)
@@ -57,13 +58,19 @@
                         <button class="btn btn-danger btn-sm remove-from-cart delete" data-id="{{ $id }}"><i class="fa fa-trash-o"></i>DELETE</button>
                     </form>
                     </td>
+                    
+                    <?php $status = $j['productStatus'] ?>
+                    
                 </tr>
                 <?php $k[$i]=[$j['productCode'],$j['buyPrice'],$j['quantity'],$j['productName'],$j['productLine'],$j['quantityInStock'],$j['productScale'],$j['productVendor'],$j['productDescription'],$j['MSRP'],$j['productStatus']]?>
             @endforeach
         @endif
-        <?php $status = $j['productStatus'] ?>
         <tr>
+            @if(is_null($status))
+            <td><button type="button" onClick="location.href='{{config('app.url')}}/products'"class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</button></td>
+            @else
             <td><button type="button" onClick="window.history.back();"class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</button></td>
+            @endif
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><strong>Total ${{ $total }}</strong></td>
         </tr>
@@ -136,13 +143,7 @@
                     </div>
                     <div>
                         <label>OrderType</label>
-                        <!-- @if($status != NULL){
-                            <input type="text" name="orderType"  value="{{$status}}" readonly>
-                        }
-                        @else{
-                            <input type="text" name="orderType"  value=0 readonly>
-                        }
-                        @endif -->
+                        <input type="text" name="orderType"  value="{{$status}}" readonly>
                     <div>
                         <input type="hidden" type="text" name="couponNumber"  value="{{$couponCode}}" id="couponnum" >
                     </div>
