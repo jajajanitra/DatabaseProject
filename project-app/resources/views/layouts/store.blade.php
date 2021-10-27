@@ -23,18 +23,25 @@
 </head>
 <body>
     <div id="app" class="uni">
-        <header>
+    <header>
             <div>
-            <a class="user" href="{{ url('/employee/' .Auth::user()->username)}}"></a>
-            <div class="cart"></div>
-            <div class="circle"></div>
-            <a class="store-text" href="{{ url('/') }}">{{ __('Store')}} </a>  
-            <a class="logout-text" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
+            <div class="dropdown">
+                <a class="user" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: none;">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="border-radius: 15px; border: 1px solid #EEEEEE;">
+                    <a class="dropdown-item" href="{{ url('/employee/' .Auth::user()->username)}}" style="text-align:center; pading:2px;">user</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="text-align:center; pading:2px;">
+                {{ __('logout') }}
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
             </form>
+                </div>
+                </div>
+            <div class="cart"></div>
+            <div class="circle"></div>
+            <a class="store-text" href="{{ url('/') }}">{{ __('Store')}} </a>  
+            
         </div>
         </header>
         <nav>
