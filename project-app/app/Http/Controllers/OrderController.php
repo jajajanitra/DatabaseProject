@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Payment;
 use App\Models\Orderdetail;
 use App\Models\Customer;
+use App\Models\Coupon;
 
 class OrderController extends  OrderdetailController
 {
@@ -29,7 +30,8 @@ class OrderController extends  OrderdetailController
     public function create()
     {
         //
-        return view('cart');
+        $coupon = Coupon::all();
+        return view('cart',compact('coupon'));
     }
 
     /**

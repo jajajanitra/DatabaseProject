@@ -64,7 +64,7 @@ Route::get('/products/status/{status}',[ProductController::class,'categorystatus
 Route::get('/products/cart/addtocart/{id}',[ProductController::class,'AddToCart']);
 Route::delete('/products/cart/removefromcart',[ProductController::class,'RemoveFromCart']);
 Route::put('/products/cart/updatecart',[ProductController::class,'UpdateCart']);
-Route::get('/usecoupon/{couponnum}',[CouponController::class,'UseCoupon']);
+Route::get('/usecoupon/{couponnum}',[CouponController::class,'discount']);
 Route::get('/products/cart' ,[OrderController::class, 'create']);
 Route::post('/products/cart' ,[OrderController::class, 'store']);
 Route::resource('/stock-in', StockInController::class);

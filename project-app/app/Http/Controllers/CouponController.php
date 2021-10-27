@@ -102,6 +102,11 @@ class CouponController extends Controller
         $filter = Coupon::where(function($query) use($filters){
             $query->where('couponCode', '=', $filters['coupon'])->select('discount');
         }) ->get();
-        return view('showproduct',compact('filter'));
+        return view('cart',compact('filter'));
+    }
+
+    public function discount(Request $request){
+    $coupon = Coupon::where('couponCode',$request->couponCode)->first();
+    return view('cart',compact('coupon'));
     }
 }

@@ -140,6 +140,24 @@
                     </div>
                     <button type="submit">sub</button>
             </form>
+            @if(is_null($coupon))
+                <div>
+                        can not use this coupon
+                </div>
+                @else
+                    @if($coupon->discount < $total && $coupon->couponLimit != 0 )
+                    <div>
+                        coupon is used
+                        discount {{$coupon->discount}}
+                        <?php $totalad = $total - $coupon->discount?>
+                        total : {{$totalad}}
+                    </div>
+                    @else
+                    <div>
+                        can not use this coupon
+                    </div>
+                    @endif
+            @endif
         </tfoot>
     </table>
 
