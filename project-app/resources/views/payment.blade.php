@@ -64,7 +64,8 @@
                     </div>
                     <div>
                         <label>paymentDate :</label>
-                        <input  type="date" name="paymentDate" required>
+                        <input  type="date" name="paymentDate" id=e readonly>
+                        <script>document.getElementById('e').value = new Date().toISOString().substring(0, 10);</script>
                     </div>
                     <div>
                         <label>amount :</label>
