@@ -9,6 +9,7 @@ use App\Models\Orderdetail;
 use App\Models\Customer;
 use App\Models\Coupon;
 use App\Models\PreOrder;
+use App\Models\Product;
 
 class OrderController extends  OrderdetailController
 {
@@ -121,7 +122,9 @@ class OrderController extends  OrderdetailController
     public function edit($id)
     {
         $order = Order::find($id);
-        return view('editorder',compact('order')); 
+        $orderdetail = Orderdetail::find($id);
+        return view('editorder',compact('order','orderdetail')); 
+        
     }
 
     /**
@@ -131,13 +134,29 @@ class OrderController extends  OrderdetailController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
+        
         Order::find($id)->update([
             'shippedDate'=>$request->shippedDate,
             'status'=>$request->status,
             'comments'=>$request->comments
         ]);
+        if($request->status == 'canceled')
+        {
+
+            $orderdetail = Orderdetail::where('orderNumber',$id)->get();
+           // $product = Product::all();
+
+            for($i=0; $i<count( $orderdetail) ;$i++){
+                    $product = Product::find($orderdetail [$i] -> productCode);
+                    $product -> quantityInStock += $orderdetail [$i]-> quantityOrdered;
+                    $product->save();
+            }
+            
+        }
+
         return redirect('/order');
     }
 
