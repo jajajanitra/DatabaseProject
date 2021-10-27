@@ -148,8 +148,8 @@
                         <input type="hidden" type="text" name="couponNumber"  value="{{$couponCode}}" id="couponnum" >
                     </div>
                     <div>
-                        <label>paymentNumber :</label>
-                        <input type="number" name="paymentNumber" required>
+                            <label>paymentNumber/checkNumber :</label>
+                            <input type="text" name="paymentNumber" required>                    
                     </div>
                     <div>
                         <label>total after discount : </label>

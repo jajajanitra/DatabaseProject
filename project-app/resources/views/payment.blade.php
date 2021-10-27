@@ -71,8 +71,8 @@
                         <input  type="number" name="amount" value="{{$order -> total}}" readonly>
                     </div>
                     <div>
-                        <label>checkNumber :</label>
-                        <input type="text" name="checkNumber">
+                    <label>paymentNumber/checkNumber :</label>
+                    <input type="text" name="paymentNumber" value="{{$order -> paymentNumber}}" readonly required>
                     </div> 
                     <div>
                         <label for="status">State :</label>
