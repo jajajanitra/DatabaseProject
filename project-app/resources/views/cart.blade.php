@@ -65,7 +65,8 @@
                 <?php $k[$i]=[$j['productCode'],$j['buyPrice'],$j['quantity'],$j['productName'],$j['productLine'],$j['quantityInStock'],$j['productScale'],$j['productVendor'],$j['productDescription'],$j['MSRP'],$j['productStatus']]?>
             @endforeach
             @if($status == 'preorder')
-                <?php $total = $total/2 ?>
+                <?php $total = $total/2 
+                ?>
             @endif
         @endif
         <tr>
@@ -135,7 +136,7 @@
                         <input type="date" name="shippedDate" required>
                     </div>
                     <div>
-                        <label for="status">State</label>
+                        <label for="status">Status</label>
                             <select name="status"  >
                                 <option value="In Process">In Process</option> 
                             </select>
