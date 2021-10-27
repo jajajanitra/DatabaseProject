@@ -50,7 +50,7 @@ Route::get('/stock-in/products/edit/{product}' ,[ProductController::class, 'edit
 Route::put('/stock-in/products/edit/{product}' ,[ProductController::class, 'update']);
 Route::delete('/stock-in/products/delete/{product}' ,[ProductController::class, 'delete']);
 
-Route::get('/erm', [EmployeeController::class, 'erm']);
+Route::get('/erm/{employee}', [EmployeeController::class, 'erm']);
 Route::get('/erm/edit/{employee}', [EmployeeController::class, 'edit']); 
 Route::put('/erm/edit/{employee}', [EmployeeController::class, 'update']);
 

@@ -26,20 +26,18 @@
                         <p class="menubar4" style></p>
                         <a href="{{ url('/employee') }}" class="nav-subheader-4">employee</a>
                         <p class="submenubar3" style></p>
-                        <a href="{{ url('/erm') }}" class="nav-sub-subheader-3">ERM</a>
+                        <a href="{{ url('/erm/' .Auth::user()->username) }}" class="nav-sub-subheader-3">ERM</a>
                     </nav>
                     <article>  
-                        <div class="headertext">Employee's information</div>
+                        <div class="headertext">Permission Denied!</div>
                             <div class="subtext">
                                 @if (session('status'))
                                     <div class="alert alert-success" role="alert">
                                         {{ session('status') }}
                                     </div>
                                 @endif
-                                <p style="padding-top: 10px;">Employee No. : {{ $employee -> employeeNumber}}</p>
-                                <p>Name : {{ $employee -> firstName }} {{ $employee -> lastName}}</p>
-                                <p>Email : {{ $employee -> email}}</p>
-                                <p>Job title : {{ $employee -> jobTitle}}</p>
+                                <b>You do not have permission to access this functionality!</b>
+                                <p>Only employees in Sales department are allowed to access this functionality.</p>
                             </div>
                     </article>
                 </div>

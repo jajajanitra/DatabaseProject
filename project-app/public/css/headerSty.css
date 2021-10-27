@@ -45,7 +45,7 @@
 
 .subtext {
     font-style: normal;
-    font-weight: 500;
+    font-weight: 200;
     font-size: 18px;
     /* identical to box height */
     color: #7E7E7E;
@@ -53,7 +53,7 @@
 
 .contenttext {
     font-style: normal;
-    font-weight: 500;
+    font-weight: 200;
     font-size: 18px;
     /* identical to box height */
     color: #000000;
@@ -278,81 +278,11 @@ article {
     color: #7E7E7E;
 }
 
-.table-erm {
-    text-decoration: none;
-    font-style: normal;
-    font-size: 18px;
-    color: #000000;
-}
-
-.tableerm-header {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 16px;
-    /* identical to box height, or 133% */
-
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-
-    /* Table/Head/Text */
-
-    color: #8492A6;
-
-    padding: 10px;
-
-    box-shadow: inset 0px -1px 0px #EDF2F7;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 0px 0px;
-}
-
-.tableerm-row {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 100;
-    font-size: 12px;
-    line-height: 16px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.06em;
-
-    /* Table/Head/Text */
-
-    padding: 10px;
-    background-color: white;
-    box-shadow: inset 0px -1px 0px #EDF2F7;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 0px 0px;
-}
-
-.tableerm-card {
+.table-card {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding-top: 10px;
-    width: 620px;
-
-    /* Theme/White/Default */
-
-    background: #FAFAFB;
-    border-radius: 16px;
-}
-
-.tableemp-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 10px;
-    width: 1080px;
     table-layout: fixed;
     
     /* Theme/White/Default */
@@ -361,7 +291,7 @@ article {
     border-radius: 16px;
 }
 
-.tableemp-header {
+.table-header {
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
@@ -387,133 +317,7 @@ article {
     margin: 0px 0px;
 }
 
-
-.tableemp-row {
-    font-style: normal;
-    font-weight: 100;
-    font-size: 12px;
-    line-height: 16px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.06em;
-
-    /* Table/Head/Text */
-
-    padding: 10px;
-    background-color: white;
-    box-shadow: inset 0px -1px 0px #EDF2F7;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 0px 0px;
-}
-
-.tablepd-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 10px;
-    width: 1089px;
-    table-layout: fixed;
-    
-    /* Theme/White/Default */
-
-    background: #FAFAFB;
-    border-radius: 16px;
-}
-
-.tablepd-header {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 16px;
-    /* identical to box height, or 133% */
-
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-
-    /* Table/Head/Text */
-
-    color: #8492A6;
-
-    padding: 10px;
-    box-shadow: inset 0px -1px 0px #EDF2F7;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 0px 0px;
-}
-
-
-.tablepd-row {
-    font-style: normal;
-    font-weight: 100;
-    font-size: 12px;
-    line-height: 16px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.06em;
-    height: 100px;
-    /* Table/Head/Text */
-
-    padding: 10px;
-    background-color: white;
-    box-shadow: inset 0px -1px 0px #EDF2F7;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 0px 0px;
-}
-
-
-.tablestk-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 10px;
-    width: 770px;
-    table-layout: fixed;
-    
-    /* Theme/White/Default */
-
-    background: #FAFAFB;
-    border-radius: 16px;
-}
-
-.tablestk-header {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 16px;
-    /* identical to box height, or 133% */
-
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-
-    /* Table/Head/Text */
-
-    color: #8492A6;
-
-    padding: 10px;
-    box-shadow: inset 0px -1px 0px #EDF2F7;
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 0px 0px;
-}
-
-
-.tablestk-row {
+.table-row {
     font-style: normal;
     font-weight: 100;
     font-size: 12px;
