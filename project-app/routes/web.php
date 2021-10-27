@@ -58,17 +58,15 @@ Route::put('/erm/edit/{employee}', [EmployeeController::class, 'update']);
 Route::get('/products',[ProductController::class,'show']);
 Route::get('/products/vendor/{vendor}', [ProductController::class,'categoryvendor']);
 Route::get('/products/scale/{scale}',[ProductController::class,'categoryscale']);
-Route::get('/products/scale/{status}',[ProductController::class,'categorystatus']);
+Route::get('/products/status/{status}',[ProductController::class,'categorystatus']);
 
 //cart
 Route::get('/products/cart/addtocart/{id}',[ProductController::class,'AddToCart']);
 Route::delete('/products/cart/removefromcart',[ProductController::class,'RemoveFromCart']);
 Route::put('/products/cart/updatecart',[ProductController::class,'UpdateCart']);
-Route::put('/products/cart/usecoupon',[ProductController::class,'UseCoupon']);
+Route::get('/usecoupon/{couponnum}',[CouponController::class,'discount']);
 Route::get('/products/cart' ,[OrderController::class, 'create']);
 Route::post('/products/cart' ,[OrderController::class, 'store']);
-Route::post('/products/cart/{couponnumber/{date}' ,[OrderController::class, 'UpdateTotal']);
-
 Route::resource('/stock-in', StockInController::class);
 Route::get('/stock-inadd', [StockInController::class , 'create']);
 Route::post('/stock-inadd' ,[StockInController::class, 'store']);

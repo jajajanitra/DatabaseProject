@@ -13,6 +13,7 @@
         </thead>
         <tbody>
 
+        <?php $date = date('Y-m-d', time());?>
         <?php $total = 0 ?>
 <!-- by this code session get all product that user chose -->
         <?php $k?>
@@ -60,8 +61,36 @@
         </tr>
         </tbody>
         <div>
+            <div>
+                <p> Please apply coupon before insert the form below </p>
+            <form action="{{ url('/usecoupon/couponnum') }}" method="GET" >
+                @csrf
+                    <div>
+                        <label>couponCode :</label>
+                        <input type="text" name="couponCode" id="couponnum">
+                    </div>
+                    <button type="submit">sub</button>
+            </form>
+            @if(is_null($coupon))
+                <div>
+                        <?php $totalad = $total?>
+                </div>
+                @else
+                    @if($coupon->discount < $total && $coupon->couponLimit != 0 && $date < $coupon->couponEXP)
+                    <div>
+                        coupon is used
+                        discount $ {{$coupon->discount}}
+                        <?php $totalad = $total - $coupon->discount?>
+                    </div>
+                    @else
+                    <div>
+                        can not use this coupon
+                        <?php $totalad = $total?>
+                    </div>
+                    @endif
+            @endif
+            </div>
         <tfoot>
-            
             <form action="{{url('/products/cart')}}" method="post">
             <div>
                 @csrf
@@ -74,6 +103,7 @@
                         <label>order Date :</label>
                         <input type="date" name="orderDate" id=e readonly>
                         <script>document.getElementById('e').value = new Date().toISOString().substring(0, 10);</script>
+                        
                     </div>
                     <div>
                         <label>requiredDate :</label>
@@ -100,18 +130,15 @@
                             <option value="preorder">preorder</option>
                         </select>
                     <div>
-                        <label>couponNumber :</label>
-                        <input type="nymber" name="couponNumber" >
+                        <input type="hidden" type="text" name="couponCode" id="couponnum" value=" {{$coupon->couponNumber}} ">
                     </div>
-                    <button class="btn btn-info btn-sm update-total" 
-                    onclick="window.location.href=window.location.href"><i class="fa fa-refresh"></i></button>
                     <div>
                         <label>paymentNumber :</label>
                         <input type="number" name="paymentNumber" required>
                     </div>
                     <div>
                         <label>total : </label>
-                        <input  type="number" name="total" value="{{ $total }}" readonly>
+                        <input type="number" name="total" value="{{ $totalad }}" readonly>
                     </div>
                     <div>
                     <?php $totalpoint =  floor($total/100) ?>
@@ -119,18 +146,18 @@
                         <input  type="number" name="pointReceived" value="{{ $totalpoint }}" readonly>
                     </div>
                     @for ($p = 1; $p <= $i; $p++)
-                    <input type="text" name="productCode[]" value="{{$k[$p][0]}}">
-                    <input type="number" name="priceEach[]" value="{{$k[$p][1]}}">
-                    <input type="number" name="buyPrice[]" value="{{$k[$p][1]}}">
-                    <input type="number" name="quantityOrdered[]" value="{{$k[$p][2]}}">
-                    <input type="text" name="productName[]" value="{{$k[$p][3]}}">
-                    <input type="text" name="productLine[]" value="{{$k[$p][4]}}">
-                    <input type="number" name="quantityInStock[]" value="{{$k[$p][5]}}">
-                    <input type="text" name="productScale[]" value="{{$k[$p][6]}}">
-                    <input type="text" name="productVendor[]" value="{{$k[$p][7]}}">
-                    <input type="text" name="productDescription[]" value="{{$k[$p][8]}}">
-                    <input type="number" name="MSRP[]" value="{{$k[$p][9]}}">
-                    <input type="text" name="productStatus[]" value="{{$k[$p][10]}}">
+                    <input type="hidden" type="text" name="productCode[]" value="{{$k[$p][0]}}">
+                    <input type="hidden" type="number" name="priceEach[]" value="{{$k[$p][1]}}">
+                    <input type="hidden" type="number" name="buyPrice[]" value="{{$k[$p][1]}}">
+                    <input type="hidden" type="number" name="quantityOrdered[]" value="{{$k[$p][2]}}">
+                    <input type="hidden" type="text" name="productName[]" value="{{$k[$p][3]}}">
+                    <input type="hidden" type="text" name="productLine[]" value="{{$k[$p][4]}}">
+                    <input type="hidden" type="number" name="quantityInStock[]" value="{{$k[$p][5]}}">
+                    <input type="hidden" type="text" name="productScale[]" value="{{$k[$p][6]}}">
+                    <input type="hidden" type="text" name="productVendor[]" value="{{$k[$p][7]}}">
+                    <input type="hidden" type="text" name="productDescription[]" value="{{$k[$p][8]}}">
+                    <input type="hidden" type="number" name="MSRP[]" value="{{$k[$p][9]}}">
+                    <input type="hidden" type="text" name="productStatus[]" value="{{$k[$p][10]}}">
                     @endfor
                     <button type="submit"> PlaceOrder </button>
                 </div>
@@ -172,24 +199,6 @@
                     }
                 });
             }
-        });
-        function passIDto(couponnumber,date){    
-            window.location.href = '{{ url('/products/cart/usecoupon/') }}' + couponnumber + date ;
-        }  
-        $(".update-total").click(function (e) {
-            var couponnum = document.getElementById("e").value;
-            var orderdate = document.getElementById("orderdate").value;
-            e.preventDefault();
-            var ele = $(this);
-            $.ajax({
-                url: '{{ url('/products/cart/usecoupon') }}',
-                method: "put",
-                data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), couponNumber: ele.parents("tr").find(".couponNumber").val()},
-                data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), couponNumber: ele.parents("tr").find(".orderdate").val()},
-                success: function (response) {
-                    window.location.reload();
-                }
-            });
         });
     </script>
 
