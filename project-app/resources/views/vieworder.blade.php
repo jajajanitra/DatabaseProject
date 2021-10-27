@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.management')
 
 @section('content')
 <div>
@@ -11,23 +11,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <nav>
-                        <div class="nav-header">Management</div>
-                        <p class="menubar1"></p>
-                        <a href="{{ url('/stock-in') }}" class="nav-subheader-1">stock-in</a>
-                        <p class="submenubar1" style></p>
-                        <a href="{{ url('/stock-inadd') }}" class="nav-sub-subheader-1">add stock-in</a>
-                        <p class="submenubar2" style></p>
-                        <a href="{{ url('/stock-in/products') }}" class="nav-sub-subheader-2">edit product</a>
-                        <p class="menubar2" style></p>
-                        <a href="{{ url('/order') }}" class="nav-subheader-2">order</a>
-                        <p class="menubar3" style></p>
-                        <a href="{{ url('/customer') }}" class="nav-subheader-3">customer</a>
-                        <p class="menubar4" style></p>
-                        <a href="{{ url('/employee') }}" class="nav-subheader-4">employee</a>
-                        <p class="submenubar3" style></p>
-                        <a href="{{ url('/erm/' .Auth::user()->username) }}" class="nav-sub-subheader-3">ERM</a>
-                    </nav>
                     <article>  
                         <div class="headertext">Orders</div>
                         <div>
@@ -61,7 +44,7 @@
                                             <td style="width:84px; text-align: center;">{{ $order ->orderType}}</td>
                                             <td style="width:84px; text-align: center;">{{ $order ->couponNumber}}</td>
                                             <td style="width:84px; text-align: center;">{{ $order ->customerNumber}}</td>
-                                            <td style="width:84px; text-align: center;"><a href="{{url('/mypayment/'.$order->customerNumber)}}" style="text-decoration: none;"><button>{{ $order ->paymentNumber}}</button></a></td>
+                                            <td style="width:84px; text-align: center;"><a href="{{url('/mypayment/'.$order->customerNumber)}}" style="text-decoration: none;"><button class="edit-btn" style="width:85px;">view payment</button></a></td>
                                             <td style="width:80px; text-align: center;"> <a href="{{url('/order/edit/'.$order->orderNumber)}}" style="text-decoration: none;"><button class="edit-btn"> edit </button></a></td>
                                         </tr>
                                     @endforeach
