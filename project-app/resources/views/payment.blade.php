@@ -45,7 +45,11 @@
             </tr>
         </tfoot>
         <tfoot>
-        <table style="margin-top: 40px; margin-left:auto; margin-right:auto;">
+        <table style="margin-top: 20px; margin-left:20px;">
+        <tbody>
+            <tr>
+                <td>
+        <table>
             <tbody>
                 <tr>
                     <td>
@@ -70,7 +74,7 @@
                 <div>
                     @csrf
                     @method('PUT')
-                    <table style="margin-left:auto; margin-right:auto;">
+                    <table>
                         <tbody>
                             <tr>
                                 <td>
@@ -89,6 +93,12 @@
                                 <script>document.getElementById('e').value = new Date().toISOString().substring(0, 10);</script>
                                 </td>
                             </tr>
+                        </tbody>
+                        </table>
+                        </td>
+                        <td style="padding-left:20px;">
+                            <table>
+                            <tbody>
                             <tr>
                                 <td>
                                 <label>amount</label>
@@ -125,8 +135,11 @@
                             </tr>
                         </tbody>
                     </table>
-                    
-                <button type="submit" class="edit-btn" style="width:200px; margin-top:10px;">purchase</button>
+</td>
+</tr>
+</tbody>
+</table>             
+                <button type="submit" class="edit-btn" style="width:200px; margin-top:10px; position: absolute; left:1100px; top:700px;">purchase</button>
                 <div class="carding"></div>
             </form>
         </tfoot>
